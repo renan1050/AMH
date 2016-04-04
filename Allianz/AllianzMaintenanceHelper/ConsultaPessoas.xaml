@@ -3,26 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultaPessoas"
-        Title="Consulta de pessoas" Height="445.782" Width="552.632">
+        Title="Consulta de pessoas" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF">
     <Grid Margin="0,0,13,5">
-        <TextBox x:Name="pesNome" HorizontalAlignment="Left" Height="23" Margin="23,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287"/>
-        <Label Content="Nome" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="287"/>
+        <TextBox x:Name="pesNome" HorizontalAlignment="Left" Height="23" Margin="23,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Nome" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
 
-        <GroupBox Header="Tipo de pessoa" HorizontalAlignment="Left" Margin="315,10,0,0" VerticalAlignment="Top" Width="207" Height="51">
-            <RadioButton x:Name="radPF" InterfaceBase:WPFExtension.RelativeFieldCode="PF" Content="Pessoa física" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="0,10,0,-1" Unchecked="UncheckTipo"/>
+        <GroupBox Header="Tipo de pessoa" HorizontalAlignment="Left" Margin="315,10,0,0" VerticalAlignment="Top" Width="207" Height="51" Foreground="#FF1700FF">
+            <RadioButton x:Name="radPF" InterfaceBase:WPFExtension.RelativeFieldCode="PF" Content="Pessoa física" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="0,10,0,-1" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         </GroupBox>
-        <RadioButton x:Name="radPJ" InterfaceBase:WPFExtension.RelativeFieldCode="PJ" Content="Pessoa jurídica" HorizontalAlignment="Left" Margin="412,36,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo"/>
+        <RadioButton x:Name="radPJ" InterfaceBase:WPFExtension.RelativeFieldCode="PJ" Content="Pessoa jurídica" HorizontalAlignment="Left" Margin="412,36,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Grid local:WPFExtension.RelativeField="PJ" HorizontalAlignment="Left" Height="51" Margin="275,68,0,0" VerticalAlignment="Top" Width="247" Visibility="Hidden">
-            <TextBox x:Name="pesCNPJ" HorizontalAlignment="Left" Height="23" Margin="129,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
-            <Label Content="CNPJ" HorizontalAlignment="Left" Margin="129,2,0,0" VerticalAlignment="Top" Width="118"/>
+            <TextBox x:Name="pesCNPJ" HorizontalAlignment="Left" Height="23" Margin="129,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+            <Label Content="CNPJ" HorizontalAlignment="Left" Margin="129,2,0,0" VerticalAlignment="Top" Width="118" Foreground="#FF1700FF"/>
         </Grid>
         <Grid local:WPFExtension.RelativeField="PF" HorizontalAlignment="Left" Height="51" Margin="23,68,0,0" VerticalAlignment="Top" Width="247" Visibility="Hidden">
-            <TextBox x:Name="pesRG" HorizontalAlignment="Left" Height="23" Margin="0,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="pesCPF" HorizontalAlignment="Left" Height="23" Margin="124,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Label Content="CPF" HorizontalAlignment="Left" Margin="124,2,0,0" VerticalAlignment="Top" Width="120"/>
-            <Label Content="RG" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="pesRG" HorizontalAlignment="Left" Height="23" Margin="0,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+            <TextBox x:Name="pesCPF" HorizontalAlignment="Left" Height="23" Margin="124,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+            <Label Content="CPF" HorizontalAlignment="Left" Margin="124,2,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+            <Label Content="RG" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         </Grid>
-        <DataGrid HorizontalAlignment="Left" Margin="23,137,0,0" VerticalAlignment="Top" Height="191" Width="499"/>
-        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,349,0,0" VerticalAlignment="Top" Width="75"/>
+        <DataGrid HorizontalAlignment="Left" Margin="23,137,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,349,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
     </Grid>
 </Window>
