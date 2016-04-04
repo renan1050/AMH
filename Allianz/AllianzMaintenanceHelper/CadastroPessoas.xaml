@@ -38,7 +38,35 @@
         <RadioButton x:Name="radPJ" local:WPFExtension.RelativeFieldCode="PJ" Content="Pessoa jurídica" HorizontalAlignment="Left" Margin="604,288,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo"/>
         <ComboBox x:Name="cidCodigo" HorizontalAlignment="Left" Margin="264,287,0,0" VerticalAlignment="Top" Width="157"/>
         <Label Content="Estado" HorizontalAlignment="Left" Margin="209,261,0,0" VerticalAlignment="Top" Width="50"/>
-        <ComboBox x:Name="estCodigo" HorizontalAlignment="Left" Margin="209,287,0,0" VerticalAlignment="Top" Width="50"/>
+        <ComboBox x:Name="estCodigo" HorizontalAlignment="Left" Margin="209,287,0,0" VerticalAlignment="Top" Width="50">
+            <Button Content="AC"/>
+            <Button Content="AL"/>
+            <Button Content="AP"/>
+            <Button Content="AM"/>
+            <Button Content="BA"/>
+            <Button Content="CE"/>
+            <Button Content="DF"/>
+            <Button Content="ES"/>
+            <Button Content="GO"/>
+            <Button Content="MA"/>
+            <Button Content="MT"/>
+            <Button Content="MS"/>
+            <Button Content="MG"/>
+            <Button Content="PA"/>
+            <Button Content="PB"/>
+            <Button Content="PR"/>
+            <Button Content="PE"/>
+            <Button Content="PI"/>
+            <Button Content="RJ"/>
+            <Button Content="RN"/>
+            <Button Content="RS"/>
+            <Button Content="RO"/>
+            <Button Content="RR"/>
+            <Button Content="SC"/>
+            <Button Content="SP"/>
+            <Button Content="SE"/>
+            <Button Content="TO"/>
+        </ComboBox>
         <Button Name="btnCarregar" local:WPFExtension.RelativeFieldCode="Carregar" Content="Carregar"  HorizontalAlignment="Left" Margin="250,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Click="Load"/>
         <WrapPanel local:WPFExtension.RelativeField="Carregar" HorizontalAlignment="Left" Height="27" Margin="201,62,0,0" VerticalAlignment="Top" Width="297" Visibility="Hidden">
             <Label Content="Código"/>
