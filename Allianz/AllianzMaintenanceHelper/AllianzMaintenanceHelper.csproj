@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,12 +67,19 @@
       <DependentUpon>CadastroPessoas.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="CadastroVeiculo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ConsultaPessoas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CadastroVeiculo.xaml.cs">
+      <DependentUpon>CadastroVeiculo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConsultaPessoas.xaml.cs">
       <DependentUpon>ConsultaPessoas.xaml</DependentUpon>
     </Compile>
