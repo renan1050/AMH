@@ -46,11 +46,8 @@ namespace BusinessRules.DatabaseBase.Classes
                 lRetorno = Activator.CreateInstance(pTipoObjeto);
 
                 foreach (var lPropriedade in lPropriedades)
-                {   
-                    if(!string.IsNullOrEmpty(lReader[lPropriedade.Name].ToString()))
-                    {
-                        lPropriedade.SetValue(lRetorno, lReader[lPropriedade.Name]);                    
-                    }
+                {  
+                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));    
                 }
 
                 lRetornos.Add(lRetorno);
@@ -74,7 +71,7 @@ namespace BusinessRules.DatabaseBase.Classes
             {   
                 if(!lPropriedade.Name.Equals(lPropriedades.First().Name))
                 {
-                    string.Concat(lInsert,lPropriedade.Name,(lPropriedade.Name.Equals(lPropriedades.Last().Name) ? ") values (" : ", "));
+                   lInsert = string.Concat(lInsert,lPropriedade.Name,(lPropriedade.Name.Equals(lPropriedades.Last().Name) ? ") values (" : ", "));
                 }                
             }
 
@@ -82,7 +79,7 @@ namespace BusinessRules.DatabaseBase.Classes
             {   
                 if(!lPropriedade.Name.Equals(lPropriedades.First().Name))
                 {
-                    string.Concat(lInsert,"@",lPropriedade.Name,(lPropriedade.Name.Equals(lPropriedades.Last().Name) ? ")" : ", "));
+                   lInsert = string.Concat(lInsert,"@",lPropriedade.Name,(lPropriedade.Name.Equals(lPropriedades.Last().Name) ? ")" : ", "));
                 }                
             }
 
@@ -95,7 +92,8 @@ namespace BusinessRules.DatabaseBase.Classes
                     lCommand.Parameters.AddWithValue("@" + lPropriedade.Name, lPropriedade.GetValue(pRegistro));                    
                 }
             }
-
+            string query = lCommand.CommandText;
+                        
             if (lCommand.ExecuteNonQuery() > 0)
             {
                 lConnection.Close();
@@ -126,13 +124,9 @@ namespace BusinessRules.DatabaseBase.Classes
                 lRetorno = Activator.CreateInstance(pTipoObjeto);
 
                 foreach (var lPropriedade in lPropriedades)
-                {
-                    if (!string.IsNullOrEmpty(lReader[lPropriedade.Name].ToString()))
-                    {
-                        lPropriedade.SetValue(lRetorno, lReader[lPropriedade.Name]);
-                    }
+                {                    
+                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
                 }
-                
             }
 
             lConnection.Close();
@@ -153,7 +147,7 @@ namespace BusinessRules.DatabaseBase.Classes
             {   
                 if(!lPropriedade.Name.Equals(lPropriedades.First().Name))
                 {
-                    string.Concat(lUpdate,lPropriedade.Name, " = @",lPropriedade.Name);
+                    lUpdate = string.Concat(lUpdate, lPropriedade.Name, " = @", lPropriedade.Name, (lPropriedade.Name.Equals(lPropriedades.Last().Name) ? "" : ", "));
                 }                
             }
 

@@ -12,7 +12,7 @@
             <Label Content="Código" Foreground="#FF1700FF"/>
             <TextBox x:Name="txtCodigoCarregar" Height="22" TextWrapping="Wrap" Width="245" Foreground="#FF1700FF"/>
         </WrapPanel>
-        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="274,34,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
+        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="274,34,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="399,34,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
         <Label Content="Cliente" HorizontalAlignment="Left" Margin="8,124,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
         <TextBox x:Name="veiModelo" Text="" HorizontalAlignment="Left" Height="23" Margin="397,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>

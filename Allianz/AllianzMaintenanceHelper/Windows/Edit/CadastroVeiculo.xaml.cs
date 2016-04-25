@@ -41,39 +41,21 @@ namespace AllianzMaintenanceHelper
 
         private void LoadVeiculo(string pCodigo)
         {
+            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             Veiculo lVeiculo = new Veiculo();
             VeiculoDM lVeiculoDM = lVeiculo.SelectCodigo(pCodigo);
-
-            if (lVeiculoDM != null)
-            {
-                pesCodigoC.Text = lVeiculoDM.pesCodigoC.ToString();
-                veiCodigo.Text = lVeiculoDM.veiCodigo.ToString();
-                veiMarca.Text = lVeiculoDM.veiMarca;
-                veiModelo.Text = lVeiculoDM.veiModelo;
-                veiPlaca.Text = lVeiculoDM.veiPlaca;
-                veiRENAVAM.Text = lVeiculoDM.veiRENAVAM;
-            }
-            else
-            {
-                MessageBox.Show("Registro não encontrado");
-            }
-
+            lInterfaceManagement.CarregarDM(this, lVeiculoDM); 
             txtCodigoCarregar.Text = null;
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
+            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             Veiculo lVeiculo = new Veiculo();
-            VeiculoDM lVeiculoDM = new VeiculoDM();
-            lVeiculoDM.pesCodigoC = int.Parse(pesCodigoC.Text);            
-            lVeiculoDM.veiMarca = veiMarca.Text;
-            lVeiculoDM.veiModelo = veiModelo.Text;
-            lVeiculoDM.veiPlaca = veiPlaca.Text;
-            lVeiculoDM.veiRENAVAM = veiRENAVAM.Text;
-
+            VeiculoDM lVeiculoDM = (VeiculoDM)lInterfaceManagement.BuildDM(this, typeof(VeiculoDM));
+            
             if(!string.IsNullOrEmpty(veiCodigo.Text))
-            {
-                lVeiculoDM.veiCodigo = int.Parse(veiCodigo.Text);
+            {                
                 if (lVeiculo.EditarCliente(lVeiculoDM))
                     MessageBox.Show("Editado com sucesso");
                 else
@@ -86,6 +68,23 @@ namespace AllianzMaintenanceHelper
                 else
                     MessageBox.Show("Erro ao salvar");
             }
+        }
+
+        private void btnExcluir_Click(object sender, RoutedEventArgs e)
+        {
+            Veiculo lVeiculo = new Veiculo();
+            lVeiculo.ExcluirCliente(veiCodigo.Text);
+            Clear();
+        }
+
+        private void Clear()
+        {
+            veiCodigo.Text = null;
+            veiMarca.Text = null;
+            veiModelo.Text = null;
+            veiPlaca.Text = null;
+            veiRENAVAM.Text = null;
+            pesCodigoC.Text = null;
         }
 
     }
