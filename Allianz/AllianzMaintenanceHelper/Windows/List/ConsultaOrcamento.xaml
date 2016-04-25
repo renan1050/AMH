@@ -1,0 +1,36 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
+        xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultaOrcamento"
+        Title="Consulta de orçamento" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,13,5">
+        <GroupBox Header="Data de início" HorizontalAlignment="Left" Margin="23,68,0,0" VerticalAlignment="Top" Height="85" Width="287"/>
+        <TextBox x:Name="pesNome" HorizontalAlignment="Left" Height="23" Margin="23,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Cliente" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
+        <DataGrid HorizontalAlignment="Left" Margin="23,169,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,378,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
+        <DatePicker x:Name="orcDataCriacao" HorizontalAlignment="Left" Margin="35,116,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF">
+            <DatePicker.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF0A1444" Offset="1"/>
+                </LinearGradientBrush>
+            </DatePicker.BorderBrush>
+        </DatePicker>
+        <Label Content="Início" HorizontalAlignment="Left" Margin="35,90,0,0" VerticalAlignment="Top" Width="99" Foreground="#FF1700FF"/>
+        <DatePicker x:Name="orcDataCriacao_Copy" HorizontalAlignment="Left" Margin="168,116,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF">
+            <DatePicker.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF0A1444" Offset="1"/>
+                </LinearGradientBrush>
+            </DatePicker.BorderBrush>
+        </DatePicker>
+        <Label Content="Fim" HorizontalAlignment="Left" Margin="168,90,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
+    </Grid>
+</Window>

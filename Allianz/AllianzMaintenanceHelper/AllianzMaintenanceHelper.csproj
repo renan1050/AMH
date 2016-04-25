@@ -59,6 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\List\ConsultaOrdensdeservico.xaml.cs">
+      <DependentUpon>ConsultaOrdensdeservico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\List\ConsultaVeiculos.xaml.cs">
+      <DependentUpon>ConsultaVeiculos.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\Edit\CadastroPessoas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,18 +77,40 @@
       <DependentUpon>CadastroPessoas.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\Edit\CadastroOrcamento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\Edit\CadastroVeiculo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\List\ConsultaOrcamento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\List\ConsultaPessoas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\List\ConsultaOrdensdeservico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\List\ConsultaVeiculos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Windows\Edit\CadastroOrcamento.xaml.cs">
+      <DependentUpon>CadastroOrcamento.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Edit\CadastroVeiculo.xaml.cs">
       <DependentUpon>CadastroVeiculo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\List\ConsultaOrcamento.xaml.cs">
+      <DependentUpon>ConsultaOrcamento.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\List\ConsultaPessoas.xaml.cs">
       <DependentUpon>ConsultaPessoas.xaml</DependentUpon>
