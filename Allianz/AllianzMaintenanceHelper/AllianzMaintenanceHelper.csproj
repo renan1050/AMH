@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CadastroPessoas.xaml">
+    <Page Include="Windows\Edit\CadastroPessoas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,24 +63,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CadastroPessoas.xaml.cs">
+    <Compile Include="Windows\Edit\CadastroPessoas.xaml.cs">
       <DependentUpon>CadastroPessoas.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="CadastroVeiculo.xaml">
+    <Page Include="Windows\Edit\CadastroVeiculo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConsultaPessoas.xaml">
+    <Page Include="Windows\List\ConsultaPessoas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CadastroVeiculo.xaml.cs">
+    <Compile Include="Windows\Edit\CadastroVeiculo.xaml.cs">
       <DependentUpon>CadastroVeiculo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConsultaPessoas.xaml.cs">
+    <Compile Include="Windows\List\ConsultaPessoas.xaml.cs">
       <DependentUpon>ConsultaPessoas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
