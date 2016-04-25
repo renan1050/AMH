@@ -48,9 +48,35 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseBase\Classes\Cidade.cs" />
+    <Compile Include="DatabaseBase\Classes\ContasReceber.cs" />
+    <Compile Include="DatabaseBase\Classes\Estado.cs" />
+    <Compile Include="DatabaseBase\Classes\ContasPagar.cs" />
+    <Compile Include="DatabaseBase\Classes\Produto.cs" />
+    <Compile Include="DatabaseBase\Classes\ServicoxOrdem.cs" />
+    <Compile Include="DatabaseBase\Classes\Ordem.cs" />
+    <Compile Include="DatabaseBase\Classes\Servico.cs" />
+    <Compile Include="DatabaseBase\Classes\ServicoxOrcamento.cs" />
+    <Compile Include="DatabaseBase\Classes\Orcamento.cs" />
+    <Compile Include="DatabaseBase\Classes\TipoPessoa.cs" />
+    <Compile Include="DatabaseBase\Classes\PessoaxTipo.cs" />
+    <Compile Include="DatabaseBase\Classes\Pessoa.cs" />
     <Compile Include="DatabaseBase\Classes\Veiculo.cs" />
     <Compile Include="DatabaseBase\Classes\Database.cs" />
     <Compile Include="DatabaseBase\DatabaseConnection.cs" />
+    <Compile Include="DatabaseBase\Model\ProdutoDM.cs" />
+    <Compile Include="DatabaseBase\Model\ServicoxOrdemDM.cs" />
+    <Compile Include="DatabaseBase\Model\OrdemDM.cs" />
+    <Compile Include="DatabaseBase\Model\ServicoDM.cs" />
+    <Compile Include="DatabaseBase\Model\ServicoxOrcamentoDM.cs" />
+    <Compile Include="DatabaseBase\Model\OrcamentoDM.cs" />
+    <Compile Include="DatabaseBase\Model\ContasReceberDM.cs" />
+    <Compile Include="DatabaseBase\Model\ContasPagarDM.cs" />
+    <Compile Include="DatabaseBase\Model\PessoaDM.cs" />
+    <Compile Include="DatabaseBase\Model\CidadeDM.cs" />
+    <Compile Include="DatabaseBase\Model\EstadoDM.cs" />
+    <Compile Include="DatabaseBase\Model\TipoPessoaDM.cs" />
+    <Compile Include="DatabaseBase\Model\PessoaxTipoDM.cs" />
     <Compile Include="DatabaseBase\Model\VeiculoDM.cs" />
     <Compile Include="InterfaceBase\InterfaceManagement.cs" />
     <Compile Include="InterfaceBase\WindowBase.cs" />
