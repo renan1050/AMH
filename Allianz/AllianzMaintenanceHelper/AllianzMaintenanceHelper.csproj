@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\List\ConsultaOrdensdeservico.xaml.cs">
+      <DependentUpon>ConsultaOrdensdeservico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\List\ConsultaVeiculos.xaml.cs">
+      <DependentUpon>ConsultaVeiculos.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\Edit\CadastroPessoas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,6 +78,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\List\ConsultaPessoas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\List\ConsultaOrdensdeservico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\List\ConsultaVeiculos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
