@@ -39,10 +39,53 @@ namespace AllianzMaintenanceHelper
                                              txtCodigoCarregar.Text);
         }
 
-        private void LoadVeiculo()
+        private void LoadVeiculo(string pCodigo)
         {
             Veiculo lVeiculo = new Veiculo();
-            List<VeiculoDM> lLista = lVeiculo.SelecionarTudo();
+            VeiculoDM lVeiculoDM = lVeiculo.SelectCodigo(pCodigo);
+
+            if (lVeiculoDM != null)
+            {
+                pesCodigoC.Text = lVeiculoDM.pesCodigoC.ToString();
+                veiCodigo.Text = lVeiculoDM.veiCodigo.ToString();
+                veiMarca.Text = lVeiculoDM.veiMarca;
+                veiModelo.Text = lVeiculoDM.veiModelo;
+                veiPlaca.Text = lVeiculoDM.veiPlaca;
+                veiRENAVAM.Text = lVeiculoDM.veiRENAVAM;
+            }
+            else
+            {
+                MessageBox.Show("Registro não encontrado");
+            }
+
+            txtCodigoCarregar.Text = null;
+        }
+
+        private void btnSalvar_Click(object sender, RoutedEventArgs e)
+        {
+            Veiculo lVeiculo = new Veiculo();
+            VeiculoDM lVeiculoDM = new VeiculoDM();
+            lVeiculoDM.pesCodigoC = int.Parse(pesCodigoC.Text);            
+            lVeiculoDM.veiMarca = veiMarca.Text;
+            lVeiculoDM.veiModelo = veiModelo.Text;
+            lVeiculoDM.veiPlaca = veiPlaca.Text;
+            lVeiculoDM.veiRENAVAM = veiRENAVAM.Text;
+
+            if(!string.IsNullOrEmpty(veiCodigo.Text))
+            {
+                lVeiculoDM.veiCodigo = int.Parse(veiCodigo.Text);
+                if (lVeiculo.EditarCliente(lVeiculoDM))
+                    MessageBox.Show("Editado com sucesso");
+                else
+                    MessageBox.Show("Erro ao editar");
+            }
+            else
+            {
+                if (lVeiculo.NovoCliente(lVeiculoDM))
+                    MessageBox.Show("Salvo com sucesso");
+                else
+                    MessageBox.Show("Erro ao salvar");
+            }
         }
 
     }

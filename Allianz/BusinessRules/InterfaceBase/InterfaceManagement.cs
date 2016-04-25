@@ -11,7 +11,7 @@ namespace InterfaceBase
     public class InterfaceManagement
     {        
         #region MÉTODO PARA A EXIBIÇÃO/ESCONDAÇÃO DO CAMPO CODIGO E DO CARREGAMENTO DE UM REGISTRO
-        public void LoadByValue(string pValue, Window pWindow, Action pLoadAction = null, string pLoadValue = null)
+        public void LoadByValue(string pValue, Window pWindow, Action<string> pLoadAction = null, string pLoadValue = null)
         {
             if (!string.IsNullOrEmpty(pValue))
             {
@@ -29,7 +29,7 @@ namespace InterfaceBase
                             if (!string.IsNullOrEmpty(pLoadValue))
                             {
                                 if (pLoadAction != null)
-                                    pLoadAction();                                
+                                    pLoadAction(pLoadValue);                                
                             }
 
                             lUIElement.Visibility = Visibility.Hidden;
