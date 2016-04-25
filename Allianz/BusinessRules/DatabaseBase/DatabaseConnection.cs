@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
 using MySql.Data.MySqlClient;
+using System.Reflection;
+using System.IO;
 
 namespace BusinessRules.DatabaseBase
 {
@@ -30,8 +32,7 @@ namespace BusinessRules.DatabaseBase
             XmlDocument lXML = new XmlDocument();
 
             //Define o caminho do arquivo XML 
-
-            string lXMLFile = Environment.CurrentDirectory + @"\DataBase.xml";
+            string lXMLFile = @"C:\Users\0040481411023\AMH\Allianz\AllianzMaintenanceHelper\DataBase.xml";
 
             //carrega o arquivo XML
             lXML.Load(lXMLFile);

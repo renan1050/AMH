@@ -1,4 +1,7 @@
-﻿using InterfaceBase;
+﻿using BusinessRules.DatabaseBase;
+using BusinessRules.DatabaseBase.Classes;
+using BusinessRules.DatabaseBase.Model;
+using InterfaceBase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,8 +35,15 @@ namespace AllianzMaintenanceHelper
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
                                              this,
-                                             null/*TODO: ATUALIZAR COM A FUNÇÃO DE CARREGAMENTO*/,
+                                             LoadVeiculo,
                                              txtCodigoCarregar.Text);
         }
+
+        private void LoadVeiculo()
+        {
+            Veiculo lVeiculo = new Veiculo();
+            List<VeiculoDM> lLista = lVeiculo.SelecionarTudo();
+        }
+
     }
 }
