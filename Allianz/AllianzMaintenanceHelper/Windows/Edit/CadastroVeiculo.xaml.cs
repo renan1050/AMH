@@ -63,7 +63,7 @@ namespace AllianzMaintenanceHelper
             }
             else
             {
-                if (lVeiculo.NovoCliente(lVeiculoDM))
+                if (lVeiculo.NovoCliente(lVeiculoDM,LoadVeiculo))
                     MessageBox.Show("Salvo com sucesso");
                 else
                     MessageBox.Show("Erro ao salvar");

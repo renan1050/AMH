@@ -26,6 +26,28 @@ namespace BusinessRules.DatabaseBase.Classes
             return lTable;
         }
 
+        public static string SelecionarUltimoId(string pTabela)
+        {
+            string Id = null;
+            MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
+            lConnection.Open();
+            string lSelect = "SELECT * from " + pTabela + " order by 1 desc limit 1";
+
+            MySqlCommand lCommand = new MySqlCommand(lSelect, lConnection);
+
+            MySqlDataReader lReader = lCommand.ExecuteReader();
+
+            while (lReader.Read())
+            {
+                Id = lReader[0].ToString();                    
+            }
+
+            lConnection.Close();
+
+            return Id;
+            
+        }
+
         public static List<object> SelecionarTudo(string pTabela,Type pTipoObjeto)
         {
             List<object> lRetornos = new List<object>();
