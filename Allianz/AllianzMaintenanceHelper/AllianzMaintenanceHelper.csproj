@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\Edit\CadastroProduto.xaml.cs">
+      <DependentUpon>CadastroProduto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\List\ConsultaOrdensdeservico.xaml.cs">
       <DependentUpon>ConsultaOrdensdeservico.xaml</DependentUpon>
     </Compile>
@@ -80,6 +83,10 @@
     <Page Include="Windows\Edit\CadastroOrcamento.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\Edit\CadastroProduto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Edit\CadastroVeiculo.xaml">
       <SubType>Designer</SubType>
