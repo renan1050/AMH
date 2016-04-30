@@ -62,6 +62,9 @@
     <Compile Include="Windows\Edit\CadastroProduto.xaml.cs">
       <DependentUpon>CadastroProduto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Edit\CadastroServico.xaml.cs">
+      <DependentUpon>CadastroServico.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\List\ConsultaOrdensdeservico.xaml.cs">
       <DependentUpon>ConsultaOrdensdeservico.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\Edit\CadastroProduto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Edit\CadastroServico.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
