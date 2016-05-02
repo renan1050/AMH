@@ -17,15 +17,28 @@ namespace BusinessRules.DatabaseBase.Classes
             return Database.SelecionarTudo(gTabela);
         }
 
+        public List<PessoaxTipoDM> SelecionarPorCliente(int pPesCodigo)
+        {
+            return Database.SelecionarPorCliente(gTabela, typeof(PessoaxTipoDM),  pPesCodigo).Cast<PessoaxTipoDM>().ToList();
+        }
+
         public List<PessoaxTipoDM> SelecionarTudo()
         {
             return Database.SelecionarTudo(gTabela, typeof(PessoaxTipoDM)).Cast<PessoaxTipoDM>().ToList();
         }
 
         //insere novo cliente
-        public bool NovoCliente(PessoaxTipoDM pPessoaxTipoDM)
+        public bool NovoCliente(VeiculoDM pVeiculoDM, Action<string> pCarregar)
         {
-            return Database.Insert(gTabela, pPessoaxTipoDM);
+            if (Database.Insert(gTabela, pVeiculoDM))
+            {
+                pCarregar(Database.SelecionarUltimoId(gTabela));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //seleciona um cliente de acordo com seu codigo

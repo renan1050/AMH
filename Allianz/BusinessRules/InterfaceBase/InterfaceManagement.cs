@@ -138,7 +138,7 @@ namespace InterfaceBase
                 {
                     CheckBox lCheckBox = (CheckBox)lSender;
                     DependencyProperty lValue = DependencyObjectHelper.GetDependencyPropertyByName("Value", lCheckBox);
-                    if (lValue != null)
+                    if (lValue != null && lPropriedades.Select(x => x.Name).ToList().Contains(lCheckBox.Name.Split('_').FirstOrDefault()))
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lCheckBox.Name.Split('_').FirstOrDefault()).First();
 
@@ -158,7 +158,7 @@ namespace InterfaceBase
                 {
                     RadioButton lRadioButton = (RadioButton)lSender;
                     DependencyProperty lValue = DependencyObjectHelper.GetDependencyPropertyByName("Value", lRadioButton);
-                    if (lValue != null)
+                    if (lValue != null && lPropriedades.Select(x => x.Name).ToList().Contains(lRadioButton.Name.Split('_').FirstOrDefault()))
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lRadioButton.Name.Split('_').FirstOrDefault()).First();
 
@@ -192,7 +192,7 @@ namespace InterfaceBase
             var lPropriedades = pDM.GetType().GetProperties();
 
             List<Object> lChildren = new List<Object>();
-            GetControlsList(pWindow, lChildren);
+            GetControlsList(pWindow, lChildren, true, true);
             PropertyInfo lPropriedade;
             foreach (Object lSender in lChildren)
             {
@@ -247,7 +247,7 @@ namespace InterfaceBase
             }
         }
 
-        private void GetControlsList(DependencyObject pControl,List<Object> pChildren)
+        private void GetControlsList(DependencyObject pControl, List<Object> pChildren, bool pNoCheck = false, bool pNoVisibilityCheck = false)
         {   
             int lChildNumber = VisualTreeHelper.GetChildrenCount(pControl);
 
@@ -255,18 +255,18 @@ namespace InterfaceBase
             {
                 var lChild = VisualTreeHelper.GetChild(pControl, i);
 
-                if (lChild is TextBox)
+                if (lChild is TextBox && (pNoVisibilityCheck || ((TextBox)lChild).IsVisible))
                     pChildren.Add(lChild as TextBox);
-                else if (lChild is ComboBox)
+                else if (lChild is ComboBox && (pNoVisibilityCheck || ((ComboBox)lChild).IsVisible))
                     pChildren.Add(lChild as ComboBox);
-                else if (lChild is CheckBox && (bool)((CheckBox)lChild).IsChecked)
+                else if (lChild is CheckBox && (pNoCheck || (bool)((CheckBox)lChild).IsChecked) && (pNoVisibilityCheck || ((CheckBox)lChild).IsVisible))
                     pChildren.Add(lChild as CheckBox);
-                else if (lChild is RadioButton && (bool)((RadioButton)lChild).IsChecked)
+                else if (lChild is RadioButton && (pNoCheck || (bool)((RadioButton)lChild).IsChecked) && (pNoVisibilityCheck || ((RadioButton)lChild).IsVisible))
                     pChildren.Add(lChild as RadioButton);
 
                 if (VisualTreeHelper.GetChildrenCount(lChild) > 0)
                 {
-                    GetControlsList(lChild, pChildren);
+                    GetControlsList(lChild, pChildren, pNoCheck, pNoVisibilityCheck);
                 }
             }
         }

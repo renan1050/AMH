@@ -27,7 +27,7 @@ namespace AllianzMaintenanceHelper
         public CadastroPessoas()
         {
             InitializeComponent();
-            radPF.IsChecked = true;
+            pesTipoPessoa_PF .IsChecked = true;
             Estado lEstado = new Estado();
             List<EstadoDM> lEstadoDMList = lEstado.SelecionarTudo();
             estCodigo.ItemsSource = lEstadoDMList.ToDictionary(x => x.estCodigo, x => x.estSigla);
@@ -39,6 +39,8 @@ namespace AllianzMaintenanceHelper
             cidCodigo.ItemsSource = lCidadeDMList.ToDictionary(x => x.cidCodigo, x => x.cidNome);
             cidCodigo.DisplayMemberPath = "Value";
             cidCodigo.SelectedValuePath = "Key";
+
+
         }
 
         private void Load(object sender, RoutedEventArgs e)
@@ -52,18 +54,75 @@ namespace AllianzMaintenanceHelper
 
         private void LoadPessoa(string pCodigo)
         {
+            Clear();
+
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             Pessoa lPessoa = new Pessoa();
             PessoaDM lPessoaDM = lPessoa.SelectCodigo(pCodigo);
             lInterfaceManagement.CarregarDM(this, lPessoaDM);
+
+            PessoaxTipo lPessoaxTipo = new PessoaxTipo();
+            List<PessoaxTipoDM> lPessoaxTipoDMList = lPessoaxTipo.SelecionarPorCliente(lPessoaDM.pesCodigo);
+
+            foreach(int lCategoria in lPessoaxTipoDMList.Select(x => x.tipCodigo))
+            {
+                switch(lCategoria)
+                {
+                    case PessoaFeature.TipoPessoa.Cliente:
+                        {
+                            Categoria_C.IsChecked = true;
+                        }
+                    break;
+                    case PessoaFeature.TipoPessoa.Filial:
+                        {
+                            Categoria_Fi.IsChecked = true;
+                        }
+                    break;
+                    case PessoaFeature.TipoPessoa.Funcionario:
+                        {
+                            Categoria_F.IsChecked = true;
+                        }
+                    break;
+                }
+            }
+
             txtCodigoCarregar.Text = null;
+        }
+
+        private void btnSalvar_Click(object sender, RoutedEventArgs e)
+        {
+            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+            Pessoa lPessoa = new Pessoa();
+            List<string> lErrosValidacao = new List<string>();
+            PessoaDM lPessoaDM = (PessoaDM)lInterfaceManagement.BuildDM(this, typeof(PessoaDM), ((Button)sender).Name, lErrosValidacao);
+            if (lErrosValidacao != null && lErrosValidacao.Count > 0)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(pesCodigo.Text))
+                {
+                    if (lPessoa.EditarCliente(lPessoaDM))
+                        MessageBox.Show("Editado com sucesso");
+                    else
+                        MessageBox.Show("Erro ao editar");
+                }
+                else
+                {
+                    if (lPessoa.NovoCliente(lPessoaDM, LoadPessoa))
+                        MessageBox.Show("Salvo com sucesso");
+                    else
+                        MessageBox.Show("Erro ao salvar");
+                }
+            }
         }
 
         private void CheckTipo(object sender, RoutedEventArgs e)
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             RadioButton lRadioButton = sender as RadioButton;
-            if (lRadioButton.Name == "radPF")
+            if (lRadioButton.Name == "pesTipoPessoa_PF")
                 UncheckPJ();
             else
                 UncheckPF();
@@ -79,14 +138,14 @@ namespace AllianzMaintenanceHelper
 
         private void UncheckPF()
         {
-            if (radPF != null)
-                radPF.IsChecked = false;
+            if (pesTipoPessoa_PF != null)
+                pesTipoPessoa_PF.IsChecked = false;
         }
 
         private void UncheckPJ()
         {
-            if (radPJ != null)
-                radPJ.IsChecked = false;
+            if (pesTipoPessoa_PJ != null)
+                pesTipoPessoa_PJ.IsChecked = false;
         }
 
         private void CheckCategoria(object sender, RoutedEventArgs e)
@@ -101,5 +160,39 @@ namespace AllianzMaintenanceHelper
             lInterfaceManagement.HideByAttribute(((CheckBox)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
         }
 
+        private void btnExcluir_Click(object sender, RoutedEventArgs e)
+        {
+            Pessoa lPessoa = new Pessoa();
+            lPessoa.ExcluirCliente(pesCodigo.Text);
+            Clear();
+        }
+
+        private void Clear()
+        {
+            pesCodigo.Text = null;
+            pesNome.Text = null;
+            pesRazaoSocial.Text = null;
+            pesTipoPessoa_PF.IsChecked = true;
+            pesTipoPessoa_PJ.IsChecked = false;
+            pesRG.Text = null;
+            pesCPF.Text = null;
+            pesCNPJ.Text = null;
+            pesTelResidencial.Text = null;
+            pesTelComercial.Text = null;
+            pesCelular.Text = null;
+            pesEmail.Text = null;
+            pesNascimento.Text = null;
+            pesCEP.Text = null;
+            pesEndereco.Text = null;
+            pesNumero.Text = null;
+            pesComplemento.Text = null;
+            pesBairro.Text = null;
+            estCodigo.SelectedValue = null;
+            cidCodigo.SelectedValue = null;
+            pesCargo.Text = null;
+            Categoria_C.IsChecked = false;
+            Categoria_F.IsChecked = false;
+            Categoria_Fi.IsChecked = false;
+        }
     }
 }

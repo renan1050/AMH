@@ -47,6 +47,7 @@ namespace AllianzMaintenanceHelper
 
         private void LoadVeiculo(string pCodigo)
         {
+            Clear();
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             Veiculo lVeiculo = new Veiculo();
             VeiculoDM lVeiculoDM = lVeiculo.SelectCodigo(pCodigo);

@@ -29,9 +29,17 @@ namespace BusinessRules.DatabaseBase.Classes
         }
 
         //insere novo cliente
-        public bool NovoCliente(PessoaDM pPessoaDM)
+        public bool NovoCliente(PessoaDM pPessoaDM, Action<string> pCarregar)
         {
-            return Database.Insert(gTabela, pPessoaDM);
+            if (Database.Insert(gTabela, pPessoaDM))
+            {
+                pCarregar(Database.SelecionarUltimoId(gTabela));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //seleciona um cliente de acordo com seu codigo
@@ -57,9 +65,9 @@ namespace BusinessRules.DatabaseBase.Classes
     {
         public static class TipoPessoa
         {
-            public static int Cliente = 1;
-            public static int Filial = 2;
-            public static int Funcionario = 3;
+            public const int Cliente = 1;
+            public const int Filial = 2;
+            public const int Funcionario = 3;
         }
     }
 }

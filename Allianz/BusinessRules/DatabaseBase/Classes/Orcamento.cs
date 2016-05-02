@@ -23,9 +23,17 @@ namespace BusinessRules.DatabaseBase.Classes
         }
 
         //insere novo cliente
-        public bool NovoCliente(OrcamentoDM pOrcamentoDM)
+        public bool NovoCliente(VeiculoDM pVeiculoDM, Action<string> pCarregar)
         {
-            return Database.Insert(gTabela, pOrcamentoDM);
+            if (Database.Insert(gTabela, pVeiculoDM))
+            {
+                pCarregar(Database.SelecionarUltimoId(gTabela));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //seleciona um cliente de acordo com seu codigo
