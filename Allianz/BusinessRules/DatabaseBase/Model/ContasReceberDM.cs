@@ -20,6 +20,6 @@ namespace BusinessRules.DatabaseBase.Model
         public DateTime corVencimento { get; set; }
         public decimal corTaxaJuros { get; set; }
         public string corObservacao { get; set; }
-        public char corStatusConta { get; set; }
+        public string corStatusConta { get; set; }
     }
 }

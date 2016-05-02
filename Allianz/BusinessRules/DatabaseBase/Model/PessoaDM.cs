@@ -11,7 +11,7 @@ namespace BusinessRules.DatabaseBase.Model
         public int pesCodigo { get; set; }
         public string pesNome { get; set; }
         public string pesRazaoSocial { get; set; }
-        public char pesTipoPessoa { get; set; }
+        public string pesTipoPessoa { get; set; }
         public string pesRG { get; set; }
         public string pesCPF { get; set; }
         public string pesCNPJ { get; set; }

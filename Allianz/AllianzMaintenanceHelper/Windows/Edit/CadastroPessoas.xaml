@@ -35,16 +35,16 @@
         <Label Content="Código" HorizontalAlignment="Left" Margin="110,7,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <GroupBox Header="Categoria"  local:WPFExtension.Refers="Categoria" HorizontalAlignment="Left" Margin="44,95,0,0" VerticalAlignment="Top" Height="47" Width="668" Foreground="#FF1700FF">
             <Grid Name="Categoria" local:WPFExtension.Required="btnSalvar">
-                <CheckBox x:Name="radF" local:WPFExtension.RelativeFieldCode="F" local:WPFExtension.Value="3" Content="Funcionário" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="UncheckCategoria" Checked="CheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-                <CheckBox x:Name="radC" local:WPFExtension.RelativeFieldCode="C" local:WPFExtension.Value="1" Content="Cliente" HorizontalAlignment="Left" Margin="122,13,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-                <CheckBox x:Name="radFi" local:WPFExtension.RelativeFieldCode="Fi" local:WPFExtension.Value="2" Content="Filial" HorizontalAlignment="Left" Margin="209,13,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+                <CheckBox x:Name="Categoria_F" local:WPFExtension.RelativeFieldCode="F" local:WPFExtension.Value="3" Content="Funcionário" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="UncheckCategoria" Checked="CheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+                <CheckBox x:Name="Categoria_C" local:WPFExtension.RelativeFieldCode="C" local:WPFExtension.Value="1" Content="Cliente" HorizontalAlignment="Left" Margin="122,13,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+                <CheckBox x:Name="Categoria_Fi" local:WPFExtension.RelativeFieldCode="Fi" local:WPFExtension.Value="2" Content="Filial" HorizontalAlignment="Left" Margin="209,13,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
             </Grid>
         </GroupBox>
 
         <GroupBox local:WPFExtension.Refers="pesTipoPessoa" Header="Tipo de pessoa" HorizontalAlignment="Left" Margin="505,262,0,0" VerticalAlignment="Top" Width="207" Height="49" Foreground="#FF1700FF">
             <Grid Name="pesTipoPessoa" local:WPFExtension.Required="btnSalvar">
-                <RadioButton x:Name="radPF" local:WPFExtension.RelativeFieldCode="PF" local:WPFExtension.Value="pesTipoPessoa_PF" Content="Pessoa física" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="0,10,0,-1" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-                <RadioButton x:Name="radPJ" local:WPFExtension.RelativeFieldCode="PJ" local:WPFExtension.Value="pesTipoPessoa_PJ" Content="Pessoa jurídica" HorizontalAlignment="Left" Margin="91,10,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Height="23" RenderTransformOrigin="0.5,0.5" Width="104"/>
+                <RadioButton x:Name="pesTipoPessoa_PF" local:WPFExtension.RelativeFieldCode="PF" local:WPFExtension.Value="pesTipoPessoa_PF" Content="Pessoa física" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="0,10,0,-1" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+                <RadioButton x:Name="pesTipoPessoa_PJ" local:WPFExtension.RelativeFieldCode="PJ" local:WPFExtension.Value="pesTipoPessoa_PJ" Content="Pessoa jurídica" HorizontalAlignment="Left" Margin="91,10,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Height="23" RenderTransformOrigin="0.5,0.5" Width="104"/>
             </Grid>
         </GroupBox>
 
