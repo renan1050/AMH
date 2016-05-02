@@ -34,14 +34,20 @@
         <Label Content="Nome" HorizontalAlignment="Left" Margin="44,147,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
         <Label Content="Código" HorizontalAlignment="Left" Margin="110,7,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <GroupBox Header="Categoria" HorizontalAlignment="Left" Margin="44,95,0,0" VerticalAlignment="Top" Height="47" Width="668" Foreground="#FF1700FF">
-            <CheckBox x:Name="radF" local:WPFExtension.RelativeFieldCode="F" Content="Funcionário" HorizontalAlignment="Left" Margin="77,8,0,0" VerticalAlignment="Top" Unchecked="UncheckCategoria" Checked="CheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+            <Grid>
+                <CheckBox x:Name="radF" local:WPFExtension.RelativeFieldCode="F" local:WPFExtension.Value="3" Content="Funcionário" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="UncheckCategoria" Checked="CheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+                <CheckBox x:Name="radC" local:WPFExtension.RelativeFieldCode="C" local:WPFExtension.Value="1" Content="Cliente" HorizontalAlignment="Left" Margin="122,13,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+                <CheckBox x:Name="radFi" local:WPFExtension.RelativeFieldCode="Fi" local:WPFExtension.Value="2" Content="Filial" HorizontalAlignment="Left" Margin="209,13,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+            </Grid>
         </GroupBox>
-        <CheckBox x:Name="radC" local:WPFExtension.RelativeFieldCode="C" Content="Cliente" HorizontalAlignment="Left" Margin="53,119,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <CheckBox x:Name="radFi" local:WPFExtension.RelativeFieldCode="Fi" Content="Filial" HorizontalAlignment="Left" Margin="228,120,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+
         <GroupBox Header="Tipo de pessoa" HorizontalAlignment="Left" Margin="505,262,0,0" VerticalAlignment="Top" Width="207" Height="49" Foreground="#FF1700FF">
-            <RadioButton x:Name="radPF" local:WPFExtension.RelativeFieldCode="PF" Content="Pessoa física" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="0,10,0,-1" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+            <Grid>
+                <RadioButton x:Name="radPF" local:WPFExtension.RelativeFieldCode="PF" local:WPFExtension.Value="PF" Content="Pessoa física" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="0,10,0,-1" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+                <RadioButton x:Name="radPJ" local:WPFExtension.RelativeFieldCode="PJ" local:WPFExtension.Value="PJ" Content="Pessoa jurídica" HorizontalAlignment="Left" Margin="91,10,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Height="23" RenderTransformOrigin="0.5,0.5" Width="104"/>
+            </Grid>
         </GroupBox>
-        <RadioButton x:Name="radPJ" local:WPFExtension.RelativeFieldCode="PJ" Content="Pessoa jurídica" HorizontalAlignment="Left" Margin="604,288,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+
         <ComboBox x:Name="cidCodigo" HorizontalAlignment="Left" Margin="264,287,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Estado" HorizontalAlignment="Left" Margin="209,261,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF1700FF"/>
         <ComboBox x:Name="estCodigo" HorizontalAlignment="Left" Margin="209,287,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF1700FF" BorderBrush="#FF0A1444">
