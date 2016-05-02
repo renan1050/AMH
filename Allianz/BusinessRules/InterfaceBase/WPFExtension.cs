@@ -69,7 +69,7 @@ namespace InterfaceBase
         }
         #endregion
 
-        #region Refers deve ser adicionada aos labels que forem ligados a um campo obrigatório
+        #region Value para CheckBox e RadioButton
         public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached("Value", typeof(string), typeof(WPFExtension), new PropertyMetadata(default(string)));
 
         public static void SetValue(UIElement element, string value)
