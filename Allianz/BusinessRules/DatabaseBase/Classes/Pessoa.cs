@@ -11,6 +11,12 @@ namespace BusinessRules.DatabaseBase.Classes
     public class Pessoa
     {
         public static string gTabela = "pessoa";
+
+        public List<PessoaDM> SelecionarPorTipo(int pTipo)
+        {
+            return Database.SelecionarTudo(gTabela, typeof(PessoaDM)).Cast<PessoaDM>().ToList();
+        }
+
         //seleciona todos dados no banco clientes e retorna um datatable
         public DataTable AtualizarGrade()
         {
@@ -44,6 +50,16 @@ namespace BusinessRules.DatabaseBase.Classes
         public bool ExcluirCliente(string pChave)
         {
             return Database.Delete(gTabela, pChave, typeof(PessoaDM));
+        }
+    }
+
+    public class PessoaFeature
+    {
+        public static class TipoPessoa
+        {
+            public static int Cliente = 1;
+            public static int Filial = 2;
+            public static int Funcionario = 3;
         }
     }
 }
