@@ -221,5 +221,37 @@ namespace BusinessRules.DatabaseBase.Classes
             }
         }
 
+        public static List<object> SelecionarPorTipo(string pTabela, Type pTipoObjeto, int pTipo)
+        {
+            List<object> lRetornos = new List<object>();
+            MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
+            lConnection.Open();
+            string lSelect = "SELECT * FROM " + pTabela + " INNER JOIN pessoaxtipo ON " + pTabela + ".pesCodigo = pessoaxtipo.pesCodigo WHERE pessoaxtipo.tipCodigo = " + pTipo;
+
+            MySqlCommand lCommand = new MySqlCommand(lSelect, lConnection);
+
+            MySqlDataReader lReader = lCommand.ExecuteReader();
+
+            var lPropriedades = pTipoObjeto.GetProperties();
+
+            object lRetorno;
+
+            while (lReader.Read())
+            {
+                lRetorno = Activator.CreateInstance(pTipoObjeto);
+
+                foreach (var lPropriedade in lPropriedades)
+                {
+                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
+                }
+
+                lRetornos.Add(lRetorno);
+            }
+
+            lConnection.Close();
+
+            return lRetornos;
+        }    
+
     }
 }

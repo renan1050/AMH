@@ -28,6 +28,12 @@ namespace AllianzMaintenanceHelper
         public CadastroVeiculo()
         {
             InitializeComponent();
+            Pessoa lPessoa = new Pessoa();
+            List<PessoaDM> lPessoaDMList = lPessoa.SelecionarPorTipo(PessoaFeature.TipoPessoa.Cliente);
+            pesCodigoC.ItemsSource = lPessoaDMList.ToDictionary(x => x.pesCodigo, x => x.pesNome);
+            pesCodigoC.DisplayMemberPath = "Value";
+            pesCodigoC.SelectedValuePath = "Key";
+
         }
 
         private void Load(object sender, RoutedEventArgs e)

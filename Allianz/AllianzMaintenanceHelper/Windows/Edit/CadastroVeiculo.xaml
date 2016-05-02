@@ -23,7 +23,7 @@
         <Label Content="Modelo" local:WPFExtension.Refers="veiModelo" HorizontalAlignment="Left" Margin="397,124,0,0" VerticalAlignment="Top" Width="119" Foreground="#FF1700FF"/>
         <TextBox x:Name="veiRENAVAM" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="139,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="RENAVAM" local:WPFExtension.Refers="veiRENAVAM" HorizontalAlignment="Left" Margin="139,187,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <TextBox x:Name="pesCodigoC" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <ComboBox x:Name="pesCodigoC" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Width="255" Background="White" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
 
     </Grid>
 </Window>

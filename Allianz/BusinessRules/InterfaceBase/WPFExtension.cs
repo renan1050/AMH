@@ -46,12 +46,12 @@ namespace InterfaceBase
 
         public static void SetRequired(UIElement element, string value)
         {
-            element.SetValue(RelativeFieldProperty, value);
+            element.SetValue(RequiredProperty, value);
         }
 
         public static string GetRequired(UIElement element)
         {
-            return (string)element.GetValue(RelativeFieldProperty);
+            return (string)element.GetValue(RequiredProperty);
         }
         #endregion
 
@@ -60,12 +60,26 @@ namespace InterfaceBase
 
         public static void SetRefers(UIElement element, string value)
         {
-            element.SetValue(RelativeFieldProperty, value);
+            element.SetValue(RefersProperty, value);
         }
 
         public static string GetRefers(UIElement element)
         {
-            return (string)element.GetValue(RelativeFieldProperty);
+            return (string)element.GetValue(RefersProperty);
+        }
+        #endregion
+
+        #region Refers deve ser adicionada aos labels que forem ligados a um campo obrigatório
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached("Value", typeof(string), typeof(WPFExtension), new PropertyMetadata(default(string)));
+
+        public static void SetValue(UIElement element, string value)
+        {
+            element.SetValue(ValueProperty, value);
+        }
+
+        public static string GetValue(UIElement element)
+        {
+            return (string)element.GetValue(ValueProperty);
         }
         #endregion
     }

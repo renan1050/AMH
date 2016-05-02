@@ -14,7 +14,7 @@ namespace BusinessRules.DatabaseBase.Classes
 
         public List<PessoaDM> SelecionarPorTipo(int pTipo)
         {
-            return Database.SelecionarTudo(gTabela, typeof(PessoaDM)).Cast<PessoaDM>().ToList();
+            return Database.SelecionarPorTipo(gTabela, typeof(PessoaDM), pTipo).Cast<PessoaDM>().ToList();
         }
 
         //seleciona todos dados no banco clientes e retorna um datatable
@@ -53,7 +53,7 @@ namespace BusinessRules.DatabaseBase.Classes
         }
     }
 
-    public class PessoaFeature
+    public static class PessoaFeature
     {
         public static class TipoPessoa
         {
