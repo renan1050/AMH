@@ -52,21 +52,28 @@ namespace AllianzMaintenanceHelper
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             Veiculo lVeiculo = new Veiculo();
-            VeiculoDM lVeiculoDM = (VeiculoDM)lInterfaceManagement.BuildDM(this, typeof(VeiculoDM));
-            
-            if(!string.IsNullOrEmpty(veiCodigo.Text))
-            {                
-                if (lVeiculo.EditarCliente(lVeiculoDM))
-                    MessageBox.Show("Editado com sucesso");
-                else
-                    MessageBox.Show("Erro ao editar");
+            List<string> lErrosValidacao = new List<string>();
+            VeiculoDM lVeiculoDM = (VeiculoDM)lInterfaceManagement.BuildDM(this, typeof(VeiculoDM), ((Button)sender).Name, lErrosValidacao);
+            if (lErrosValidacao != null && lErrosValidacao.Count > 0)
+            {
+                MessageBox.Show(string.Join(Environment.NewLine,lErrosValidacao));
             }
             else
             {
-                if (lVeiculo.NovoCliente(lVeiculoDM,LoadVeiculo))
-                    MessageBox.Show("Salvo com sucesso");
+                if (!string.IsNullOrEmpty(veiCodigo.Text))
+                {
+                    if (lVeiculo.EditarCliente(lVeiculoDM))
+                        MessageBox.Show("Editado com sucesso");
+                    else
+                        MessageBox.Show("Erro ao editar");
+                }
                 else
-                    MessageBox.Show("Erro ao salvar");
+                {
+                    if (lVeiculo.NovoCliente(lVeiculoDM, LoadVeiculo))
+                        MessageBox.Show("Salvo com sucesso");
+                    else
+                        MessageBox.Show("Erro ao salvar");
+                }
             }
         }
 

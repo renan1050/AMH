@@ -85,11 +85,11 @@ namespace InterfaceBase
         #endregion
 
         #region MÉTODOS PARA PEGAR OS VALORES DOS FORMS
-        public object BuildDM(DependencyObject pWindow, Type pTipoObjeto)
+        public object BuildDM(DependencyObject pWindow, Type pTipoObjeto, string pEnviador, List<string> pErrosValidacao)
         {
             object lRetorno = Activator.CreateInstance(pTipoObjeto);
             var lPropriedades = pTipoObjeto.GetProperties();
-
+            List<DependencyObject> lLabels = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow, "Refers").ToList();
             List<TextBox> lChildren = new List<TextBox>();
             GetControlsList(pWindow,lChildren);
             PropertyInfo lPropriedade;
@@ -100,6 +100,16 @@ namespace InterfaceBase
                     lPropriedade = lPropriedades.Where(x => x.Name == lText.Name).First();
 
                     lPropriedade.SetValue(lRetorno, Convert.ChangeType(lText.Text, lPropriedade.PropertyType));
+                }
+                else
+                {
+                    DependencyProperty lRequired = DependencyObjectHelper.GetDependencyPropertyByName("Required", lText);                                        
+
+                    if(lRequired != null && lText.GetValue(lRequired).ToString().Split(';').Contains(pEnviador))
+                    {
+                        var lLabel = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lText.Name)).FirstOrDefault();
+                        pErrosValidacao.Add(string.Concat("O campo ", (lLabel != null ? ((Label)lLabel).Content.ToString() : lText.Name), " é obrigatório."));                        
+                    }
                 }
             }                
 

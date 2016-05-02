@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,6 +40,34 @@ namespace InterfaceBase
             return (string)element.GetValue(RelativeFieldProperty);
         }
         #endregion
+
+        #region Required será a propriedade adicionada a um control obrigatório
+        public static readonly DependencyProperty RequiredProperty = DependencyProperty.RegisterAttached("Required", typeof(string), typeof(WPFExtension), new PropertyMetadata(default(string)));
+
+        public static void SetRequired(UIElement element, string value)
+        {
+            element.SetValue(RelativeFieldProperty, value);
+        }
+
+        public static string GetRequired(UIElement element)
+        {
+            return (string)element.GetValue(RelativeFieldProperty);
+        }
+        #endregion
+
+        #region Refers deve ser adicionada aos labels que forem ligados a um campo obrigatório
+        public static readonly DependencyProperty RefersProperty = DependencyProperty.RegisterAttached("Refers", typeof(string), typeof(WPFExtension), new PropertyMetadata(default(string)));
+
+        public static void SetRefers(UIElement element, string value)
+        {
+            element.SetValue(RelativeFieldProperty, value);
+        }
+
+        public static string GetRefers(UIElement element)
+        {
+            return (string)element.GetValue(RelativeFieldProperty);
+        }
+        #endregion
     }
 
     #region Esta classe implementa o método necessário para encontrar um control que tenha uma propriedade vinculada    
@@ -73,6 +102,17 @@ namespace InterfaceBase
                 GetDependencyObjectsWithPropertyRecursive(pPropertyName, lChild, pSources);
             }
         }
+        public static DependencyProperty GetDependencyPropertyByName(string pPropertyName, DependencyObject pDependencyObject)
+        {
+            DependencyProperty lDependencyProperty = null;
+            var lDependencyPropertyList = new List<DependencyProperty>();
+            lDependencyPropertyList.AddRange(MarkupWriter.GetMarkupObjectFor(pDependencyObject).Properties.Where(x => x.DependencyProperty != null).Select(x => x.DependencyProperty).ToList());
+            lDependencyPropertyList.AddRange(MarkupWriter.GetMarkupObjectFor(pDependencyObject).Properties.Where(x => x.IsAttached && x.DependencyProperty != null).Select(x => x.DependencyProperty).ToList());
+
+            lDependencyProperty = lDependencyPropertyList.Where(x => x.Name == pPropertyName).FirstOrDefault();
+            return lDependencyProperty;
+        }
     }
     #endregion
+    
 }

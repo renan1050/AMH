@@ -14,16 +14,16 @@
         </WrapPanel>
         <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="274,34,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="399,34,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
-        <Label Content="Cliente" HorizontalAlignment="Left" Margin="8,124,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
-        <TextBox x:Name="veiModelo" Text="" HorizontalAlignment="Left" Height="23" Margin="397,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <TextBox x:Name="veiMarca" HorizontalAlignment="Left" Height="23" Margin="271,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <TextBox x:Name="veiPlaca" HorizontalAlignment="Left" Height="23" Margin="8,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Placa" HorizontalAlignment="Left" Margin="8,187,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <Label Content="Marca" HorizontalAlignment="Left" Margin="271,124,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <Label Content="Modelo" HorizontalAlignment="Left" Margin="397,124,0,0" VerticalAlignment="Top" Width="119" Foreground="#FF1700FF"/>
-        <TextBox x:Name="veiRENAVAM" HorizontalAlignment="Left" Height="23" Margin="139,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="RENAVAM" HorizontalAlignment="Left" Margin="139,187,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <TextBox x:Name="pesCodigoC" HorizontalAlignment="Left" Height="23" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Cliente" local:WPFExtension.Refers="pesCodigoC" HorizontalAlignment="Left" Margin="8,124,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
+        <TextBox x:Name="veiModelo" local:WPFExtension.Required="btnSalvar"  Text="" HorizontalAlignment="Left" Height="23" Margin="397,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <TextBox x:Name="veiMarca" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="271,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <TextBox x:Name="veiPlaca" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="8,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Placa" local:WPFExtension.Refers="veiPlaca"  HorizontalAlignment="Left" Margin="8,187,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Label Content="Marca" local:WPFExtension.Refers="veiMarca" HorizontalAlignment="Left" Margin="271,124,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Label Content="Modelo" local:WPFExtension.Refers="veiModelo" HorizontalAlignment="Left" Margin="397,124,0,0" VerticalAlignment="Top" Width="119" Foreground="#FF1700FF"/>
+        <TextBox x:Name="veiRENAVAM" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="139,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="RENAVAM" local:WPFExtension.Refers="veiRENAVAM" HorizontalAlignment="Left" Margin="139,187,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <TextBox x:Name="pesCodigoC" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
 
     </Grid>
 </Window>
