@@ -117,7 +117,7 @@ namespace InterfaceBase
                 else if (lSender is ComboBox)
                 {
                     ComboBox lComboBox = (ComboBox)lSender;
-                    if (!string.IsNullOrEmpty(lComboBox.SelectedValue.ToString()) && lPropriedades.Select(x => x.Name).ToList().Contains(lComboBox.Name))
+                    if (lComboBox.SelectedValue != null && !string.IsNullOrEmpty(lComboBox.SelectedValue.ToString()) && lPropriedades.Select(x => x.Name).ToList().Contains(lComboBox.Name))
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lComboBox.Name).First();
 
