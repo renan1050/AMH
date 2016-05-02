@@ -1,4 +1,6 @@
-﻿using InterfaceBase;
+﻿using BusinessRules.DatabaseBase.Classes;
+using BusinessRules.DatabaseBase.Model;
+using InterfaceBase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,9 +25,20 @@ namespace AllianzMaintenanceHelper
     public partial class CadastroPessoas : Window
     {
         public CadastroPessoas()
-        {  
+        {
             InitializeComponent();
             radPF.IsChecked = true;
+            Estado lEstado = new Estado();
+            List<EstadoDM> lEstadoDMList = lEstado.SelecionarTudo();
+            estCodigo.ItemsSource = lEstadoDMList.ToDictionary(x => x.estCodigo, x => x.estSigla);
+            estCodigo.DisplayMemberPath = "Value";
+            estCodigo.SelectedValuePath = "Key";
+
+            Cidade lCidade = new Cidade();
+            List<CidadeDM> lCidadeDMList = lCidade.SelecionarTudo();
+            cidCodigo.ItemsSource = lCidadeDMList.ToDictionary(x => x.cidCodigo, x => x.cidNome);
+            cidCodigo.DisplayMemberPath = "Value";
+            cidCodigo.SelectedValuePath = "Key";
         }
 
         private void Load(object sender, RoutedEventArgs e)
@@ -33,8 +46,17 @@ namespace AllianzMaintenanceHelper
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
                                              this,
-                                             null/*TODO: ATUALIZAR COM A FUNÇÃO DE CARREGAMENTO*/,
+                                             LoadPessoa,
                                              txtCodigoCarregar.Text);
+        }
+
+        private void LoadPessoa(string pCodigo)
+        {
+            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+            Pessoa lPessoa = new Pessoa();
+            PessoaDM lPessoaDM = lPessoa.SelectCodigo(pCodigo);
+            lInterfaceManagement.CarregarDM(this, lPessoaDM);
+            txtCodigoCarregar.Text = null;
         }
 
         private void CheckTipo(object sender, RoutedEventArgs e)
@@ -46,13 +68,13 @@ namespace AllianzMaintenanceHelper
             else
                 UncheckPF();
 
-            lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),this);
+            lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
         }
 
         private void UncheckTipo(object sender, RoutedEventArgs e)
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.HideByAttribute(((RadioButton)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);            
+            lInterfaceManagement.HideByAttribute(((RadioButton)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
         }
 
         private void UncheckPF()
@@ -70,7 +92,7 @@ namespace AllianzMaintenanceHelper
         private void CheckCategoria(object sender, RoutedEventArgs e)
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.ShowByAttribute(((CheckBox)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);           
+            lInterfaceManagement.ShowByAttribute(((CheckBox)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
         }
 
         private void UncheckCategoria(object sender, RoutedEventArgs e)
@@ -78,6 +100,6 @@ namespace AllianzMaintenanceHelper
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             lInterfaceManagement.HideByAttribute(((CheckBox)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
         }
-        
+
     }
 }
