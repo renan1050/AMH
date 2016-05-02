@@ -60,29 +60,32 @@ namespace AllianzMaintenanceHelper
             Pessoa lPessoa = new Pessoa();
             PessoaDM lPessoaDM = lPessoa.SelectCodigo(pCodigo);
             lInterfaceManagement.CarregarDM(this, lPessoaDM);
-
-            PessoaxTipo lPessoaxTipo = new PessoaxTipo();
-            List<PessoaxTipoDM> lPessoaxTipoDMList = lPessoaxTipo.SelecionarPorCliente(lPessoaDM.pesCodigo);
-
-            foreach(int lCategoria in lPessoaxTipoDMList.Select(x => x.tipCodigo))
+            
+            if (lPessoaDM != null)
             {
-                switch(lCategoria)
+                PessoaxTipo lPessoaxTipo = new PessoaxTipo();
+                List<PessoaxTipoDM> lPessoaxTipoDMList = lPessoaxTipo.SelecionarPorCliente(lPessoaDM.pesCodigo);
+
+                foreach (int lCategoria in lPessoaxTipoDMList.Select(x => x.tipCodigo))
                 {
-                    case PessoaFeature.TipoPessoa.Cliente:
-                        {
-                            Categoria_C.IsChecked = true;
-                        }
-                    break;
-                    case PessoaFeature.TipoPessoa.Filial:
-                        {
-                            Categoria_Fi.IsChecked = true;
-                        }
-                    break;
-                    case PessoaFeature.TipoPessoa.Funcionario:
-                        {
-                            Categoria_F.IsChecked = true;
-                        }
-                    break;
+                    switch (lCategoria)
+                    {
+                        case PessoaFeature.TipoPessoa.Cliente:
+                            {
+                                Categoria_C.IsChecked = true;
+                            }
+                            break;
+                        case PessoaFeature.TipoPessoa.Filial:
+                            {
+                                Categoria_Fi.IsChecked = true;
+                            }
+                            break;
+                        case PessoaFeature.TipoPessoa.Funcionario:
+                            {
+                                Categoria_F.IsChecked = true;
+                            }
+                            break;
+                    }
                 }
             }
 
