@@ -226,7 +226,7 @@ namespace InterfaceBase
                     if (lPropriedades.Select(x => x.Name).ToList().Contains(lCheckBox.Name.Split('_').FirstOrDefault()))
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lCheckBox.Name.Split('_').FirstOrDefault()).First();
-                        if (lPropriedade.GetValue(pDM) != null && lPropriedade.GetValue(pDM) == lCheckBox.Name.Split('_').LastOrDefault())
+                        if (lPropriedade.GetValue(pDM) != null && lPropriedade.GetValue(pDM).ToString() == lCheckBox.Name.Split('_').LastOrDefault())
                             lCheckBox.IsChecked = true;
                         else
                             lCheckBox.IsChecked = false;
@@ -238,7 +238,7 @@ namespace InterfaceBase
                     if (lPropriedades.Select(x => x.Name).ToList().Contains(lComboBox.Name.Split('_').FirstOrDefault()))
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lComboBox.Name.Split('_').FirstOrDefault()).First();
-                        if (lPropriedade.GetValue(pDM) != null && lPropriedade.GetValue(pDM) == lComboBox.Name.Split('_').LastOrDefault())
+                        if (lPropriedade.GetValue(pDM) != null && lPropriedade.GetValue(pDM).ToString() == lComboBox.Name.Split('_').LastOrDefault())
                             lComboBox.IsChecked = true;
                         else
                             lComboBox.IsChecked = false;
