@@ -174,11 +174,6 @@ namespace InterfaceBase
                         }
                     }
                 }
-                //tem que remover isso aqui depois, ou tratar melhor
-                else 
-                {
-                    pErrosValidacao.Add(string.Concat("Erro bem loco"));
-                }
                 
             }                
 
@@ -220,22 +215,34 @@ namespace InterfaceBase
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lComboBox.Name).First();
                         if (lPropriedade.GetValue(pDM) != null)
-                            lComboBox.Text = lPropriedade.GetValue(pDM).ToString();
+                            lComboBox.SelectedValue = lPropriedade.GetValue(pDM).ToString();
                         else
-                            lComboBox.Text = string.Empty;
+                            lComboBox.SelectedValue = string.Empty;
                     }
                 }
                 else if (lSender is CheckBox)
                 {
                     CheckBox lCheckBox = (CheckBox)lSender;
+                    if (lPropriedades.Select(x => x.Name).ToList().Contains(lCheckBox.Name.Split('_').FirstOrDefault()))
+                    {
+                        lPropriedade = lPropriedades.Where(x => x.Name == lCheckBox.Name.Split('_').FirstOrDefault()).First();
+                        if (lPropriedade.GetValue(pDM) != null && lPropriedade.GetValue(pDM) == lCheckBox.Name.Split('_').LastOrDefault())
+                            lCheckBox.IsChecked = true;
+                        else
+                            lCheckBox.IsChecked = false;
+                    }
                 }
                 else if (lSender is RadioButton)
                 {
                     RadioButton lComboBox = (RadioButton)lSender;
-                }
-                else 
-                {
-                    //deu erro
+                    if (lPropriedades.Select(x => x.Name).ToList().Contains(lComboBox.Name.Split('_').FirstOrDefault()))
+                    {
+                        lPropriedade = lPropriedades.Where(x => x.Name == lComboBox.Name.Split('_').FirstOrDefault()).First();
+                        if (lPropriedade.GetValue(pDM) != null && lPropriedade.GetValue(pDM) == lComboBox.Name.Split('_').LastOrDefault())
+                            lComboBox.IsChecked = true;
+                        else
+                            lComboBox.IsChecked = false;
+                    }
                 }
             }
         }
