@@ -154,6 +154,36 @@ namespace BusinessRules.DatabaseBase.Classes
             lConnection.Close();
 
             return lRetorno;
+        }
+
+        public static List<object> SelecionarPorCampo(string pTabela, string pCodigo, string pCampo, Type pTipoObjeto)
+        {
+            MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
+            List<object> lRetornos = new List<object>();
+            lConnection.Open();
+            string lSelect = "SELECT * FROM " + pTabela + " WHERE " + pCampo + " = " + pCodigo;
+
+            MySqlCommand lCommand = new MySqlCommand(lSelect, lConnection);
+
+            MySqlDataReader lReader = lCommand.ExecuteReader();
+
+            object lRetorno = null;
+
+            while (lReader.Read())
+            {
+                lRetorno = Activator.CreateInstance(pTipoObjeto);
+                var lPropriedades = pTipoObjeto.GetProperties();
+                foreach (var lPropriedade in lPropriedades)
+                {
+                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
+                }
+
+                lRetornos.Add(lRetorno);
+            }
+
+            lConnection.Close();
+
+            return lRetornos;
         }    
 
         public static bool Update(string pTabela, object pRegistro)
