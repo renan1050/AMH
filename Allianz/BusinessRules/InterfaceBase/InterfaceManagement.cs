@@ -91,9 +91,10 @@ namespace InterfaceBase
             var lPropriedades = pTipoObjeto.GetProperties();
             List<DependencyObject> lLabels = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow, "Refers").ToList();
             List<Object> lChildren = new List<Object>();
-            GetControlsList(pWindow,lChildren);
+            GetControlsList(pWindow, lChildren, true);
             PropertyInfo lPropriedade;
-            foreach (Object lSender in lChildren)
+            List<Object> lParents = new List<Object>();
+            foreach (Object lSender in lChildren) 
             {
                 if(lSender is TextBox){
                     TextBox lTextBox = (TextBox)lSender;
@@ -138,7 +139,7 @@ namespace InterfaceBase
                 {
                     CheckBox lCheckBox = (CheckBox)lSender;
                     DependencyProperty lValue = DependencyObjectHelper.GetDependencyPropertyByName("Value", lCheckBox);
-                    if (lValue != null && lPropriedades.Select(x => x.Name).ToList().Contains(lCheckBox.Name.Split('_').FirstOrDefault()))
+                    if (lValue != null && lPropriedades.Select(x => x.Name).ToList().Contains(lCheckBox.Name.Split('_').FirstOrDefault()) && lCheckBox.IsChecked == true)
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lCheckBox.Name.Split('_').FirstOrDefault()).First();
 
@@ -146,11 +147,15 @@ namespace InterfaceBase
                     }
                     else
                     {
-                        DependencyProperty lRequired = DependencyObjectHelper.GetDependencyPropertyByName("Required", lCheckBox);
+                        DependencyProperty lRequired = DependencyObjectHelper.GetDependencyPropertyByName("Required", lCheckBox.Parent);
 
-                        if (lRequired != null && lCheckBox.GetValue(lRequired).ToString().Split(';').Contains(pEnviador))
+                        if (lRequired != null)
                         {
-                            pErrosValidacao.Add(string.Concat("O campo ", (lCheckBox.Content != null ? lCheckBox.Content.ToString() : lCheckBox.Name), " é obrigatório."));
+                            GetControlsList(lCheckBox.Parent, lParents);
+                            if (lParents.Count == 0)
+                            {
+                                pErrosValidacao.Add(string.Concat("O campo ", ((GroupBox)((Grid)lCheckBox.Parent).Parent).Header.ToString(), " é obrigatório."));
+                            }
                         }
                     }
                 }
@@ -158,7 +163,7 @@ namespace InterfaceBase
                 {
                     RadioButton lRadioButton = (RadioButton)lSender;
                     DependencyProperty lValue = DependencyObjectHelper.GetDependencyPropertyByName("Value", lRadioButton);
-                    if (lValue != null && lPropriedades.Select(x => x.Name).ToList().Contains(lRadioButton.Name.Split('_').FirstOrDefault()))
+                    if (lValue != null && lPropriedades.Select(x => x.Name).ToList().Contains(lRadioButton.Name.Split('_').FirstOrDefault()) && lRadioButton.IsChecked == true)
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lRadioButton.Name.Split('_').FirstOrDefault()).First();
 
@@ -166,11 +171,15 @@ namespace InterfaceBase
                     }
                     else
                     {
-                        DependencyProperty lRequired = DependencyObjectHelper.GetDependencyPropertyByName("Required", lRadioButton);
+                        DependencyProperty lRequired = DependencyObjectHelper.GetDependencyPropertyByName("Required", lRadioButton.Parent);
 
-                        if (lRequired != null && lRadioButton.GetValue(lRequired).ToString().Split(';').Contains(pEnviador))
+                        if (lRequired != null)
                         {
-                            pErrosValidacao.Add(string.Concat("O campo ", (lRadioButton.Content != null ? lRadioButton.Content.ToString() : lRadioButton.Name), " é obrigatório."));
+                            GetControlsList(lRadioButton.Parent, lParents);
+                            if (lParents.Count == 0)
+                            {
+                                pErrosValidacao.Add(string.Concat("O campo ", ((GroupBox)((Grid)lRadioButton.Parent).Parent).Header.ToString(), " é obrigatório."));
+                            }
                         }
                     }
                 }
