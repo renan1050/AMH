@@ -1,4 +1,5 @@
-﻿using InterfaceBase;
+﻿using BusinessRules.DatabaseBase.Classes;
+using InterfaceBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace AllianzMaintenanceHelper
         public ConsultaPessoas()
         {
             InitializeComponent();
+            Atualizar();
         }
 
         private void CheckTipo(object sender, RoutedEventArgs e)
@@ -53,6 +55,21 @@ namespace AllianzMaintenanceHelper
         {
             if (radPJ != null)
                 radPJ.IsChecked = false;
+        }
+
+        private void Atualizar()
+        {
+            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+            Pessoa lPessoa = new Pessoa();
+            Dictionary<string, string> lParametro = new Dictionary<string, string>();
+            lParametro.Add(pesNome.Name, pesNome.Text);
+            lParametro.Add(pesCPF.Name, pesCPF.Text);
+            lParametro.Add(pesCNPJ.Name, pesCNPJ.Text);
+            lParametro.Add(pesRG.Name, pesRG.Text);
+            //lParametro.Add(radPF.Name, radPF.Text);
+
+            dtRegistros.ItemsSource = lPessoa.AtualizarGrade(lParametro);
+            
         }
     }
 }

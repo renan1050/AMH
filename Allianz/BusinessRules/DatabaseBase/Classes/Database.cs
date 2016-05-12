@@ -26,6 +26,50 @@ namespace BusinessRules.DatabaseBase.Classes
             return lTable;
         }
 
+        public static List<object> SelecionarTudo(string pTabela, Dictionary<string,string> pParametros,Type pTipoObjeto)
+        {
+            MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
+            lConnection.Open();
+
+            List<object> lRetornos = new List<object>();
+            string lSelect = "SELECT * FROM " + pTabela + " WHERE ";
+            bool lFirst = true;
+            foreach(KeyValuePair<string,string>lParametro in pParametros) 
+            {
+                if (!lFirst)
+                    lSelect = string.Concat(lSelect, " AND ");
+                else
+                    lFirst = false;
+
+                lSelect = string.Concat(lSelect, " (", lParametro.Key, " LIKE '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
+            }
+            
+
+            MySqlCommand lCommand = new MySqlCommand(lSelect, lConnection);
+
+            MySqlDataReader lReader = lCommand.ExecuteReader();
+
+            var lPropriedades = pTipoObjeto.GetProperties();
+
+            object lRetorno;
+
+            while (lReader.Read())
+            {
+                lRetorno = Activator.CreateInstance(pTipoObjeto);
+
+                foreach (var lPropriedade in lPropriedades)
+                {  
+                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));    
+                }
+
+                lRetornos.Add(lRetorno);
+            }
+
+            lConnection.Close();
+
+            return lRetornos;
+        }
+
         public static string SelecionarUltimoId(string pTabela)
         {
             string Id = null;
