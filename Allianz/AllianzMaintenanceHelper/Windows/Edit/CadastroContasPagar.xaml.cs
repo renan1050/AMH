@@ -18,5 +18,15 @@ namespace AllianzMaintenanceHelper.Windows.Edit
         {
             InitializeComponent();
         }
+
+        private void radioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckTipo(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
