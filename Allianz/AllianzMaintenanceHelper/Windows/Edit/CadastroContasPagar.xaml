@@ -9,23 +9,23 @@
             <RowDefinition Height="31*"/>
             <RowDefinition Height="70*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="pesCodigo1" HorizontalAlignment="Left" Height="23" Margin="110,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <TextBox x:Name="copCodigo" HorizontalAlignment="Left" Height="23" Margin="110,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Código" HorizontalAlignment="Left" Margin="110,7,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Button x:Name="btnCarregar1" local:WPFExtension.RelativeFieldCode="Carregar" Content="Carregar"  HorizontalAlignment="Left" Margin="250,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Click="Load" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
         <Button x:Name="btnExcluir1" Content="Excluir" HorizontalAlignment="Left" Margin="375,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
         <Button x:Name="btnSalvar1" Content="Salvar" HorizontalAlignment="Left" Margin="499,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
-        <Label Content="Nome" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="29,89,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
-        <GroupBox Header="Forma de Pagamento"  local:WPFExtension.Refers="Categoria" HorizontalAlignment="Left" Margin="250,99,0,0" VerticalAlignment="Top" Height="47" Width="469" Foreground="#FF1700FF">
+        <Label Content="Nome" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="27,93,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <GroupBox Header="Forma de Pagamento"  local:WPFExtension.Refers="Categoria" HorizontalAlignment="Left" Margin="250,93,0,0" VerticalAlignment="Top" Height="47" Width="469" Foreground="#FF1700FF">
             <Grid x:Name="Categoria1" local:WPFExtension.Required="btnSalvar"/>
         </GroupBox>
-        <TextBox x:Name="copNomeCredor" HorizontalAlignment="Left" Height="23" Margin="27,22.667,0,0" TextWrapping="Wrap" Text="Identificação do Documento" VerticalAlignment="Top" Width="201" Grid.Row="1"/>
-        <Label Content="Numero do Documento" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="29,146,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" Grid.RowSpan="2"/>
-        <RadioButton x:Name="copFormaPagamento_Boleto" local:WPFExtension.RelativeFieldCode="PF" Content="Boleto" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="267,120,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
-        <RadioButton x:Name="copFormaPagamento_Cartao" local:WPFExtension.RelativeFieldCode="PF" Content="Cartão" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="351,120,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
-        <RadioButton x:Name="copFormaPagamento_Cheque" local:WPFExtension.RelativeFieldCode="PF" Content="Cheque" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="438,120,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
-        <RadioButton x:Name="copFormaPagamento_Dinheiro" local:WPFExtension.RelativeFieldCode="PF" Content="Dinheiro" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="529,120,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
-        <RadioButton x:Name="copFormaPagamento_Transferencia" local:WPFExtension.RelativeFieldCode="PF" Content="Transferencia" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="616,120,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
-        <DatePicker x:Name="pesNascimento1" HorizontalAlignment="Left" Margin="464,21.667,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF" Grid.Row="1">
+        <TextBox x:Name="copNDocumento" HorizontalAlignment="Left" Height="23" Margin="27,22.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Grid.Row="1"/>
+        <Label Content="Numero do Documento" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="27,152,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" Grid.RowSpan="2"/>
+        <RadioButton x:Name="copFormaPagamento_Boleto" local:WPFExtension.RelativeFieldCode="PF" Content="Boleto" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="267,114,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <RadioButton x:Name="copFormaPagamento_Cartao" local:WPFExtension.RelativeFieldCode="PF" Content="Cartão" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="351,114,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <RadioButton x:Name="copFormaPagamento_Cheque" local:WPFExtension.RelativeFieldCode="PF" Content="Cheque" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="438,114,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <RadioButton x:Name="copFormaPagamento_Dinheiro" local:WPFExtension.RelativeFieldCode="PF" Content="Dinheiro" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="529,114,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <RadioButton x:Name="copFormaPagamento_Transferencia" local:WPFExtension.RelativeFieldCode="PF" Content="Transferencia" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="616,114,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <DatePicker x:Name="copDataEntrada" HorizontalAlignment="Left" Margin="464,21.667,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF" Grid.Row="1">
             <DatePicker.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
                     <GradientStop Color="#FFA3AEB9" Offset="0"/>
@@ -36,7 +36,7 @@
             </DatePicker.BorderBrush>
         </DatePicker>
         <Label Content="Data de Entrada" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="459,151,0,0" VerticalAlignment="Top" Width="106" Foreground="#FF1700FF" Grid.RowSpan="2"/>
-        <DatePicker x:Name="pesNascimento_Copy1" HorizontalAlignment="Left" Margin="603,21.667,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF" Grid.Row="1">
+        <DatePicker x:Name="copVencimento" HorizontalAlignment="Left" Margin="603,21.667,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF" Grid.Row="1">
             <DatePicker.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
                     <GradientStop Color="#FFA3AEB9" Offset="0"/>
@@ -47,15 +47,15 @@
             </DatePicker.BorderBrush>
         </DatePicker>
         <Label Content="Data de Vencimento" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="598,151,-126,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" Grid.RowSpan="2"/>
-        <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="23" Margin="250,22.667,0,0" TextWrapping="Wrap" Text="Valor da Conta a Pagar" VerticalAlignment="Top" Width="201" Grid.Row="1"/>
-        <Label Content="Valor" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="250,147,0,0" VerticalAlignment="Top" Width="77" Foreground="#FF1700FF" Grid.RowSpan="2"/>
+        <TextBox x:Name="copValorTotal" HorizontalAlignment="Left" Height="23" Margin="250,22.667,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Grid.Row="1"/>
+        <Label Content="Valor" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="250,152,0,0" VerticalAlignment="Top" Width="77" Foreground="#FF1700FF" Grid.RowSpan="2"/>
         <Label Content="Observações" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="29,51,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" Grid.Row="1"/>
-        <TextBox x:Name="textBox_Copy5" HorizontalAlignment="Left" Height="104" Margin="27,82,0,0" TextWrapping="Wrap" Text="Observações" VerticalAlignment="Top" Width="424" Grid.Row="1"/>
+        <TextBox x:Name="copObservacao" HorizontalAlignment="Left" Height="104" Margin="27,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424" Grid.Row="1"/>
         <Label Content="Parcelas" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="472,59,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" Grid.Row="1"/>
-        <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="472,85,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74"/>
+        <ComboBox x:Name="copNParcelas" HorizontalAlignment="Left" Margin="472,85,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74"/>
         <Label Content="Status da Conta" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="472,122,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" Grid.Row="1"/>
-        <ComboBox x:Name="comboBox1_Copy" HorizontalAlignment="Left" Margin="473,148,0,0" Grid.Row="1" VerticalAlignment="Top" Width="143"/>
-        <TextBox x:Name="copCodigo" HorizontalAlignment="Left" Height="23" Margin="27,120,0,0" TextWrapping="Wrap" Text="Nome da Conta" VerticalAlignment="Top" Width="201"/>
+        <ComboBox x:Name="copStatusConta" HorizontalAlignment="Left" Margin="473,148,0,0" Grid.Row="1" VerticalAlignment="Top" Width="143"/>
+        <TextBox x:Name="copNomeCredor" HorizontalAlignment="Left" Height="23" Margin="27,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201"/>
 
 
     </Grid>

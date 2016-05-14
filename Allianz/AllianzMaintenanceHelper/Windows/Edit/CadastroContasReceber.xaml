@@ -5,6 +5,57 @@
       Title="CadastroContasReceber" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
 
     <Grid>
-        
+        <TextBox x:Name="corCodigo" HorizontalAlignment="Left" Height="23" Margin="110,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Código" HorizontalAlignment="Left" Margin="110,7,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Button x:Name="btnCarregar1" local:WPFExtension.RelativeFieldCode="Carregar" Content="Carregar"  HorizontalAlignment="Left" Margin="250,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Click="Load" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
+        <Button x:Name="btnExcluir1" Content="Excluir" HorizontalAlignment="Left" Margin="375,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
+        <Button x:Name="btnSalvar1" Content="Salvar" HorizontalAlignment="Left" Margin="499,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
+        <TextBox x:Name="ordCodigo" HorizontalAlignment="Left" Height="23" Margin="110,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Codigo - Ordem de Serviço" HorizontalAlignment="Left" Margin="107,77,0,0" VerticalAlignment="Top" Width="160" Foreground="#FF1700FF"/>
+        <DatePicker x:Name="corDataEntrada" HorizontalAlignment="Left" Margin="479,171,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF">
+            <DatePicker.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF0A1444" Offset="1"/>
+                </LinearGradientBrush>
+            </DatePicker.BorderBrush>
+        </DatePicker>
+        <Label Content="Data de Entrada" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="479,144,0,0" VerticalAlignment="Top" Width="106" Foreground="#FF1700FF"/>
+        <DatePicker x:Name="corVencimento" HorizontalAlignment="Left" Margin="614,171,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF">
+            <DatePicker.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF0A1444" Offset="1"/>
+                </LinearGradientBrush>
+            </DatePicker.BorderBrush>
+        </DatePicker>
+        <Label Content="Data de Vencimento" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="614,144,-142,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <GroupBox Header="Forma de Pagamento"  local:WPFExtension.Refers="Categoria" HorizontalAlignment="Left" Margin="280,81,0,0" VerticalAlignment="Top" Height="47" Width="469" Foreground="#FF1700FF">
+            <Grid x:Name="Categoria1" local:WPFExtension.Required="btnSalvar"/>
+        </GroupBox>
+        <RadioButton x:Name="corFormaPagamento_Boleto" local:WPFExtension.RelativeFieldCode="PF" Content="Boleto" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="296,103,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <RadioButton x:Name="corFormaPagamento_Cartao" local:WPFExtension.RelativeFieldCode="PF" Content="Cartão" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="380,103,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <RadioButton x:Name="corFormaPagamento_Cheque" local:WPFExtension.RelativeFieldCode="PF" Content="Cheque" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="467,103,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <RadioButton x:Name="corFormaPagamento_Dinheiro" local:WPFExtension.RelativeFieldCode="PF" Content="Dinheiro" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="558,103,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <RadioButton x:Name="corFormaPagamento_Transferencia" local:WPFExtension.RelativeFieldCode="PF" Content="Transferencia" HorizontalAlignment="Left" Height="18" VerticalAlignment="Top" Checked="CheckTipo" Margin="645,103,0,0" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="4.159,10.333"/>
+        <TextBox x:Name="corNDocumento" HorizontalAlignment="Left" Height="23" Margin="275,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
+        <Label Content="Nº Documento" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="275,149,0,0" VerticalAlignment="Top" Width="110" Foreground="#FF1700FF"/>
+        <Label Content="Parcelas" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="550,290,-78,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <ComboBox x:Name="corNParcela" HorizontalAlignment="Left" Margin="555,318,0,0" VerticalAlignment="Top" Width="74"/>
+        <TextBox x:Name="corValorTotal" HorizontalAlignment="Left" Height="23" Margin="110,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+        <Label Content="Valor" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="109,205,0,0" VerticalAlignment="Top" Width="77" Foreground="#FF1700FF"/>
+        <TextBox x:Name="corTipoCobranca" HorizontalAlignment="Left" Height="23" Margin="111,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Tipo da Cobrança" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="109,145,0,0" VerticalAlignment="Top" Width="107" Foreground="#FF1700FF"/>
+        <TextBox x:Name="corTaxaJuros" HorizontalAlignment="Left" Height="23" Margin="276,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+        <Label Content="Taxa de Juros" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="275,204,0,0" VerticalAlignment="Top" Width="100" Foreground="#FF1700FF"/>
+        <Label Content="Observações" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="107,260,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <TextBox x:Name="copObservacao" HorizontalAlignment="Left" Height="104" Margin="105,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424"/>
+        <Label Content="Status da Conta" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="549,344,-77,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <ComboBox x:Name="copStatusConta" HorizontalAlignment="Left" Margin="550,370,0,0" VerticalAlignment="Top" Width="143"/>
+
     </Grid>
 </Window>
