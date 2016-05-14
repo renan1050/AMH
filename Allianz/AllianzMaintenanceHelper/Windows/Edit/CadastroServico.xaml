@@ -14,8 +14,8 @@
             <TextBox x:Name="txtCodigoCarregar" Height="22" TextWrapping="Wrap" Width="245" Foreground="#FF1700FF"/>
         </WrapPanel>
 
-        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="315,32,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
-        <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="439,32,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
+        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="315,32,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
+        <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="439,32,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
         <TextBox x:Name="serDescricao" HorizontalAlignment="Left" Height="23" Margin="101,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <TextBox x:Name="serValor" HorizontalAlignment="Left" Height="23" Margin="393,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Valor" HorizontalAlignment="Left" Margin="393,146,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>

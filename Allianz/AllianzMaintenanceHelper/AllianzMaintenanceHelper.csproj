@@ -59,6 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\Edit\CadastroContasPagar.xaml.cs">
+      <DependentUpon>CadastroContasPagar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Edit\CadastroContasReceber.xaml.cs">
+      <DependentUpon>CadastroContasReceber.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Edit\CadastroProduto.xaml.cs">
       <DependentUpon>CadastroProduto.xaml</DependentUpon>
     </Compile>
@@ -71,6 +77,14 @@
     <Compile Include="Windows\List\ConsultaVeiculos.xaml.cs">
       <DependentUpon>ConsultaVeiculos.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\Edit\CadastroContasPagar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Edit\CadastroContasReceber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Edit\CadastroPessoas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -163,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="DataBase.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

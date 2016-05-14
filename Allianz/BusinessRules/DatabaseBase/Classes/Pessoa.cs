@@ -18,9 +18,9 @@ namespace BusinessRules.DatabaseBase.Classes
         }
 
         //seleciona todos dados no banco clientes e retorna um datatable
-        public DataTable AtualizarGrade()
+        public List<PessoaDM> AtualizarGrade(Dictionary<string, string> pParamentros)
         {
-            return Database.SelecionarTudo(gTabela);
+            return Database.SelecionarTudo(gTabela, pParamentros, typeof(PessoaDM)).Cast<PessoaDM>().ToList();
         }
 
         public List<PessoaDM> SelecionarTudo()
