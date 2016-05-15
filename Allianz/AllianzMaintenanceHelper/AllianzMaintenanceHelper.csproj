@@ -65,6 +65,9 @@
     <Compile Include="Windows\Edit\CadastroServico.xaml.cs">
       <DependentUpon>CadastroServico.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Edit\Tela principal.xaml.cs">
+      <DependentUpon>Tela principal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\List\ConsultaOrdensdeservico.xaml.cs">
       <DependentUpon>ConsultaOrdensdeservico.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Edit\CadastroVeiculo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Edit\Tela principal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +173,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sem título-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sem título-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sem título-3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Rodapé.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

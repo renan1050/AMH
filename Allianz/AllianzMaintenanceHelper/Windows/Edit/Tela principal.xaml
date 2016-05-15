@@ -1,0 +1,28 @@
+﻿<Window x:Class="AllianzMaintenanceHelper.TelaPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Tela - Principal - Allians Mainteance Helper" Height="571.605" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="347*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="___AllianzMaintenanceHelper_component_Background_jpg" Source="/AllianzMaintenanceHelper;component/Background.jpg" Stretch="Fill" Grid.ColumnSpan="2" Margin="1,-2,-1,2"/>
+        <Image x:Name="___AllianzMaintenanceHelper_component_login_jpg" Grid.Column="1" Margin="205,150,239,217" Source="/AllianzMaintenanceHelper;component/login.jpg" Stretch="Fill"/>
+        <Image x:Name="___AllianzMaintenanceHelper_component_Rodapé_jpg" Margin="0,485,-1,2" Source="/AllianzMaintenanceHelper;component/Rodapé.jpg" Stretch="Fill" Grid.ColumnSpan="2"/>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="755" Grid.ColumnSpan="2" Margin="0,0,-1,0">
+            <MenuItem Header="Cadastros" Width="70">
+                
+            </MenuItem>
+            <MenuItem Header="Consultas" Width="65"/>
+            <MenuItem Header="Logoff"/>
+            <MenuItem Header="Sobre" Width="51"/>
+            <MenuItem Header="Sair"/>
+        </Menu>
+        <TextBox x:Name="Login" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="265,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Senha" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="270,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="button" Content="Entrar" Grid.Column="1" HorizontalAlignment="Left" Margin="290,293,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>
