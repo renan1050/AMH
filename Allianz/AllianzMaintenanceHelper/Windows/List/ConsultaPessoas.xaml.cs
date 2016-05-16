@@ -98,5 +98,18 @@ namespace AllianzMaintenanceHelper
             dtRegistros.ItemsSource = lPessoa.AtualizarGrade(lParametro);
             
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroPessoas lCadastroPessoas = new CadastroPessoas();
+            lCadastroPessoas.Show();
+            
+            
+        }
+
+        private void pesNome_LostFocus(object sender, RoutedEventArgs e)
+        {   
+            Atualizar();            
+        }
     }
 }
