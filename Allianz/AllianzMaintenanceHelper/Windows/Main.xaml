@@ -1,0 +1,39 @@
+﻿<Window x:Class="AllianzMaintenanceHelper.Windows.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Main" Height="571.605" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Pessoa">
+                    <MenuItem Header="Cadastro" Click="PesCadastro_Click" />
+                    <MenuItem Header="Consulta" Click="PesConsulta_Click" />
+                </MenuItem>
+                <MenuItem Header="Veículo">
+                    <MenuItem Header="Cadastro" />
+                    <MenuItem Header="Consulta" IsEnabled="False" />
+                </MenuItem>
+                <MenuItem Header="Serviço">
+                    <MenuItem Header="Cadastro" />
+                    <MenuItem Header="Consulta" IsEnabled="False" />
+                </MenuItem>
+                <MenuItem Header="Ordem de Serviço">
+                    <MenuItem Header="Cadastro" />
+                    <MenuItem Header="Consulta" IsEnabled="False"/>
+                </MenuItem>
+                <MenuItem Header="Contas" IsEnabled="False">
+                    <MenuItem Header="Contas a Pagar" >
+                        <MenuItem Header="Cadastro" />
+                        <MenuItem Header="Consulta" />
+                    </MenuItem>
+                    <MenuItem Header="Contas a Receber" >
+                        <MenuItem Header="Cadastro" />
+                        <MenuItem Header="Consulta" />
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
+
+    </Grid>
+</Window>
