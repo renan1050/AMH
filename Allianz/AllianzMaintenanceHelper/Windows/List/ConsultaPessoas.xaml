@@ -5,7 +5,7 @@
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultaPessoas"
         Title="Consulta de pessoas" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,13,5">
-        <TextBox x:Name="pesNome" HorizontalAlignment="Left" Height="23" Margin="23,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <TextBox x:Name="pesNome" HorizontalAlignment="Left" Height="23" Margin="23,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF" BorderBrush="#FF0A1444" LostFocus="pesNome_LostFocus"/>
         <Label Content="Nome" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
 
         <GroupBox Header="Tipo de pessoa" HorizontalAlignment="Left" Margin="315,10,0,0" VerticalAlignment="Top" Width="207" Height="51" Foreground="#FF1700FF">
@@ -26,6 +26,6 @@
             <Label Content="RG" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         </Grid>
         <DataGrid Name="dtRegistros" HorizontalAlignment="Left" Margin="23,137,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,349,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
+        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,349,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF" Click="Button_Click"/>
     </Grid>
 </Window>

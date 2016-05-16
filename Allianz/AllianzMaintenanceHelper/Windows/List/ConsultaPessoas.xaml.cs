@@ -33,10 +33,18 @@ namespace AllianzMaintenanceHelper
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             RadioButton lRadioButton = sender as RadioButton;
+                    
             if (lRadioButton.Name == "pesTipoPessoa_PF")
+            {
                 UncheckPJ();
+                Atualizar(true); 
+            }            
             else
+            {
                 UncheckPF();
+                Atualizar(true);
+            }
+                
             
             lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
         }
@@ -89,6 +97,19 @@ namespace AllianzMaintenanceHelper
 
             dtRegistros.ItemsSource = lPessoa.AtualizarGrade(lParametro);
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroPessoas lCadastroPessoas = new CadastroPessoas();
+            lCadastroPessoas.Show();
+            
+            
+        }
+
+        private void pesNome_LostFocus(object sender, RoutedEventArgs e)
+        {   
+            Atualizar();            
         }
     }
 }
