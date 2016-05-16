@@ -284,7 +284,7 @@ namespace InterfaceBase
             return true;
         }
 
-        private void GetControlsList(DependencyObject pControl, List<Object> pChildren, bool pNoCheck = false, bool pNoVisibilityCheck = false)
+        public void GetControlsList(DependencyObject pControl, List<Object> pChildren, bool pNoCheck = false, bool pNoVisibilityCheck = false)
         {   
             int lChildNumber = VisualTreeHelper.GetChildrenCount(pControl);
 

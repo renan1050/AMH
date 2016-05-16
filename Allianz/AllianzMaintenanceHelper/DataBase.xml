@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <bancodedados>
   <usuario>root</usuario>
-  <senha>root</senha>
+  <senha></senha>
   <host>127.0.0.1</host>
   <nomebanco>amhdb</nomebanco>
   <tiposervidor>mysql</tiposervidor>
