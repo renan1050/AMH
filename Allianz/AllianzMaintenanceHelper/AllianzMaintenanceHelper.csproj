@@ -77,6 +77,9 @@
     <Compile Include="Windows\List\ConsultaOrdensdeservico.xaml.cs">
       <DependentUpon>ConsultaOrdensdeservico.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\List\ConsultaProduto.xaml.cs">
+      <DependentUpon>ConsultaProduto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\List\ConsultaServico.xaml.cs">
       <DependentUpon>ConsultaServico.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\List\ConsultaOrdensdeservico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\List\ConsultaProduto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

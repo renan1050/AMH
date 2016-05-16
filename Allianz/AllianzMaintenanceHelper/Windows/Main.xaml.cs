@@ -69,7 +69,7 @@ namespace AllianzMaintenanceHelper.Windows
 
         private void SerConsulta_Click(object sender, RoutedEventArgs e)
         {
-            ConsultaServico lConsultaServico = new ConsultaServico();
+            ConsultaProduto lConsultaServico = new ConsultaProduto();
             lConsultaServico.Show();
         }
 

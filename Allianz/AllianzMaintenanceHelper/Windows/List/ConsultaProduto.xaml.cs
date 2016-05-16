@@ -14,41 +14,41 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace AllianzMaintenanceHelper.Windows.List
 {
     /// <summary>
-    /// Interaction logic for ConsultaServico.xaml
+    /// Interaction logic for ConsultaProduto.xaml
     /// </summary>
-    public partial class ConsultaServico : Window
+    public partial class ConsultaProduto : Window
     {
-        public ConsultaServico()
+        public ConsultaProduto()
         {
             InitializeComponent();
             Atualizar();
-            
         }
 
         private void Atualizar()
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Servico lServico = new Servico();
+            Produto lProduto = new Produto();
             Dictionary<string, string> lParametro = new Dictionary<string, string>();
-                      
-            lParametro.Add(serDescricao.Name, serDescricao.Text);
 
-            dtRegistros.ItemsSource = lServico.AtualizarGrade(lParametro);
+            lParametro.Add(proNome.Name, proNome.Text);
 
-        }
+            dtRegistros.ItemsSource = lProduto.AtualizarGrade(lParametro);
 
-        private void serDescricao_LostFocus(object sender, RoutedEventArgs e)
-        {
-            Atualizar();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CadastroServico lCadastroServico = new CadastroServico();
-            lCadastroServico.Show();
+            CadastroProduto lCadastroProduto = new CadastroProduto();
+            lCadastroProduto.Show();
+        }
+
+        private void proNome_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Atualizar();
         }
     }
 }
