@@ -40,7 +40,15 @@ namespace BusinessRules.DatabaseBase.Classes
                     lSelect = string.Concat(lSelect, " AND ");
                 else
                     lFirst = false;
-
+                if(lParametro.Key.Contains("_"))
+                {
+                    string[] lDate = lParametro.Key.Split('_');
+                    if(lDate[1] == "Inicio")
+                        lSelect = string.Concat(lSelect, " (", lDate[0], " >= '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
+                    else
+                        lSelect = string.Concat(lSelect, " (", lParametro.Key, " LIKE '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
+                }
+                else
                 lSelect = string.Concat(lSelect, " (", lParametro.Key, " LIKE '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
             }
             
@@ -340,7 +348,7 @@ namespace BusinessRules.DatabaseBase.Classes
 
             var lPropriedades = pTipoObjeto.GetProperties();
 
-            object lRetorno;
+            object lRetorno;            
 
             while (lReader.Read())
             {
