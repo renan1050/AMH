@@ -1,7 +1,7 @@
 ﻿<Application x:Class="AllianzMaintenanceHelper.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Windows/Edit/CadastroOrdem.xaml">            
+             StartupUri="Windows/List/ConsultaPessoas.xaml">            
     <Application.Resources>
          
     </Application.Resources>
