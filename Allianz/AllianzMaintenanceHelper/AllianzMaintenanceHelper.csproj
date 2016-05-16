@@ -59,12 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Windows\Edit\CadastroContasPagar.xaml.cs">
-      <DependentUpon>CadastroContasPagar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Edit\CadastroContasReceber.xaml.cs">
-      <DependentUpon>CadastroContasReceber.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Edit\CadastroOrdem.xaml.cs">
       <DependentUpon>CadastroOrdem.xaml</DependentUpon>
     </Compile>
@@ -74,23 +68,18 @@
     <Compile Include="Windows\Edit\CadastroServico.xaml.cs">
       <DependentUpon>CadastroServico.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Edit\Tela principal.xaml.cs">
-      <DependentUpon>Tela principal.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\List\ConsultaOrdensdeservico.xaml.cs">
       <DependentUpon>ConsultaOrdensdeservico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\List\ConsultaServico.xaml.cs">
+      <DependentUpon>ConsultaServico.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\List\ConsultaVeiculos.xaml.cs">
       <DependentUpon>ConsultaVeiculos.xaml</DependentUpon>
     </Compile>
-    <Page Include="Windows\Edit\CadastroContasPagar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\Edit\CadastroContasReceber.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Windows\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\Edit\CadastroOrdem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,10 +112,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Edit\Tela principal.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\List\ConsultaOrcamento.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -139,9 +124,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\List\ConsultaServico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\List\ConsultaVeiculos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -191,15 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="DataBase.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="login.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Rodapé.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
