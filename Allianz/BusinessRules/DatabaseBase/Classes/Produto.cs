@@ -12,9 +12,9 @@ namespace BusinessRules.DatabaseBase.Classes
     {
         public static string gTabela = "produto";
         //seleciona todos dados no banco clientes e retorna um datatable
-        public DataTable AtualizarGrade()
+        public List<ProdutoDM> AtualizarGrade(Dictionary<string, string> pParamentros)
         {
-            return Database.SelecionarTudo(gTabela);
+            return Database.SelecionarTudo(gTabela, pParamentros, typeof(ProdutoDM)).Cast<ProdutoDM>().ToList();
         }
 
         public List<ProdutoDM> SelecionarTudo()
