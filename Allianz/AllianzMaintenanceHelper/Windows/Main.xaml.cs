@@ -124,6 +124,7 @@ namespace AllianzMaintenanceHelper.Windows
         //}
 
         #endregion
+
         #region Orçamento
 
         private void OrcCadastro_Click(object sender, RoutedEventArgs e)
@@ -137,6 +138,21 @@ namespace AllianzMaintenanceHelper.Windows
             ConsultaOrcamento lConsultaOrcamento = new ConsultaOrcamento();
             lConsultaOrcamento.Show();
         }
+
+        #endregion
+
+        #region Produto
+
+        private void ProCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroProduto lCadastroProduto = new CadastroProduto();
+            lCadastroProduto.Show();
+        }
+
+        //private void ProConsulta_Click(object sender, RoutedEventArgs e)
+        //{
+            
+        //}
 
         #endregion
     }

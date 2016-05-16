@@ -19,8 +19,6 @@
         <Button x:Name="btnCarregar1" local:WPFExtension.RelativeFieldCode="Carregar" Content="Carregar"  HorizontalAlignment="Left" Margin="250,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Click="Load" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
         <Button x:Name="btnExcluir1" Content="Excluir" HorizontalAlignment="Left" Margin="375,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
         <Button x:Name="btnSalvar1" Content="Salvar" HorizontalAlignment="Left" Margin="499,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
-        <TextBox x:Name="ordCodigo" HorizontalAlignment="Left" Height="23" Margin="58,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Codigo - Ordem de Serviço" HorizontalAlignment="Left" Margin="55,77,0,0" VerticalAlignment="Top" Width="160" Foreground="#FF1700FF"/>
         <DatePicker x:Name="corDataEntrada" HorizontalAlignment="Left" Margin="427,171,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF" IsEnabled="False">
             <DatePicker.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
