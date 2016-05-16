@@ -122,7 +122,9 @@ namespace AllianzMaintenanceHelper.Windows.Edit
 
         private void btnExcluir_Click(object sender, RoutedEventArgs e)
         {
-            
+            ContasReceber lContasReceber = new ContasReceber();
+            lContasReceber.ExcluirCliente(corCodigo.Text);
+            Clear();
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)

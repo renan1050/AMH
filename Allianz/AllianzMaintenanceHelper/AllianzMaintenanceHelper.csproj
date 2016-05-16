@@ -59,6 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\Edit\CadastroContasPagar.xaml.cs">
+      <DependentUpon>CadastroContasPagar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Edit\CadastroContasReceber.xaml.cs">
+      <DependentUpon>CadastroContasReceber.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Edit\CadastroOrdem.xaml.cs">
       <DependentUpon>CadastroOrdem.xaml</DependentUpon>
     </Compile>
@@ -77,6 +83,14 @@
     <Compile Include="Windows\List\ConsultaVeiculos.xaml.cs">
       <DependentUpon>ConsultaVeiculos.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\Edit\CadastroContasPagar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\Edit\CadastroContasReceber.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\Edit\CadastroOrdem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
