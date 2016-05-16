@@ -33,10 +33,18 @@ namespace AllianzMaintenanceHelper
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             RadioButton lRadioButton = sender as RadioButton;
+                    
             if (lRadioButton.Name == "pesTipoPessoa_PF")
+            {
                 UncheckPJ();
+                Atualizar(true); 
+            }            
             else
+            {
                 UncheckPF();
+                Atualizar(true);
+            }
+                
             
             lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
         }
