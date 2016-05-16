@@ -1,4 +1,6 @@
-﻿using AllianzMaintenanceHelper.Windows.List;
+﻿using AllianzMaintenanceHelper.Windows.Edit;
+using AllianzMaintenanceHelper.Windows.List;
+using BusinessRules.DatabaseBase.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,20 +91,36 @@ namespace AllianzMaintenanceHelper.Windows
 
         #endregion
 
-        //#region ContasPagar
+        #region ContasPagar
 
-        //private void CopCadastro_Click(object sender, RoutedEventArgs e)
+        private void CopCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroContasPagar lCadastroContasPagar = new CadastroContasPagar();
+            lCadastroContasPagar.Show();
+        }
+
+        //private void CopConsulta_Click(object sender, RoutedEventArgs e)
         //{
-        //    CadastroOrdem lCadastroOrdem = new CadastroOrdem();
-        //    lCadastroOrdem.Show();
+        //    ConsultaC lContasPagar = new ContasPagar();
+        //    lContasPagar.Show();
         //}
 
-        //private void OrdConsulta_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region ContasReceber
+
+        private void CorCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroContasReceber lCadastroContasReceber = new CadastroContasReceber();
+            lCadastroContasReceber.Show();
+        }
+
+        //private void CopConsulta_Click(object sender, RoutedEventArgs e)
         //{
-        //    ConsultarOrdens_de_servico lConsultarOrdens_de_servico = new ConsultarOrdens_de_servico();
-        //    lConsultarOrdens_de_servico.Show();
+        //    ConsultaC lContasPagar = new ContasPagar();
+        //    lContasPagar.Show();
         //}
 
-        //#endregion
+        #endregion
     }
 }
