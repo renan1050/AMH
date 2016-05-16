@@ -23,9 +23,9 @@ namespace BusinessRules.DatabaseBase.Classes
         }
 
         //insere novo cliente
-        public bool NovoCliente(VeiculoDM pVeiculoDM, Action<string> pCarregar)
+        public bool NovoCliente(ContasReceberDM pContasReceberDM, Action<string> pCarregar)
         {
-            if (Database.Insert(gTabela, pVeiculoDM))
+            if (Database.Insert(gTabela, pContasReceberDM))
             {
                 pCarregar(Database.SelecionarUltimoId(gTabela));
                 return true;

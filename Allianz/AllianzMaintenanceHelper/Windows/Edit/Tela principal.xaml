@@ -13,7 +13,6 @@
         <Image x:Name="___AllianzMaintenanceHelper_component_Rodapé_jpg" Margin="0,485,-1,2" Source="/AllianzMaintenanceHelper;component/Rodapé.jpg" Stretch="Fill" Grid.ColumnSpan="2"/>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="755" Grid.ColumnSpan="2" Margin="0,0,-1,0">
             <MenuItem Header="Cadastros" Width="70">
-                
             </MenuItem>
             <MenuItem Header="Consultas" Width="65"/>
             <MenuItem Header="Logoff"/>

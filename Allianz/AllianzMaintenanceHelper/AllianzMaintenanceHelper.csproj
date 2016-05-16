@@ -186,18 +186,6 @@
     <Resource Include="DataBase.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Sem título-2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Sem título-1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Sem título-3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Background.jpg" />
   </ItemGroup>
   <ItemGroup>
