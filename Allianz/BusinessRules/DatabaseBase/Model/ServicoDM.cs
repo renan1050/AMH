@@ -8,8 +8,8 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class ServicoDM
     {
-        public int serCodigo { get; set; }
+        public int? serCodigo { get; set; }
         public string serDescricao { get; set; }
-        public decimal serValor { get; set; }
+        public decimal? serValor { get; set; }
     }
 }

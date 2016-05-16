@@ -58,8 +58,8 @@ namespace BusinessRules.DatabaseBase.Classes
                 lRetorno = Activator.CreateInstance(pTipoObjeto);
 
                 foreach (var lPropriedade in lPropriedades)
-                {  
-                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));    
+                {
+                    lPropriedade.SetValue(lRetorno, lReader[lPropriedade.Name] is DBNull ? null : ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
                 }
 
                 lRetornos.Add(lRetorno);
@@ -112,8 +112,8 @@ namespace BusinessRules.DatabaseBase.Classes
                 lRetorno = Activator.CreateInstance(pTipoObjeto);
 
                 foreach (var lPropriedade in lPropriedades)
-                {  
-                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));    
+                {
+                    lPropriedade.SetValue(lRetorno, lReader[lPropriedade.Name] is DBNull ? null : ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
                 }
 
                 lRetornos.Add(lRetorno);
@@ -190,8 +190,8 @@ namespace BusinessRules.DatabaseBase.Classes
                 lRetorno = Activator.CreateInstance(pTipoObjeto);
 
                 foreach (var lPropriedade in lPropriedades)
-                {                    
-                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
+                {
+                    lPropriedade.SetValue(lRetorno, lReader[lPropriedade.Name] is DBNull ? null : ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
                 }
             }
 
@@ -219,7 +219,7 @@ namespace BusinessRules.DatabaseBase.Classes
                 var lPropriedades = pTipoObjeto.GetProperties();
                 foreach (var lPropriedade in lPropriedades)
                 {
-                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
+                    lPropriedade.SetValue(lRetorno, lReader[lPropriedade.Name] is DBNull ? null : ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
                 }
 
                 lRetornos.Add(lRetorno);
@@ -295,7 +295,7 @@ namespace BusinessRules.DatabaseBase.Classes
             }
         }
 
-        public static List<object> SelecionarPorCliente(string pTabela, Type pTipoObjeto, int pPesCodigo)
+        public static List<object> SelecionarPorCliente(string pTabela, Type pTipoObjeto, int? pPesCodigo)
         {
             List<object> lRetornos = new List<object>();
             MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
@@ -316,7 +316,7 @@ namespace BusinessRules.DatabaseBase.Classes
 
                 foreach (var lPropriedade in lPropriedades)
                 {
-                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
+                    lPropriedade.SetValue(lRetorno, lReader[lPropriedade.Name] is DBNull ? null : ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
                 }
 
                 lRetornos.Add(lRetorno);
@@ -325,9 +325,9 @@ namespace BusinessRules.DatabaseBase.Classes
             lConnection.Close();
 
             return lRetornos;
-        }            
+        }
 
-        public static List<object> SelecionarPorTipo(string pTabela, Type pTipoObjeto, int pTipo)
+        public static List<object> SelecionarPorTipo(string pTabela, Type pTipoObjeto, int? pTipo)
         {
             List<object> lRetornos = new List<object>();
             MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
@@ -348,7 +348,7 @@ namespace BusinessRules.DatabaseBase.Classes
 
                 foreach (var lPropriedade in lPropriedades)
                 {
-                    lPropriedade.SetValue(lRetorno, Convert.ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
+                    lPropriedade.SetValue(lRetorno, Convert.IsDBNull(lReader[lPropriedade.Name]) ? null : ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
                 }
 
                 lRetornos.Add(lRetorno);
@@ -357,7 +357,24 @@ namespace BusinessRules.DatabaseBase.Classes
             lConnection.Close();
 
             return lRetornos;
-        }    
+        }
+
+        public static object ChangeType(object value, Type conversion)
+        {
+            var t = conversion;
+
+            if (t.IsGenericType && t.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
+            {
+                if (value == null)
+                {
+                    return null;
+                }
+
+                t = Nullable.GetUnderlyingType(t);
+            }
+
+            return Convert.ChangeType(value, t);
+        }
 
     }
 }

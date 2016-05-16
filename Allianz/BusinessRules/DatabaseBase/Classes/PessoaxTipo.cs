@@ -17,7 +17,7 @@ namespace BusinessRules.DatabaseBase.Classes
             return Database.SelecionarTudo(gTabela);
         }
 
-        public List<PessoaxTipoDM> SelecionarPorCliente(int pPesCodigo)
+        public List<PessoaxTipoDM> SelecionarPorCliente(int? pPesCodigo)
         {
             return Database.SelecionarPorCliente(gTabela, typeof(PessoaxTipoDM),  pPesCodigo).Cast<PessoaxTipoDM>().ToList();
         }

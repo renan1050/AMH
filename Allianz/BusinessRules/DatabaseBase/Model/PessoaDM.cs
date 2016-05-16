@@ -8,7 +8,7 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class PessoaDM
     {
-        public int pesCodigo { get; set; }
+        public int? pesCodigo { get; set; }
         public string pesNome { get; set; }
         public string pesRazaoSocial { get; set; }
         public string pesTipoPessoa { get; set; }
@@ -26,7 +26,7 @@ namespace BusinessRules.DatabaseBase.Model
         public string pesComplemento { get; set; }
         public string pesBairro { get; set; }
         public string pesCargo { get; set; }
-        public int estCodigo { get; set; }
-        public int cidCodigo { get; set; }
+        public int? estCodigo { get; set; }
+        public int? cidCodigo { get; set; }
     }
 }
