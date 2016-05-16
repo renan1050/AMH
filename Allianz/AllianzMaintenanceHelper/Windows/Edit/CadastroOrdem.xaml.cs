@@ -110,7 +110,10 @@ namespace AllianzMaintenanceHelper
             {
                 lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
                 if (lAtributo != null)
+                {
                     dtItens.Columns[lCount].Header = lAtributo.Name;
+                    dtItens.Columns[lCount].IsReadOnly = true;
+                }
                 else
                     lRemover.Add(lCount);
                 lCount++;
@@ -118,8 +121,6 @@ namespace AllianzMaintenanceHelper
 
             foreach(int lIndex in lRemover)
                 dtItens.Columns.RemoveAt(lIndex);
-
-            dtItens.IsReadOnly = true;
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
@@ -244,10 +245,14 @@ namespace AllianzMaintenanceHelper
 
         private void dtItens_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ServicoxOrdem lServicoxOrdem = new ServicoxOrdem();
-            lServicoxOrdem.ExcluirCliente(((sender as DataGrid).SelectedItem as ServicoxOrdemDM).genCodigo.ToString());
-           
-            Clear();
+            if ((sender as DataGrid).SelectedItem != null)
+            {
+                ServicoxOrdem lServicoxOrdem = new ServicoxOrdem();
+                if (lServicoxOrdem.ExcluirCliente(((sender as DataGrid).SelectedItem as ServicoxOrdemDM).genCodigo.ToString()))
+                {
+                    LoadSub(ordCodigo.Text);
+                }
+            }
         }        
     }    
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -97,6 +98,24 @@ namespace AllianzMaintenanceHelper
             ServicoxOrcamento lServicoxOrcamento = new ServicoxOrcamento();
             List<ServicoxOrcamentoDM> lServicoxOrcamentoDMList = lServicoxOrcamento.SelectPorOrcamento(pCodigo);
             dtItens.ItemsSource = lServicoxOrcamentoDMList;
+            int lCount = 0;
+            FormatedName lAtributo;
+            List<int> lRemover = new List<int>();
+            foreach (PropertyInfo lProperty in typeof(ServicoxOrcamentoDM).GetProperties())
+            {
+                lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
+                if (lAtributo != null)
+                {
+                    dtItens.Columns[lCount].Header = lAtributo.Name;
+                    dtItens.Columns[lCount].IsReadOnly = true;
+                }
+                else
+                    lRemover.Add(lCount);
+                lCount++;
+            }
+
+            foreach (int lIndex in lRemover)
+                dtItens.Columns.RemoveAt(lIndex);
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
@@ -216,6 +235,18 @@ namespace AllianzMaintenanceHelper
         {
             if(proCodigo.SelectedItem != null)
                 genValorUnitario.Text = (proCodigo.SelectedItem as InterfaceManagement.Item).Adicional.ToString();
+        }
+
+        private void dtItens_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if ((sender as DataGrid).SelectedItem != null)
+            {
+                ServicoxOrcamento lServicoxOrcamento = new ServicoxOrcamento();
+                if (lServicoxOrcamento.ExcluirCliente(((sender as DataGrid).SelectedItem as ServicoxOrcamentoDM).genCodigo.ToString()))
+                {
+                    LoadSub(orcCodigo.Text);
+                }
+            }
         }
     }
 }

@@ -13,8 +13,7 @@ namespace BusinessRules.DatabaseBase.Model
 
         [FormatedName("Serviço")]
         public int? serCodigo { get; set; }
-
-        [FormatedName("Orçamento")]
+                
         public int? orcCodigo { get; set; }
 
         [FormatedName("Produto")]
