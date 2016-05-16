@@ -5,13 +5,13 @@
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultarVeiculos"
         Title="Consulta de veiculos" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,13,5">
-        <TextBox x:Name="txtConsulta" HorizontalAlignment="Left" Height="23" Margin="23,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <DataGrid HorizontalAlignment="Left" Margin="23,137,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,349,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
-        <GroupBox Header="Parâmetro" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="512" Height="58" Foreground="#FF1700FF"/>
-        <RadioButton x:Name="rad_pesNome" InterfaceBase:WPFExtension.RelativeFieldCode="Nome" Content="Nome do cliente" HorizontalAlignment="Left" Margin="23,34,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <RadioButton x:Name="rad_veiPlaca" InterfaceBase:WPFExtension.RelativeFieldCode="Placa" Content="Placa" HorizontalAlignment="Left" Margin="250,34,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <RadioButton x:Name="rad_veiMarca" InterfaceBase:WPFExtension.RelativeFieldCode="Marca" Content="Marca" HorizontalAlignment="Left" Margin="447,34,0,0" VerticalAlignment="Top" Checked="CheckTipo" Unchecked="UncheckTipo" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Consultar" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
+        <DataGrid Name="dtRegistros" HorizontalAlignment="Left" Margin="23,76,0,0" VerticalAlignment="Top" Height="252" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,349,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF" Click="Button_Click"/>
+        <Label Content="Nome do clienete" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="190" Foreground="#FF1700FF"/>
+        <TextBox x:Name="veiPlaca" LostFocus="veiModelo_LostFocus" HorizontalAlignment="Left" Height="23" Margin="229,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Placa" HorizontalAlignment="Left" Margin="229,10,0,0" VerticalAlignment="Top" Width="101" Foreground="#FF1700FF"/>
+        <TextBox x:Name="veiModelo" LostFocus="veiModelo_LostFocus" HorizontalAlignment="Left" Height="23" Margin="345,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Modelo" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top" Width="177" Foreground="#FF1700FF"/>
+        <ComboBox x:Name="pesCodigoC" SelectionChanged="pesCodigoC_SelectionChanged" InterfaceBase:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="23,35,0,0" VerticalAlignment="Top" Width="190" Background="White" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
     </Grid>
 </Window>

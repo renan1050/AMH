@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BusinessRules.DatabaseBase.Classes;
+using BusinessRules.DatabaseBase.Model;
 
 namespace AllianzMaintenanceHelper
 {
@@ -23,56 +25,43 @@ namespace AllianzMaintenanceHelper
         public ConsultarVeiculos()
         {
             InitializeComponent();
+            Pessoa lPessoa = new Pessoa();
+            List<PessoaDM> lPessoaDMList = lPessoa.SelecionarPorTipo(PessoaFeature.TipoPessoa.Cliente);
+            pesCodigoC.ItemsSource = lPessoaDMList.ToDictionary(x => x.pesCodigo, x => x.pesNome);
+            pesCodigoC.DisplayMemberPath = "Value";
+            pesCodigoC.SelectedValuePath = "Key";
+            Atualizar();
         }
 
-        private void CheckTipo(object sender, RoutedEventArgs e)
+        private void Atualizar()
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            RadioButton lRadioButton = sender as RadioButton;
-            if (lRadioButton.Name == "rad_pesNome")
-            {
-                UncheckPlaca();
-                UncheckMarca();
-            }
-            else if (lRadioButton.Name == "rad_veiPlaca")
-            {
-                UncheckNome();
-                UncheckMarca();
-            }
-            else
-            {
-                UncheckNome();
-                UncheckPlaca();
-            }
-                
+            Veiculo lVeiculo = new Veiculo();
+            Dictionary<string, string> lParametro = new Dictionary<string, string>();
 
-            lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
+            lParametro.Add(veiPlaca.Name, veiPlaca.Text);
+            lParametro.Add(veiModelo.Name, veiModelo.Text);
+            lParametro.Add(pesCodigoC.Name, (pesCodigoC.SelectedValue != null ? pesCodigoC.SelectedValue.ToString() : ""));
+                                    
+            dtRegistros.ItemsSource = lVeiculo.AtualizarGrade(lParametro);
+
         }
 
-        private void UncheckTipo(object sender, RoutedEventArgs e)
+        private void pesCodigoC_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.HideByAttribute(((RadioButton)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
+            Atualizar();
         }
 
-        private void UncheckNome()
+        private void veiModelo_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (rad_pesNome != null)
-                rad_pesNome.IsChecked = false;
-        }
-                
-        private void UncheckPlaca()
-        {
-            if (rad_veiPlaca != null)
-                rad_veiPlaca.IsChecked = false;
+            Atualizar();
         }
 
-        private void UncheckMarca()
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (rad_veiMarca != null)
-                rad_veiMarca.IsChecked = false;
+            CadastroVeiculo lCadastroVeiculo = new CadastroVeiculo();
+            lCadastroVeiculo.Show();
         }
-
     }
 }
 
