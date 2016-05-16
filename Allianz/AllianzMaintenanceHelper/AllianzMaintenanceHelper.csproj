@@ -178,15 +178,6 @@
   <ItemGroup>
     <Resource Include="DataBase.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="login.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Rodapé.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
