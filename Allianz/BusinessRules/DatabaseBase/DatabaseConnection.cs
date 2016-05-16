@@ -32,7 +32,7 @@ namespace BusinessRules.DatabaseBase
             XmlDocument lXML = new XmlDocument();
 
             //Define o caminho do arquivo XML 
-            string lXMLFile = @"C:\Users\mateu\Source\Repos\AMH\Allianz\AllianzMaintenanceHelper\DataBase.xml";
+            string lXMLFile = @"D:\Git\Allianz\AllianzMaintenanceHelper\DataBase.xml";
 
             //carrega o arquivo XML
             lXML.Load(lXMLFile);
