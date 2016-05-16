@@ -8,7 +8,7 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class TipoPessoaDM
     {
-        public int tipCodigo { get; set; }
+        public int? tipCodigo { get; set; }
         public string tipSigla { get; set; }
         public string tipNome { get; set; }
     }

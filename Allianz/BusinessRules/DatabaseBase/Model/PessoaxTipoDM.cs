@@ -8,7 +8,7 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class PessoaxTipoDM
     {
-        public int pesCodigo { get; set; }
-        public int tipCodigo { get; set; }
+        public int? pesCodigo { get; set; }
+        public int? tipCodigo { get; set; }
     }
 }

@@ -23,11 +23,12 @@ namespace BusinessRules.DatabaseBase.Classes
         }
 
         //insere novo cliente
-        public bool NovoCliente(VeiculoDM pVeiculoDM, Action<string> pCarregar)
+        public bool NovoCliente(ServicoxOrdemDM pServicoxOrdemDM, Action<string> pCarregar = null)
         {
-            if (Database.Insert(gTabela, pVeiculoDM))
+            if (Database.Insert(gTabela, pServicoxOrdemDM))
             {
-                pCarregar(Database.SelecionarUltimoId(gTabela));
+                if (pCarregar != null)
+                    pCarregar(Database.SelecionarUltimoId(gTabela));
                 return true;
             }
             else
@@ -40,6 +41,11 @@ namespace BusinessRules.DatabaseBase.Classes
         public ServicoxOrdemDM SelectCodigo(string pChave)
         {
             return (ServicoxOrdemDM)Database.SelecionarPorCodigo(gTabela, pChave, typeof(ServicoxOrdemDM));
+        }
+
+        public List<ServicoxOrdemDM> SelectPorOrdem(string pChave)
+        {
+            return Database.SelecionarPorCampo(gTabela, pChave, "ordCodigo", typeof(ServicoxOrdemDM)).Cast<ServicoxOrdemDM>().ToList();
         }
 
         //salva ediçoes no cliente

@@ -8,11 +8,11 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class VeiculoDM
     {
-        public int veiCodigo { get; set; }
+        public int? veiCodigo { get; set; }
         public string veiMarca { get; set; }
         public string veiModelo { get; set; }
         public string veiPlaca { get; set; }        
         public string veiRENAVAM { get; set; }
-        public int pesCodigoC { get; set; }
+        public int? pesCodigoC { get; set; }
     }
 }

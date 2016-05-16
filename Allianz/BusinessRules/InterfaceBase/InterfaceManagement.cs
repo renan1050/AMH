@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessRules.DatabaseBase.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -102,7 +103,7 @@ namespace InterfaceBase
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lTextBox.Name).First();
 
-                        lPropriedade.SetValue(lRetorno, Convert.ChangeType(lTextBox.Text, lPropriedade.PropertyType));
+                        lPropriedade.SetValue(lRetorno, Database.ChangeType(lTextBox.Text, lPropriedade.PropertyType));
                     }
                     else
                     {
@@ -118,11 +119,18 @@ namespace InterfaceBase
                 else if (lSender is ComboBox)
                 {
                     ComboBox lComboBox = (ComboBox)lSender;
-                    if (lComboBox.SelectedValue != null && !string.IsNullOrEmpty(lComboBox.SelectedValue.ToString()) && lPropriedades.Select(x => x.Name).ToList().Contains(lComboBox.Name))
-                    {
-                        lPropriedade = lPropriedades.Where(x => x.Name == lComboBox.Name).First();
+                    string lName = string.Empty;
 
-                        lPropriedade.SetValue(lRetorno, Convert.ChangeType(lComboBox.SelectedValue.ToString(), lPropriedade.PropertyType));
+                    if (lComboBox.SelectedItem is InterfaceManagement.Item)
+                        lName = (lComboBox.SelectedItem as InterfaceManagement.Item).Campo;
+                    else
+                        lName = lComboBox.Name;
+
+                    if (lComboBox.SelectedValue != null && !string.IsNullOrEmpty(lComboBox.SelectedValue.ToString()) && lPropriedades.Select(x => x.Name).ToList().Contains(lName))
+                    {
+                        lPropriedade = lPropriedades.Where(x => x.Name == lName).First();
+
+                        lPropriedade.SetValue(lRetorno, Database.ChangeType(lComboBox.SelectedValue.ToString(), lPropriedade.PropertyType));
                     }
                     else
                     {
@@ -143,7 +151,7 @@ namespace InterfaceBase
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lCheckBox.Name.Split('_').FirstOrDefault()).First();
 
-                        lPropriedade.SetValue(lRetorno, Convert.ChangeType(lCheckBox.GetValue(lValue).ToString(), lPropriedade.PropertyType));
+                        lPropriedade.SetValue(lRetorno, Database.ChangeType(lCheckBox.GetValue(lValue).ToString(), lPropriedade.PropertyType));
                     }
                     else
                     {
@@ -167,7 +175,7 @@ namespace InterfaceBase
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lRadioButton.Name.Split('_').FirstOrDefault()).First();
 
-                        lPropriedade.SetValue(lRetorno, Convert.ChangeType(lRadioButton.GetValue(lValue).ToString(), lPropriedade.PropertyType));
+                        lPropriedade.SetValue(lRetorno, Database.ChangeType(lRadioButton.GetValue(lValue).ToString(), lPropriedade.PropertyType));
                     }
                     else
                     {
@@ -190,12 +198,12 @@ namespace InterfaceBase
         
         }
 
-        public void CarregarDM(DependencyObject pWindow, object pDM)
+        public bool CarregarDM(DependencyObject pWindow, object pDM)
         {
             if (pDM == null)
             {
                 MessageBox.Show("Registro não encontrado");
-                return;
+                return false;
             }
 
             var lPropriedades = pDM.GetType().GetProperties();
@@ -226,7 +234,25 @@ namespace InterfaceBase
                         if (lPropriedade.GetValue(pDM) != null)
                             lComboBox.SelectedValue = lPropriedade.GetValue(pDM).ToString();
                         else
-                            lComboBox.SelectedValue = string.Empty;
+                        {
+                            DependencyProperty lRefers = DependencyObjectHelper.GetDependencyPropertyByName("Refers", lComboBox);
+
+                            if(lRefers != null)
+                            {
+                                string[] lRef = lComboBox.GetValue(lRefers).ToString().Split(';');
+                                foreach(string lItem in lRef)
+                                {
+                                    lPropriedade = lPropriedades.Where(x => x.Name == lItem).First();
+                                    if (lPropriedade.GetValue(pDM) != null)
+                                    {
+                                        lComboBox.SelectedValue = lPropriedade.GetValue(pDM).ToString();
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                                lComboBox.SelectedValue = string.Empty;
+                        }
                     }
                 }
                 else if (lSender is CheckBox)
@@ -254,9 +280,11 @@ namespace InterfaceBase
                     }
                 }
             }
+
+            return true;
         }
 
-        private void GetControlsList(DependencyObject pControl, List<Object> pChildren, bool pNoCheck = false, bool pNoVisibilityCheck = false)
+        public void GetControlsList(DependencyObject pControl, List<Object> pChildren, bool pNoCheck = false, bool pNoVisibilityCheck = false)
         {   
             int lChildNumber = VisualTreeHelper.GetChildrenCount(pControl);
 
@@ -281,5 +309,17 @@ namespace InterfaceBase
         }
 
         #endregion
+
+        public class Item
+        {
+            public string Name { get; set; }
+            public int? Value { get; set; }
+            public decimal? Adicional { get; set; }
+            public string Campo { get; set; }
+            public Item(string name, int? value, decimal? adicional, string campo)
+            {
+                Name = name; Value = value; Adicional = adicional; Campo = campo;
+            }
+        }
     } 
 }

@@ -8,9 +8,9 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class OrcamentoDM
     {
-        public int orcCodigo { get; set; }
+        public int? orcCodigo { get; set; }
         public DateTime orcDataCriacao { get; set; }
-        public int pesCodigoC { get; set; }
-        public int veiCodigo { get; set; }
+        public int? pesCodigoC { get; set; }
+        public int? veiCodigo { get; set; }
     }
 }
