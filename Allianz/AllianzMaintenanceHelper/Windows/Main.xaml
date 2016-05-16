@@ -11,7 +11,11 @@
                 </MenuItem>
                 <MenuItem Header="Veículo">
                     <MenuItem Header="Cadastro" Click="VeiCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="VeiConsulta_Click" IsEnabled="False" />
+                    <MenuItem Header="Consulta" Click="VeiConsulta_Click" />
+                </MenuItem>
+                <MenuItem Header="Orçamento">
+                    <MenuItem Header="Cadastro" Click="OrcCadastro_Click" />
+                    <MenuItem Header="Consulta" Click="OrcConsulta_Click" IsEnabled="False"/>
                 </MenuItem>
                 <MenuItem Header="Serviço">
                     <MenuItem Header="Cadastro" Click="SerCadastro_Click" />
@@ -21,7 +25,7 @@
                     <MenuItem Header="Cadastro" Click="OrdCadastro_Click" />
                     <MenuItem Header="Consulta" Click="OrdConsulta_Click" IsEnabled="False"/>
                 </MenuItem>
-                <MenuItem Header="Contas">
+                <MenuItem Header="Contas" IsEnabled="False">
                     <MenuItem Header="Contas a Pagar" >
                         <MenuItem Header="Cadastro" Click="CopCadastro_Click" />
                         <MenuItem Header="Consulta" IsEnabled="False"/>

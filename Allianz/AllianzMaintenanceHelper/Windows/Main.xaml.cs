@@ -115,11 +115,28 @@ namespace AllianzMaintenanceHelper.Windows
             lCadastroContasReceber.Show();
         }
 
+        
+
         //private void CopConsulta_Click(object sender, RoutedEventArgs e)
         //{
         //    ConsultaC lContasPagar = new ContasPagar();
         //    lContasPagar.Show();
         //}
+
+        #endregion
+        #region Orçamento
+
+        private void OrcCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroOrcamento lCadastroOrcamento = new CadastroOrcamento();
+            lCadastroOrcamento.Show();
+        }
+
+        private void OrcConsulta_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaOrcamento lConsultaOrcamento = new ConsultaOrcamento();
+            lConsultaOrcamento.Show();
+        }
 
         #endregion
     }
