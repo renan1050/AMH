@@ -46,5 +46,10 @@ namespace AllianzMaintenanceHelper
             dtRegistros.ItemsSource = lOrcamento.AtualizarGrade(lParametro);
 
         }
+
+        private void pesCodigoC_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Atualizar();
+        }
     }
 }

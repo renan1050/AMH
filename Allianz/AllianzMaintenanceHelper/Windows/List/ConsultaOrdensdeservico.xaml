@@ -3,33 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultarOrdens_de_servico"
-        Title="Consultar Ordens de Serviço" Height="605.483" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,13,0" Height="571" VerticalAlignment="Top">
+        Title="Consultar Ordens de Serviço" Height="601.737" Width="553.228" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,19,0" Height="578" VerticalAlignment="Top">
 
         <Label Content="Cliente" HorizontalAlignment="Left" Margin="23,21,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
         <ComboBox x:Name="pesCodigoC" SelectionChanged="Event_SelectionChanged" HorizontalAlignment="Left" Height="23" Margin="23,47,0,0" VerticalAlignment="Top" Width="309" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Placa" HorizontalAlignment="Left" Margin="23,90,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
-        <ComboBox x:Name="veiCodigo" SelectionChanged="Event_SelectionChanged" HorizontalAlignment="Left" Height="23" Margin="23,116,0,0" VerticalAlignment="Top" Width="309" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Placa" HorizontalAlignment="Left" Margin="400,21,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF"/>
+        <ComboBox x:Name="veiCodigo" SelectionChanged="Event_SelectionChanged" HorizontalAlignment="Left" Height="23" Margin="400,47,0,0" VerticalAlignment="Top" Width="116" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
 
-        <GroupBox Header="Entrada" HorizontalAlignment="Left" Margin="20,167,0,0" VerticalAlignment="Top" Width="499" Height="58" Foreground="#FF1700FF">
-            <Grid Name="grOrdDataEntrada" HorizontalAlignment="Left" Height="48" Margin="0,0,-2,-12" VerticalAlignment="Top" Width="489">
-                <Label Content="Data de entrada" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
-                <DatePicker Name="ordDataEntrada_Inicio" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="346,100,0,0" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Consultar" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
-                <DatePicker Name="ordDataEntrada_Fim" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="346,100,0,0" VerticalAlignment="Top" Width="176"/>
+        <GroupBox Header="Entrada" HorizontalAlignment="Left" Margin="20,97,0,0" VerticalAlignment="Top" Width="384" Height="85" Foreground="#FF1700FF">
+            <Grid Name="grOrdDataEntrada" HorizontalAlignment="Left" Height="68" Margin="0,10,-2,-15" VerticalAlignment="Top" Width="374" RenderTransformOrigin="0.497,0.59">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="481*"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Data inicial" HorizontalAlignment="Left" Margin="0,-2,0,0" VerticalAlignment="Top" Width="176" Foreground="#FF1700FF"/>
+                <DatePicker Name="ordDataEntrada_Inicio" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="0,24,0,0" VerticalAlignment="Top" Width="176"/>
+                <Label Content="Data final" HorizontalAlignment="Left" Margin="194,-2,0,0" VerticalAlignment="Top" Width="176" Foreground="#FF1700FF"/>
+                <DatePicker Name="ordDataEntrada_Fim" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="194,24,0,0" VerticalAlignment="Top" Width="176"/>
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Saida" HorizontalAlignment="Left" Margin="18,243,0,0" VerticalAlignment="Top" Width="499" Height="58" Foreground="#FF1700FF">
-            <Grid Name="grOrdDataSaida" HorizontalAlignment="Left" Height="48" Margin="0,0,-2,-12" VerticalAlignment="Top" Width="489">
-                <Label Content="Consultar" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
-                <DatePicker Name="ordDataSaida_Inicio" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="346,100,0,0" VerticalAlignment="Top" Width="176"/>
-                <Label Content="Consultar" HorizontalAlignment="Left" Margin="23,73,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
-                <DatePicker Name="ordDataSaida_Fim" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="346,100,0,0" VerticalAlignment="Top" Width="176"/>
+        <GroupBox Header="Saida" HorizontalAlignment="Left" Margin="20,206,0,0" VerticalAlignment="Top" Width="384" Height="85" Foreground="#FF1700FF">
+            <Grid Name="grOrdDataSaida" HorizontalAlignment="Left" Margin="0,10,0,-12" Width="374" RenderTransformOrigin="0.504,0.83">
+                <Label Content="Data inicial" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" Foreground="#FF1700FF"/>
+                <DatePicker Name="ordDataSaida_Inicio" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Width="176"/>
+                <Label Content="Data final" HorizontalAlignment="Left" Margin="196,0,0,0" VerticalAlignment="Top" Width="176" Foreground="#FF1700FF"/>
+                <DatePicker Name="ordDataSaida_Fim" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="196,26,0,0" VerticalAlignment="Top" Width="176"/>
             </Grid>
         </GroupBox>
-        <DataGrid Name="dtRegistros" HorizontalAlignment="Left" Margin="23,325,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,534,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
+        <DataGrid Name="dtRegistros" HorizontalAlignment="Left" Margin="17,311,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Button Content="Novo" HorizontalAlignment="Left" Margin="441,521,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
 
     </Grid>
 </Window>

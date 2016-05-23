@@ -33,9 +33,9 @@ namespace AllianzMaintenanceHelper
 
             Veiculo lVeiculo = new Veiculo();
             List<VeiculoDM> lVeiculoDMList = lVeiculo.SelecionarTudo();
-            pesCodigoC.ItemsSource = lVeiculoDMList.ToDictionary(x => x.veiCodigo, x => x.veiPlaca);
-            pesCodigoC.DisplayMemberPath = "Value";
-            pesCodigoC.SelectedValuePath = "Key";
+            veiCodigo.ItemsSource = lVeiculoDMList.ToDictionary(x => x.veiCodigo, x => x.veiPlaca);
+            veiCodigo.DisplayMemberPath = "Value";
+            veiCodigo.SelectedValuePath = "Key";
 
             Atualizar();
             

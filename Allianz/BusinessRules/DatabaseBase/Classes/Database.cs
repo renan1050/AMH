@@ -44,9 +44,9 @@ namespace BusinessRules.DatabaseBase.Classes
                 {
                     string[] lDate = lParametro.Key.Split('_');
                     if(lDate[1] == "Inicio")
-                        lSelect = string.Concat(lSelect, " '", lParametro.Value, "' = '' OR (STR_TO_DATE(", lDate[0], ", '%Y-%c-%e %T') ", " >= STR_TO_DATE(", (string.IsNullOrEmpty(lParametro.Value) ? "''" : lParametro.Value), ", '%Y-%c-%e %T'))");
+                        lSelect = string.Concat(lSelect, " ('", lParametro.Value, "' = '' OR (STR_TO_DATE(", lDate[0], ", '%Y-%c-%e %T') ", " >= STR_TO_DATE(", (string.IsNullOrEmpty(lParametro.Value) ? "''" : lParametro.Value), ", '%Y-%c-%e %T')))");
                     else
-                        lSelect = string.Concat(lSelect, " '", lParametro.Value, "' = '' OR (STR_TO_DATE(", lDate[0], ", '%Y-%c-%e %T') ", " <= STR_TO_DATE(", (string.IsNullOrEmpty(lParametro.Value) ? "''" : lParametro.Value), ", '%Y-%c-%e %T'))");
+                        lSelect = string.Concat(lSelect, " ('", lParametro.Value, "' = '' OR (STR_TO_DATE(", lDate[0], ", '%Y-%c-%e %T') ", " <= STR_TO_DATE(", (string.IsNullOrEmpty(lParametro.Value) ? "''" : lParametro.Value), ", '%Y-%c-%e %T')))");
                 }
                 else
                 lSelect = string.Concat(lSelect, " (", lParametro.Key, " LIKE '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
