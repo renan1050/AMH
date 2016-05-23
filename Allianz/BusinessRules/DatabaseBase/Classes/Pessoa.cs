@@ -49,9 +49,17 @@ namespace BusinessRules.DatabaseBase.Classes
         }
 
         //salva ediçoes no cliente
-        public bool EditarCliente(PessoaDM pPessoaDM)
+        public bool EditarCliente(PessoaDM pPessoaDM, Action<string> pCarregar)
         {
-            return Database.Update(gTabela, pPessoaDM);
+            if(Database.Update(gTabela, pPessoaDM))
+            {
+                pCarregar(pPessoaDM.pesCodigo.ToString());
+                return true;            
+            }
+            else
+            {
+                return false;  
+            }
         }
 
         //exclui cliente com o codigo informado

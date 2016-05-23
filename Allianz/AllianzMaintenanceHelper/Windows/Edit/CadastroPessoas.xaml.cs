@@ -92,12 +92,36 @@ namespace AllianzMaintenanceHelper
             txtCodigoCarregar.Text = null;
         }
 
+        private void LoadPessoaAtt(string pCodigo)
+        {
+            AtualizarTipos(pCodigo);
+
+            LoadPessoa(pCodigo);
+        }
+
+        private void AtualizarTipos(string pCodigo)
+        {
+            PessoaxTipo lPessoaxTipo = new PessoaxTipo();
+            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+            List<string> lTipos = new List<string>();
+            List<Object> lChildren = new List<Object>();
+            lInterfaceManagement.GetControlsList(Categoria, lChildren, pNoVisibilityCheck: true);
+            foreach(Object lChild in lChildren)
+            {
+                lTipos.Add(((CheckBox)lChild).GetValue(WPFExtension.ValueProperty).ToString());
+            }
+
+            if(!lPessoaxTipo.Refresh(int.Parse(pCodigo), lTipos.ToArray()))
+                MessageBox.Show("Erro ao salvar categorias");
+        }
+
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             Pessoa lPessoa = new Pessoa();
             List<string> lErrosValidacao = new List<string>();
             PessoaDM lPessoaDM = (PessoaDM)lInterfaceManagement.BuildDM(this, typeof(PessoaDM), ((Button)sender).Name, lErrosValidacao);
+            
             if (lErrosValidacao != null && lErrosValidacao.Count > 0)
             {
                 MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
@@ -106,15 +130,17 @@ namespace AllianzMaintenanceHelper
             {
                 if (!string.IsNullOrEmpty(pesCodigo.Text))
                 {
-                    if (lPessoa.EditarCliente(lPessoaDM))
+                    if (lPessoa.EditarCliente(lPessoaDM, AtualizarTipos))                    
                         MessageBox.Show("Editado com sucesso");
                     else
                         MessageBox.Show("Erro ao editar");
                 }
                 else
                 {
-                    if (lPessoa.NovoCliente(lPessoaDM, LoadPessoa))
+                    if (lPessoa.NovoCliente(lPessoaDM, LoadPessoaAtt))
+                    {
                         MessageBox.Show("Salvo com sucesso");
+                    }
                     else
                         MessageBox.Show("Erro ao salvar");
                 }
