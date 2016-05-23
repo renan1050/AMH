@@ -46,8 +46,8 @@
         <Label Content="Complemento" HorizontalAlignment="Left" Margin="557,205,0,0" VerticalAlignment="Top" Width="140" Foreground="#FF1700FF"/>
         <Label Content="Número" local:WPFExtension.Refers="pesNumero" HorizontalAlignment="Left" Margin="499,205,0,0" VerticalAlignment="Top" Width="53" Foreground="#FF1700FF"/>
         <Label Content="Endereço" local:WPFExtension.Refers="pesEndereco" HorizontalAlignment="Left" Margin="258,205,0,0" VerticalAlignment="Top" Width="227" Foreground="#FF1700FF"/>
-        <Label Content="CEP" HorizontalAlignment="Left" Margin="425,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.719,0.775" Width="76" Foreground="#FF1700FF"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="44,206,0,0" VerticalAlignment="Top" Width="209" Foreground="#FF1700FF"/>
+        <Label Content="CEP" local:WPFExtension.Refers="pesCEP" HorizontalAlignment="Left" Margin="425,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.719,0.775" Width="76" Foreground="#FF1700FF"/>
+        <Label Content="Email" local:WPFExtension.Refers="pesEmail" HorizontalAlignment="Left" Margin="44,206,0,0" VerticalAlignment="Top" Width="209" Foreground="#FF1700FF"/>
         <Label Content="Telefone celular" HorizontalAlignment="Left" Margin="586,146,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label Content="Telefone comercial" HorizontalAlignment="Left" Margin="336,147,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label Content="Telefone residencial" HorizontalAlignment="Left" Margin="461,146,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>

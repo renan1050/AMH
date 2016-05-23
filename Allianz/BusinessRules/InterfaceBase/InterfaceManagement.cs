@@ -95,6 +95,7 @@ namespace InterfaceBase
             GetControlsList(pWindow, lChildren, true);
             PropertyInfo lPropriedade;
             List<Object> lParents = new List<Object>();
+            bool lResult;
             foreach (Object lSender in lChildren) 
             {
                 if(lSender is TextBox){
@@ -103,7 +104,41 @@ namespace InterfaceBase
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lTextBox.Name).First();
 
-                        lPropriedade.SetValue(lRetorno, Database.ChangeType(lTextBox.Text, lPropriedade.PropertyType));
+                        Label lField = null;
+                        lResult = true;
+
+                        if (lTextBox.Name == "pesCPF")
+                        {
+                            lResult = ValidateCPF(lTextBox.Text);
+                            lField = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lTextBox.Name)).FirstOrDefault() as Label;
+                        }
+                        if (lTextBox.Name == "pesCNPJ")
+                        {
+                            lResult = ValidateCNPJ(lTextBox.Text);
+                            lField = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lTextBox.Name)).FirstOrDefault() as Label;
+                        }
+                        if (lTextBox.Name == "pesCEP")
+                        {
+                            lResult = ValidateCEP(lTextBox.Text);
+                            lField = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lTextBox.Name)).FirstOrDefault() as Label;
+                        }
+                        if (lTextBox.Name == "pesEmail")
+                        {
+                            lResult = ValidateEmail(lTextBox.Text);
+                            lField = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lTextBox.Name)).FirstOrDefault() as Label;
+                        }
+                        if (lTextBox.Name == "veiPlaca")
+                        {
+                            lResult = ValidatePlate(lTextBox.Text);
+                            lField = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lTextBox.Name)).FirstOrDefault() as Label;
+                        }
+
+                        if (!lResult)
+                            pErrosValidacao.Add(string.Concat("O campo ", (lField != null ? lField.Content.ToString() : lTextBox.Name), " está incorreto."));
+                        else
+                            lPropriedade.SetValue(lRetorno, Database.ChangeType(lTextBox.Text, lPropriedade.PropertyType));
+
+                        
                     }
                     else
                     {
@@ -321,5 +356,162 @@ namespace InterfaceBase
                 Name = name; Value = value; Adicional = adicional; Campo = campo;
             }
         }
+
+        #region Validar CPF
+
+        public static bool ValidateCPF(string pCPF)
+        {
+            string lCPFValue = pCPF.Replace(".", "");
+            lCPFValue = lCPFValue.Replace("-", "");
+
+            if (lCPFValue.Length != 11)
+                return false;
+
+            bool lContinue = true;
+            for (int i = 1; i < 11 && lContinue; i++)
+                if (lCPFValue[i] != lCPFValue[0])
+                    lContinue = false;
+
+            if (lContinue || lCPFValue == "12345678909")
+                return false;
+
+            int[] lNumbers = new int[11];
+            for (int i = 0; i < 11; i++)
+                lNumbers[i] = int.Parse(
+                lCPFValue[i].ToString());
+
+            int lSum = 0;
+            for (int i = 0; i < 9; i++)
+                lSum += (10 - i) * lNumbers[i];
+
+            int lResult = lSum % 11;
+            if (lResult == 1 || lResult == 0)
+            {
+                if (lNumbers[9] != 0)
+                    return false;
+            }
+            else if (lNumbers[9] != 11 - lResult)
+                return false;
+
+            lSum = 0;
+            for (int i = 0; i < 10; i++)
+                lSum += (11 - i) * lNumbers[i];
+
+            lResult = lSum % 11;
+
+            if (lResult == 1 || lResult == 0)
+            {
+                if (lNumbers[10] != 0)
+                    return false;
+
+            }
+            else
+                if (lNumbers[10] != 11 - lResult)
+                    return false;
+            return true;
+
+        }
+
+        #endregion
+
+        #region Validar CNPJ
+
+        public static bool ValidateCNPJ(string pCNPJ)
+        {
+
+            string lCNPJValue = pCNPJ.Replace(".", "");
+            lCNPJValue = pCNPJ.Replace("/", "");
+            lCNPJValue = pCNPJ.Replace("-", "");
+
+            int[] lDigits, lSum, lResult;
+            int lDigitNumber;
+            string ftmt;
+            bool[] lIsTrue;
+
+            ftmt = "6543298765432";
+            lDigits = new int[14];
+            lSum = new int[2];
+            lSum[0] = 0;
+            lSum[1] = 0;
+            lResult = new int[2];
+            lResult[0] = 0;
+            lResult[1] = 0;
+            lIsTrue = new bool[2];
+            lIsTrue[0] = false;
+            lIsTrue[1] = false;
+
+            try
+            {
+                for (lDigitNumber = 0; lDigitNumber < 14; lDigitNumber++)
+                {
+                    lDigits[lDigitNumber] = int.Parse(
+                     lCNPJValue.Substring(lDigitNumber, 1));
+                    if (lDigitNumber <= 11)
+                        lSum[0] += (lDigits[lDigitNumber] *
+                        int.Parse(ftmt.Substring(
+                          lDigitNumber + 1, 1)));
+                    if (lDigitNumber <= 12)
+                        lSum[1] += (lDigits[lDigitNumber] *
+                        int.Parse(ftmt.Substring(
+                          lDigitNumber, 1)));
+                }
+
+                for (lDigitNumber = 0; lDigitNumber < 2; lDigitNumber++)
+                {
+                    lResult[lDigitNumber] = (lSum[lDigitNumber] % 11);
+                    if ((lResult[lDigitNumber] == 0) || (lResult[lDigitNumber] == 1))
+                        lIsTrue[lDigitNumber] = (
+                        lDigits[12 + lDigitNumber] == 0);
+
+                    else
+                        lIsTrue[lDigitNumber] = (
+                        lDigits[12 + lDigitNumber] == (
+                        11 - lResult[lDigitNumber]));
+
+                }
+
+                return (lIsTrue[0] && lIsTrue[1]);
+
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        #endregion
+
+        #region Validar CEP
+
+        public static bool ValidateCEP(string pCEP)
+        {
+            if (pCEP.Length == 8)
+            {
+                pCEP = pCEP.Substring(0, 5) + "-" + pCEP.Substring(5, 3);
+                //txt.Text = cep;
+            }
+            return System.Text.RegularExpressions.Regex.IsMatch(pCEP, ("[0-9]{5}-[0-9]{3}"));
+        }
+
+        #endregion
+
+        #region Validar E-mail
+
+        public static bool ValidateEmail(string pEmail)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(pEmail, ("(?<user>[^@]+)@(?<host>.+)"));
+        }
+
+        #endregion
+
+        #region Validar Placa
+
+        public static bool ValidatePlate(string pPlate)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(pPlate, (@"^[a-zA-Z]{3}\-\d{4}$"));
+        }
+
+        #endregion
     } 
 }

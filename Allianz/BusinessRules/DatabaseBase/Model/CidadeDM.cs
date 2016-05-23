@@ -8,8 +8,12 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class CidadeDM
     {
+        [FormatedName("Código")]
         public int? cidCodigo { get; set; }
+
         public int? estCodigo { get; set; }
+
+        [FormatedName("Nome")]
         public string cidNome { get; set; }
     }
 }

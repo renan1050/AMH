@@ -11,12 +11,10 @@ namespace BusinessRules.DatabaseBase.Model
         [FormatedName("Código")]
         public int? genCodigo { get; set; }
 
-        [FormatedName("Serviço")]
         public int? serCodigo { get; set; }
                 
         public int? orcCodigo { get; set; }
 
-        [FormatedName("Produto")]
         public int? proCodigo { get; set; }
 
         [FormatedName("Valor unitário")]

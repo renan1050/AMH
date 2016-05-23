@@ -46,25 +46,25 @@ namespace AllianzMaintenanceHelper
             List<ProdutoDM> lProdutoDMList = lProduto.SelecionarTudo();
             List<InterfaceManagement.Item> lItemList = new List<InterfaceManagement.Item>();
             InterfaceManagement.Item lAddItem;
-            foreach(ProdutoDM lItem in lProdutoDMList)
+            foreach (ProdutoDM lItem in lProdutoDMList)
             {
                 lAddItem = new InterfaceManagement.Item(lItem.proNome, lItem.proCodigo, lItem.proValorUnitario, "proCodigo");
                 lItemList.Add(lAddItem);
 
             }
-            
+
             List<ServicoDM> lServicoDMList = lServico.SelecionarTudo();
             foreach (ServicoDM lItem in lServicoDMList)
             {
                 lAddItem = new InterfaceManagement.Item(lItem.serDescricao, lItem.serCodigo, lItem.serValor, "serCodigo");
                 lItemList.Add(lAddItem);
-            }    
-        
+            }
+
             proCodigo.Items.Clear();
             proCodigo.ItemsSource = lItemList;
             proCodigo.DisplayMemberPath = "Name";
             proCodigo.SelectedValuePath = "Value";
-        }        
+        }
 
         private void Load(object sender, RoutedEventArgs e)
         {
@@ -97,25 +97,29 @@ namespace AllianzMaintenanceHelper
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             ServicoxOrcamento lServicoxOrcamento = new ServicoxOrcamento();
             List<ServicoxOrcamentoDM> lServicoxOrcamentoDMList = lServicoxOrcamento.SelectPorOrcamento(pCodigo);
+            dtItens.ItemsSource = null;
             dtItens.ItemsSource = lServicoxOrcamentoDMList;
+            dtItens.AutoGenerateColumns = false;
+            dtItens.AutoGenerateColumns = true;
+
             int lCount = 0;
             FormatedName lAtributo;
             List<int> lRemover = new List<int>();
-            foreach (PropertyInfo lProperty in typeof(ServicoxOrcamentoDM).GetProperties())
+            foreach (PropertyInfo lProperty in typeof(OrcamentoDM).GetProperties())
             {
                 lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
                 if (lAtributo != null)
                 {
                     dtItens.Columns[lCount].Header = lAtributo.Name;
                     dtItens.Columns[lCount].IsReadOnly = true;
+                    lCount++;
                 }
                 else
-                    lRemover.Add(lCount);
-                lCount++;
-            }
+                {
+                    dtItens.Columns.RemoveAt(lCount);
+                }
 
-            foreach (int lIndex in lRemover)
-                dtItens.Columns.RemoveAt(lIndex);
+            }
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
@@ -132,19 +136,19 @@ namespace AllianzMaintenanceHelper
             {
                 if (!string.IsNullOrEmpty(orcCodigo.Text))
                 {
-                    if (lOrcamento.EditarCliente(lOrcamentoDM))                    
-                        MessageBox.Show("Editado com sucesso");                    
+                    if (lOrcamento.EditarCliente(lOrcamentoDM))
+                        MessageBox.Show("Editado com sucesso");
                     else
                         MessageBox.Show("Erro ao editar");
                 }
                 else
                 {
                     lOrcamentoDM.orcDataCriacao = DateTime.Now;
-                    if (lOrcamento.NovoCliente(lOrcamentoDM, LoadOrcamento))                    
+                    if (lOrcamento.NovoCliente(lOrcamentoDM, LoadOrcamento))
                         MessageBox.Show("Salvo com sucesso");
                     else
                         MessageBox.Show("Erro ao salvar");
-                }                
+                }
             }
         }
 
@@ -159,22 +163,22 @@ namespace AllianzMaintenanceHelper
         {
             orcCodigo.Text = null;
             pesCodigoC.Text = null;
-            veiCodigo.Text = null;            
+            veiCodigo.Text = null;
             proCodigo.Text = null;
             genQuantidade.Text = null;
             genValorUnitario.Text = null;
             genValorTotal.Text = null;
             dtItens.ItemsSource = null;
-            gItens.Visibility = Visibility.Hidden; 
+            gItens.Visibility = Visibility.Hidden;
         }
 
         private void ClearSub()
         {
-            genCodigo.Text = null;            
+            genCodigo.Text = null;
             proCodigo.SelectedValue = null;
             genValorUnitario.Text = null;
             genQuantidade.Text = null;
-            genValorTotal.Text = null;            
+            genValorTotal.Text = null;
         }
 
         private void btnSalvarSub_Click(object sender, RoutedEventArgs e)
@@ -216,24 +220,24 @@ namespace AllianzMaintenanceHelper
         private void genQuantidade_LostFocus(object sender, RoutedEventArgs e)
         {
             ChangeTotalValue();
-        }      
+        }
 
         private void ChangeTotalValue()
         {
-            decimal lValorUnitario; 
-            int lQuantidade; 
-            if(!decimal.TryParse(genValorUnitario.Text, out lValorUnitario))
-               lValorUnitario = 0;
-            
-            if(!int.TryParse(genQuantidade.Text, out lQuantidade))
-               lQuantidade = 0;
+            decimal lValorUnitario;
+            int lQuantidade;
+            if (!decimal.TryParse(genValorUnitario.Text, out lValorUnitario))
+                lValorUnitario = 0;
+
+            if (!int.TryParse(genQuantidade.Text, out lQuantidade))
+                lQuantidade = 0;
 
             genValorTotal.Text = ((decimal)(lQuantidade * lValorUnitario)).ToString();
         }
 
         private void proCodigo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(proCodigo.SelectedItem != null)
+            if (proCodigo.SelectedItem != null)
                 genValorUnitario.Text = (proCodigo.SelectedItem as InterfaceManagement.Item).Adicional.ToString();
         }
 
