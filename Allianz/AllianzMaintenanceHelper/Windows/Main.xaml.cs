@@ -149,10 +149,11 @@ namespace AllianzMaintenanceHelper.Windows
             lCadastroProduto.Show();
         }
 
-        //private void ProConsulta_Click(object sender, RoutedEventArgs e)
-        //{
-            
-        //}
+        private void ProConsulta_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaProduto lConsultaProduto = new ConsultaProduto();
+            lConsultaProduto.Show();
+        }
 
         #endregion
     }
