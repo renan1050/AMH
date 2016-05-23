@@ -44,9 +44,9 @@ namespace BusinessRules.DatabaseBase.Classes
                 {
                     string[] lDate = lParametro.Key.Split('_');
                     if(lDate[1] == "Inicio")
-                        lSelect = string.Concat(lSelect, " (", lDate[0], " >= '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
+                        lSelect = string.Concat(lSelect, " '", lParametro.Value, "' = '' OR (STR_TO_DATE(", lDate[0], ", '%Y-%c-%e %T') ", " >= STR_TO_DATE(", (string.IsNullOrEmpty(lParametro.Value) ? "''" : lParametro.Value), ", '%Y-%c-%e %T'))");
                     else
-                        lSelect = string.Concat(lSelect, " (", lParametro.Key, " LIKE '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
+                        lSelect = string.Concat(lSelect, " '", lParametro.Value, "' = '' OR (STR_TO_DATE(", lDate[0], ", '%Y-%c-%e %T') ", " <= STR_TO_DATE(", (string.IsNullOrEmpty(lParametro.Value) ? "''" : lParametro.Value), ", '%Y-%c-%e %T'))");
                 }
                 else
                 lSelect = string.Concat(lSelect, " (", lParametro.Key, " LIKE '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
@@ -291,6 +291,29 @@ namespace BusinessRules.DatabaseBase.Classes
                   
             MySqlCommand lCommand = new MySqlCommand(lDelete, lConnection);
                         
+            if (lCommand.ExecuteNonQuery() > 0)
+            {
+                lConnection.Close();
+                return true;
+            }
+            else
+            {
+                lConnection.Close();
+                return false;
+            }
+        }
+
+        public static bool Delete(string pTabela, string[] pCodigo, Type pTipoObjeto)
+        {
+            MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
+            lConnection.Open();
+
+            var lPropriedades = pTipoObjeto.GetProperties();
+
+            string lDelete = "Delete from " + pTabela + " where " + lPropriedades.First().Name + " IN (" + string.Join(",",pCodigo) + ")";
+
+            MySqlCommand lCommand = new MySqlCommand(lDelete, lConnection);
+
             if (lCommand.ExecuteNonQuery() > 0)
             {
                 lConnection.Close();

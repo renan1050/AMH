@@ -27,18 +27,38 @@ namespace BusinessRules.DatabaseBase.Classes
             return Database.SelecionarTudo(gTabela, typeof(PessoaxTipoDM)).Cast<PessoaxTipoDM>().ToList();
         }
 
-        //insere novo cliente
-        public bool NovoCliente(VeiculoDM pVeiculoDM, Action<string> pCarregar)
+        public bool Refresh(int? pPesCodigo, string[] pTipCodigo)
         {
-            if (Database.Insert(gTabela, pVeiculoDM))
+            List<PessoaxTipoDM> lPessoaxTipoDMList = Database.SelecionarPorCliente(gTabela, typeof(PessoaxTipoDM), pPesCodigo).Cast<PessoaxTipoDM>().ToList();
+            if (lPessoaxTipoDMList.Count == 0 || Database.Delete(gTabela, lPessoaxTipoDMList.Select(x => x.genCodigo.ToString()).ToArray(), typeof(PessoaxTipoDM)))
             {
-                pCarregar(Database.SelecionarUltimoId(gTabela));
-                return true;
+                return Salvar(pPesCodigo, pTipCodigo);
             }
             else
             {
                 return false;
             }
+        }
+
+        //insere novo cliente
+        public bool Salvar(int? pPesCodigo, string[] pTipCodigo, Action<string> pCarregar = null)
+        {
+            PessoaxTipoDM lPessoaxTipoDM;
+            foreach (string lTipo in pTipCodigo)
+            {
+                lPessoaxTipoDM = new PessoaxTipoDM();
+                lPessoaxTipoDM.pesCodigo = pPesCodigo;
+                lPessoaxTipoDM.tipCodigo = int.Parse(lTipo);
+                if (!Database.Insert(gTabela, lPessoaxTipoDM))
+                {                    
+                    return false;
+                }
+            }
+
+            if (pCarregar != null)
+                pCarregar(Database.SelecionarUltimoId(gTabela));
+
+            return true;
         }
 
         //seleciona um cliente de acordo com seu codigo
