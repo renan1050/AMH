@@ -8,8 +8,13 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class TipoPessoaDM
     {
+        [FormatedName("Código")]
         public int? tipCodigo { get; set; }
+
+        [FormatedName("Sigla")]
         public string tipSigla { get; set; }
+
+        [FormatedName("Nome")]
         public string tipNome { get; set; }
     }
 }

@@ -8,8 +8,13 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class EstadoDM
     {
+        //[FormatedName("Código")]
         public int? estCodigo { get; set; }
+        
+        [FormatedName("Sigla")]
         public string estSigla { get; set; }
+
+        [FormatedName("Nome")]
         public string estNome { get; set; }
     }
 }
