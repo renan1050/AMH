@@ -19,15 +19,15 @@
                 </MenuItem>
                 <MenuItem Header="Serviço">
                     <MenuItem Header="Cadastro" Click="SerCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="SerConsulta_Click" IsEnabled="False" />
+                    <MenuItem Header="Consulta" Click="SerConsulta_Click" />
                 </MenuItem>
                 <MenuItem Header="Orçamento">
                     <MenuItem Header="Cadastro" Click="OrcCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="OrcConsulta_Click" IsEnabled="False"/>
+                    <MenuItem Header="Consulta" Click="OrcConsulta_Click" />
                 </MenuItem>
                 <MenuItem Header="Ordem de Serviço">
                     <MenuItem Header="Cadastro" Click="OrdCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="OrdConsulta_Click" IsEnabled="False"/>
+                    <MenuItem Header="Consulta" Click="OrdConsulta_Click" />
                 </MenuItem>
                 <MenuItem Header="Contas" IsEnabled="False">
                     <MenuItem Header="Contas a Pagar" >

@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BusinessRules.DatabaseBase.Classes;
+using BusinessRules.DatabaseBase.Model;
 
 namespace AllianzMaintenanceHelper
 {
@@ -23,70 +25,53 @@ namespace AllianzMaintenanceHelper
         public ConsultarOrdens_de_servico()
         {
             InitializeComponent();
+            Pessoa lPessoa = new Pessoa();
+            List<PessoaDM> lPessoaDMList = lPessoa.SelecionarPorTipo(PessoaFeature.TipoPessoa.Cliente);
+            pesCodigoC.ItemsSource = lPessoaDMList.ToDictionary(x => x.pesCodigo, x => x.pesNome);
+            pesCodigoC.DisplayMemberPath = "Value";
+            pesCodigoC.SelectedValuePath = "Key";
+
+            Veiculo lVeiculo = new Veiculo();
+            List<VeiculoDM> lVeiculoDMList = lVeiculo.SelecionarTudo();
+            pesCodigoC.ItemsSource = lVeiculoDMList.ToDictionary(x => x.veiCodigo, x => x.veiPlaca);
+            pesCodigoC.DisplayMemberPath = "Value";
+            pesCodigoC.SelectedValuePath = "Key";
+
+            Atualizar();
+            
         }
 
-        private void CheckTipo(object sender, RoutedEventArgs e)
+
+        
+        private void Atualizar(bool pAbrindo = false)
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            RadioButton lRadioButton = sender as RadioButton;
-            if (lRadioButton.Name == "rad_pesNome")
-            {
-                UncheckPlaca();
-                UncheckDataEntrada();
-                UncheckDataSaida();
-            }
-            else if (lRadioButton.Name == "rad_veiPlaca")
-            {
-                UncheckNome();
-                UncheckDataEntrada();
-                UncheckDataSaida();
-            }
-            else if (lRadioButton.Name == "rad_ordEntrada")
-            {
-                UncheckNome();
-                UncheckPlaca();
-                UncheckDataSaida();
-            }
+            Ordem lOrdem = new Ordem();
+            Dictionary<string, string> lParametro = new Dictionary<string, string>();
 
-            else 
-            {
-                UncheckNome();
-                UncheckPlaca();
-                UncheckDataEntrada();
-            }
+            lParametro.Add(pesCodigoC.Name, pesCodigoC.Text);
+            lParametro.Add(veiCodigo.Name, veiCodigo.Text);
 
+            lParametro.Add(ordDataEntrada_Inicio.Name, ordDataEntrada_Inicio.Text);
+            lParametro.Add(ordDataEntrada_Fim.Name, ordDataEntrada_Fim.Text);
 
-            lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
+            lParametro.Add(ordDataSaida_Inicio.Name, ordDataSaida_Inicio.Text);
+            lParametro.Add(ordDataSaida_Fim.Name, ordDataSaida_Fim.Text);
+            
+           //lParametro.Add(radPF.Name, radPF.Text);
+
+            dtRegistros.ItemsSource = lOrdem.AtualizarGrade(lParametro);
+
         }
 
-        private void UncheckTipo(object sender, RoutedEventArgs e)
+        private void Event_LostFocus(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.HideByAttribute(((RadioButton)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
+            Atualizar();
         }
 
-        private void UncheckNome()
+        private void Event_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (rad_pesNome != null)
-                rad_pesNome.IsChecked = false;
-        }
-
-        private void UncheckPlaca()
-        {
-            if (rad_veiPlaca != null)
-                rad_veiPlaca.IsChecked = false;
-        }
-
-        private void UncheckDataEntrada()
-        {
-            if (rad_ordEntrada != null)
-                rad_ordEntrada.IsChecked = false;
-        }
-
-        private void UncheckDataSaida()
-        {
-            if (rad_ordSaida != null)
-                rad_ordSaida.IsChecked = false;
+            Atualizar();
         }
 
     }
