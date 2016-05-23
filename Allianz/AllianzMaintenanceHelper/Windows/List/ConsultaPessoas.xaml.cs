@@ -1,8 +1,10 @@
 ﻿using BusinessRules.DatabaseBase.Classes;
+using BusinessRules.DatabaseBase.Model;
 using InterfaceBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,8 +27,8 @@ namespace AllianzMaintenanceHelper
         public ConsultaPessoas()
         {
             InitializeComponent();
-            pesTipoPessoa_PF.IsChecked = true;
             Atualizar(true);
+            //pesTipoPessoa_PF.IsChecked = true;            
         }
 
         private void CheckTipo(object sender, RoutedEventArgs e)
@@ -37,12 +39,12 @@ namespace AllianzMaintenanceHelper
             if (lRadioButton.Name == "pesTipoPessoa_PF")
             {
                 UncheckPJ();
-                Atualizar(true); 
+                Atualizar(); 
             }            
             else
             {
                 UncheckPF();
-                Atualizar(true);
+                Atualizar();
             }
                 
             
@@ -84,19 +86,33 @@ namespace AllianzMaintenanceHelper
             lParametro.Add(pesCPF.Name, pesCPF.Text);
             lParametro.Add(pesCNPJ.Name, pesCNPJ.Text);
             lParametro.Add(pesRG.Name, pesRG.Text);
-            
-            //o campo pesTipoPessoa ta no grid com o nome pesTipoPessoa
-            // vc tem q usar o metodo GetControlsList para trazer o radio marcado
-            // com o radio marcado vc usa o .Split("_")
-            // ele a criar um string[] com o testo do nome do radio, por exemplo pesTipoPessoa_PF vira string[]{"pesTipoPessoa","PF"}
-            // vc adiciona no dicionario string[0] na key e string[1] no value
-
-            
-
-            //lParametro.Add(radPF.Name, radPF.Text);
-
+            dtRegistros.ItemsSource = null;
             dtRegistros.ItemsSource = lPessoa.AtualizarGrade(lParametro);
+            dtRegistros.AutoGenerateColumns = false;
+            dtRegistros.AutoGenerateColumns = true;
             
+            if (!pAbrindo)
+            {
+
+                int lCount = 0;
+                FormatedName lAtributo;
+                List<int> lRemover = new List<int>();
+                foreach (PropertyInfo lProperty in typeof(PessoaDM).GetProperties())
+                {
+                    lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
+                    if (lAtributo != null)
+                    {
+                        dtRegistros.Columns[lCount].Header = lAtributo.Name;
+                        dtRegistros.Columns[lCount].IsReadOnly = true;
+                        lCount++;
+                    }
+                    else
+                    {
+                        dtRegistros.Columns.RemoveAt(lCount);
+                    }
+                    
+                }   
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
