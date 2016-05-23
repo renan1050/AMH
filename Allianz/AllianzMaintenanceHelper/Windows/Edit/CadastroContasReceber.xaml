@@ -61,9 +61,9 @@
         <Label Content="Observações" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="55,260,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
         <TextBox x:Name="corObservacao" HorizontalAlignment="Left" Height="104" Margin="53,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424"/>
         <Label Content="Parcelas" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="498,290,-26,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
-        <ComboBox x:Name="corNParcela" HorizontalAlignment="Left" Margin="503,318,0,0" VerticalAlignment="Top" Width="74"/>
+        <ComboBox x:Name="corNParcela" HorizontalAlignment="Left" Margin="503,318,0,0" VerticalAlignment="Top" Width="74" IsEditable="False"/>
         <Label Content="Status da Conta" local:WPFExtension.Refers="pesNome" HorizontalAlignment="Left" Margin="497,344,-25,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
-        <ComboBox x:Name="copStatusConta" HorizontalAlignment="Left" Margin="498,370,0,0" VerticalAlignment="Top" Width="143"/>
+        <ComboBox x:Name="copStatusConta" HorizontalAlignment="Left" Margin="498,370,0,0" VerticalAlignment="Top" Width="143" IsEnabled="False"/>
 
     </Grid>
 </Window>
