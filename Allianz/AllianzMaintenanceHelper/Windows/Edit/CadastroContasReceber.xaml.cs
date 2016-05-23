@@ -159,7 +159,7 @@ namespace AllianzMaintenanceHelper.Windows.Edit
 
         private void Clear()
         {
-            corCodigo.Text = null;            
+            corCodigo.Text = null;
             corTipoCobranca.Text = null;
             corNDocumento.Text = null;
             corValorTotal.Text = null;

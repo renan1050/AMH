@@ -17,6 +17,8 @@
         <ComboBox x:Name="pesCodigoC" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="92,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Veículo" local:WPFExtension.Refers="veiCodigo" HorizontalAlignment="Left" Margin="378,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
         <ComboBox x:Name="veiCodigo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="378,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Funcionario" local:WPFExtension.Refers="pesCodigoF" HorizontalAlignment="Left" Margin="92,157,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
+        <ComboBox x:Name="pesCodigoF" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="92,183,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <GroupBox Name="gItens" Header="Itens" HorizontalAlignment="Left" Margin="10,222,0,43" Width="732">
             <Border>
                 <Viewbox Margin="0,0,17,0" Stretch="Fill">
@@ -38,7 +40,5 @@
                 </Viewbox>
             </Border>
         </GroupBox>
-        <Label Content="Funcionario" local:WPFExtension.Refers="pesCodigoF" HorizontalAlignment="Left" Margin="92,157,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
-        <ComboBox x:Name="pesCodigoF" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="92,183,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
     </Grid>
 </Window>

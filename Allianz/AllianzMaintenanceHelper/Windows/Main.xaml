@@ -15,28 +15,28 @@
                 </MenuItem>
                 <MenuItem Header="Produto">
                     <MenuItem Header="Cadastro" Click="ProCadastro_Click" />
-                    <MenuItem Header="Consulta" />
+                    <MenuItem Header="Consulta" Click="ProConsulta_Click" />
                 </MenuItem>
                 <MenuItem Header="Serviço">
                     <MenuItem Header="Cadastro" Click="SerCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="SerConsulta_Click" IsEnabled="False" />
+                    <MenuItem Header="Consulta" Click="SerConsulta_Click" />
                 </MenuItem>
                 <MenuItem Header="Orçamento">
                     <MenuItem Header="Cadastro" Click="OrcCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="OrcConsulta_Click" />
+                    <MenuItem Header="Consulta" Click="OrcConsulta_Click"/>
                 </MenuItem>
                 <MenuItem Header="Ordem de Serviço">
                     <MenuItem Header="Cadastro" Click="OrdCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="OrdConsulta_Click" IsEnabled="False"/>
+                    <MenuItem Header="Consulta" Click="OrdConsulta_Click"/>
                 </MenuItem>
-                <MenuItem Header="Contas" IsEnabled="False">
+                <MenuItem Header="Contas">
                     <MenuItem Header="Contas a Pagar" >
                         <MenuItem Header="Cadastro" Click="CopCadastro_Click" />
-                        <MenuItem Header="Consulta" IsEnabled="False"/>
+                        <MenuItem Header="Consulta"/>
                     </MenuItem>
                     <MenuItem Header="Contas a Receber" >
                         <MenuItem Header="Cadastro" Click="CorCadastro_Click"/>
-                        <MenuItem Header="Consulta" IsEnabled="False" />
+                        <MenuItem Header="Consulta" />
                     </MenuItem>
                 </MenuItem>
             </Menu>
