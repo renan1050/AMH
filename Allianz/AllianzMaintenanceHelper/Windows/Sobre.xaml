@@ -1,0 +1,49 @@
+﻿<Window x:Class="AllianzMaintenanceHelper.Windows.Sobre"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AllianzMaintenanceHelper.Windows"
+        mc:Ignorable="d"
+        Title="Sobre" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+
+        <Label x:Name="lbEquipe" Content="Equipe:" HorizontalAlignment="Left" Margin="15,60,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtEquipetxt" HorizontalAlignment="Left" Height="125" Margin="96,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424"
+                 Text="A  equipe  responsável  pelo  desenvolvimento  do  software  é composta  pelos integrantes:                                                                                                 
+                 - Lucas  Menezes - Gerente de Projeto 
+                                                                       
+                 - Guilherme  Fonseca - Progrmador 
+                                                             
+                 - Renan  Campos - DBA
+                                                            
+                         
+                 - Mateus  Ferreira Pinto - Tester                                                                               
+                 - Vinicius  Pinheiro - Designer"
+                 
+                 />
+               
+        <Label x:Name="lbSoftware" Content="Software:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtSoftwaretxt" HorizontalAlignment="Left" Height="80" Margin="96,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424" 
+                 Text="AMH (Allianz Maintenance Helper) é uma ferramenta de gestão de negócios com ênfase em controle de ordens de serviços e manutenção de clientes.  
+                      O software incluí as funcionalidades de cadastro de veículos, clientes, funcionários, ordens de serviço e estoque." 
+                 TextAlignment="Justify"/>
+
+        <Label x:Name="lbContato" Content="Contato:" HorizontalAlignment="Left" Margin="10,281,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtContato" HorizontalAlignment="Left" Height="79" Margin="96,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424" 
+                 Text="Para entrar em contato com nossa equipe, segue os dados abaixo:
+                 
+                 Website: allianzproject.com.br                                                   
+                 Facebook: Allianz Projetos e Sistemas                                             
+                 E-mail: allianz.suporte@gmail.com
+                 "
+              
+                 />
+
+       
+        <Image Source="logo.jpg" Margin="-5,0,-3,363" />
+        <Label x:Name="lbCopyright" Content="Allianz - Copyright - Todos direitos reservados" HorizontalAlignment="Left" Margin="145,374,0,0" VerticalAlignment="Top"/>
+
+
+    </Grid>
+</Window>

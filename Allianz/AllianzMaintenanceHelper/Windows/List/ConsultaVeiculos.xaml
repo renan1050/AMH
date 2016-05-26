@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultarVeiculos"
-        Title="Consulta de veiculos" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
+        Title="Consulta de veiculos" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,13,5">
         <ComboBox x:Name="pesCodigoC" SelectionChanged="pesCodigoC_SelectionChanged" InterfaceBase:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="23,35,0,0" VerticalAlignment="Top" Width="190" Background="White" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
         <Label Content="Nome do cliente" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="190" Foreground="#FF1700FF"/>

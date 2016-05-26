@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultarOrdens_de_servico"
-        Title="Consultar Ordens de Serviço" Height="601.737" Width="553.228" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
+        Title="Consultar Ordens de Serviço" Height="601.737" Width="553.228" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,19,0" Height="578" VerticalAlignment="Top">
 
         <Label Content="Cliente" HorizontalAlignment="Left" Margin="23,21,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>

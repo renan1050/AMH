@@ -89,6 +89,9 @@
     <Compile Include="Windows\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Sobre.xaml.cs">
+      <DependentUpon>Sobre.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\Edit\CadastroContasPagar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\Sobre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Windows\Edit\CadastroOrcamento.xaml.cs">
@@ -211,6 +218,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="bin\Release\DataBase.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Windows\Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Imagens-Corel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

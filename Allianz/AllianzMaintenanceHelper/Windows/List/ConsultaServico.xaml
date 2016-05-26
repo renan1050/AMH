@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules"
-        Title="Consulta de Serviços" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
+        Title="Consulta de Serviços" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TextBox x:Name="serDescricao" LostFocus="serDescricao_LostFocus" HorizontalAlignment="Left" Height="23" Margin="23,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Descrição" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
