@@ -24,23 +24,24 @@ namespace AllianzMaintenanceHelper
     /// </summary>
     public partial class CadastroPessoas : Window
     {
+
+        private List<CidadeDM> gSource = null;
+        private int? gLastVal = 0;
         public CadastroPessoas()
         {
             InitializeComponent();
             pesTipoPessoa_PF .IsChecked = true;
             Estado lEstado = new Estado();
             List<EstadoDM> lEstadoDMList = lEstado.SelecionarTudo();
-            estCodigo.ItemsSource = lEstadoDMList.ToDictionary(x => x.estCodigo, x => x.estSigla);
-            estCodigo.DisplayMemberPath = "Value";
-            estCodigo.SelectedValuePath = "Key";
+            estCodigo.ItemsSource = lEstadoDMList;
+            estCodigo.DisplayMemberPath = "estSigla";
+            estCodigo.SelectedValuePath = "estCodigo";
 
             Cidade lCidade = new Cidade();
-            List<CidadeDM> lCidadeDMList = lCidade.SelecionarTudo();
-            cidCodigo.ItemsSource = lCidadeDMList.ToDictionary(x => x.cidCodigo, x => x.cidNome);
-            cidCodigo.DisplayMemberPath = "Value";
-            cidCodigo.SelectedValuePath = "Key";
-
-
+            gSource = lCidade.SelecionarTudo();
+            cidCodigo.ItemsSource = gSource;
+            cidCodigo.DisplayMemberPath = "cidNome";
+            cidCodigo.SelectedValuePath = "cidCodigo";
         }
 
         private void Load(object sender, RoutedEventArgs e)
@@ -50,6 +51,8 @@ namespace AllianzMaintenanceHelper
                                              this,
                                              LoadPessoa,
                                              txtCodigoCarregar.Text);
+            if (txtCodigoCarregar.IsVisible)
+                txtCodigoCarregar.Focus();
         }
 
         private void LoadPessoa(string pCodigo)
@@ -222,6 +225,19 @@ namespace AllianzMaintenanceHelper
             Categoria_C.IsChecked = false;
             Categoria_F.IsChecked = false;
             Categoria_Fi.IsChecked = false;
+        }
+
+        private void estCodigo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (gLastVal != null && gLastVal != (int)estCodigo.SelectedValue)
+            {
+                List<CidadeDM> lFilter = gSource.Where(x => x.estCodigo == (int)estCodigo.SelectedValue).ToList();
+                cidCodigo.ItemsSource = lFilter;
+                cidCodigo.DisplayMemberPath = "cidNome";
+                cidCodigo.SelectedValuePath = "cidCodigo";
+
+                gLastVal = (int)estCodigo.SelectedValue;
+            }
         }
     }
 }

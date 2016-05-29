@@ -78,6 +78,8 @@ namespace AllianzMaintenanceHelper
                                              this,
                                              LoadOrdem,
                                              txtCodigoCarregar.Text);
+            if (txtCodigoCarregar.IsVisible)
+                txtCodigoCarregar.Focus();
         }
 
         private void LoadOrdem(string pCodigo)
@@ -124,6 +126,8 @@ namespace AllianzMaintenanceHelper
                 }
 
             }
+
+            dtItens.CanUserAddRows = false;
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
@@ -147,7 +151,7 @@ namespace AllianzMaintenanceHelper
                 }
                 else
                 {
-                    lOrdemDM.ordDataEntrada = DateTime.Now;
+                    lOrdemDM.ordDataEntrada = DateTime.Now.ToString("dd/MM/yyyy");
                     if (lOrdem.NovoCliente(lOrdemDM, LoadOrdem))                    
                         MessageBox.Show("Salvo com sucesso");
                     else
@@ -160,7 +164,7 @@ namespace AllianzMaintenanceHelper
         {
             Ordem lOrdem = new Ordem();
             lOrdem.ExcluirCliente(ordCodigo.Text);
-            Clear();
+            Clear();                      
         }
 
         private void Clear()
@@ -173,6 +177,8 @@ namespace AllianzMaintenanceHelper
             genQuantidade.Text = null;
             genValorUnitario.Text = null;
             genValorTotal.Text = null;
+            ordDataEntrada.Text = null;
+            ordDataSaida.Text = null;
             dtItens.ItemsSource = null;
             gItens.Visibility = Visibility.Hidden; 
         }

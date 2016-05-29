@@ -70,11 +70,19 @@ namespace AllianzMaintenanceHelper
                 }
             }
 
+            dtRegistros.CanUserAddRows = false;
+
         }
 
         private void pesCodigoC_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Atualizar();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroOrcamento lCadastroOrcamento = new CadastroOrcamento();
+            lCadastroOrcamento.Show();
         }
     }
 }

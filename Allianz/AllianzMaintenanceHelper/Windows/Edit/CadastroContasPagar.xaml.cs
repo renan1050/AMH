@@ -31,6 +31,8 @@ namespace AllianzMaintenanceHelper.Windows.Edit
                                              this,
                                              LoadContaPagar,
                                              txtCodigoCarregar.Text);
+            if (txtCodigoCarregar.IsVisible)
+                txtCodigoCarregar.Focus();
         }
 
         private void LoadContaPagar(string pCodigo)

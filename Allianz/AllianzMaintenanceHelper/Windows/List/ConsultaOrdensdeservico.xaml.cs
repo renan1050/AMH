@@ -84,6 +84,7 @@ namespace AllianzMaintenanceHelper
 
                 }
             }
+            dtRegistros.CanUserAddRows = false;
 
         }
 
@@ -95,6 +96,12 @@ namespace AllianzMaintenanceHelper
         private void Event_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Atualizar();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroOrdem lCadastroOrdem = new CadastroOrdem();
+            lCadastroOrdem.Show();
         }
 
     }

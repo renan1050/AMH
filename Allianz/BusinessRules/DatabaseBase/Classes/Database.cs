@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BusinessRules.DatabaseBase.Classes
 {
@@ -282,25 +283,37 @@ namespace BusinessRules.DatabaseBase.Classes
 
         public static bool Delete(string pTabela, string pCodigo, Type pTipoObjeto)
         {
-            MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
-            lConnection.Open();
-
-            var lPropriedades = pTipoObjeto.GetProperties();
-
-            string lDelete = "Delete from " + pTabela + " where " + lPropriedades.First().Name + " = " + pCodigo;
-                  
-            MySqlCommand lCommand = new MySqlCommand(lDelete, lConnection);
-                        
-            if (lCommand.ExecuteNonQuery() > 0)
+            var lDialogResult = MessageBox.Show("Tem certeza que deseja excluir?", "Confirmação", MessageBoxButton.YesNo);
+            if (lDialogResult == MessageBoxResult.Yes)
             {
-                lConnection.Close();
-                return true;
+                if (string.IsNullOrEmpty(pCodigo))
+                {
+                    MessageBox.Show("Carregue um registro para exluir");
+                    return false;
+                }                
+            
+                MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
+                lConnection.Open();
+
+                var lPropriedades = pTipoObjeto.GetProperties();
+
+                string lDelete = "Delete from " + pTabela + " where " + lPropriedades.First().Name + " = " + pCodigo;
+
+                MySqlCommand lCommand = new MySqlCommand(lDelete, lConnection);
+
+                if (lCommand.ExecuteNonQuery() > 0)
+                {
+                    lConnection.Close();
+                    return true;
+                }
+                else
+                {
+                    lConnection.Close();
+                    return false;
+                }
             }
             else
-            {
-                lConnection.Close();
                 return false;
-            }
         }
 
         public static bool Delete(string pTabela, string[] pCodigo, Type pTipoObjeto)

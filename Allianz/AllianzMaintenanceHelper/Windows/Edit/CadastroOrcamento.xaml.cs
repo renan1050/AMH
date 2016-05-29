@@ -73,6 +73,8 @@ namespace AllianzMaintenanceHelper
                                              this,
                                              LoadOrcamento,
                                              txtCodigoCarregar.Text);
+            if (txtCodigoCarregar.IsVisible)
+                txtCodigoCarregar.Focus();
         }
 
         private void LoadOrcamento(string pCodigo)
@@ -120,6 +122,8 @@ namespace AllianzMaintenanceHelper
                 }
 
             }
+
+            dtItens.CanUserAddRows = false;
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
@@ -167,6 +171,7 @@ namespace AllianzMaintenanceHelper
             proCodigo.Text = null;
             genQuantidade.Text = null;
             genValorUnitario.Text = null;
+            orcDataCriacao.Text = null;
             genValorTotal.Text = null;
             dtItens.ItemsSource = null;
             gItens.Visibility = Visibility.Hidden;

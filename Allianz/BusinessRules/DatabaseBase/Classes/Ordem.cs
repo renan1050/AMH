@@ -50,8 +50,8 @@ namespace BusinessRules.DatabaseBase.Classes
 
         //exclui cliente com o codigo informado
         public bool ExcluirCliente(string pChave)
-        {
-            return Database.Delete(gTabela, pChave, typeof(OrdemDM));
+        {            
+            return Database.Delete(gTabela, pChave, typeof(OrdemDM));            
         }
     }
 }

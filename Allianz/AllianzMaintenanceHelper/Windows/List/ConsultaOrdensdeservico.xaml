@@ -32,8 +32,8 @@
                 <DatePicker Name="ordDataSaida_Fim" LostFocus="Event_LostFocus" HorizontalAlignment="Left" Margin="196,26,0,0" VerticalAlignment="Top" Width="176"/>
             </Grid>
         </GroupBox>
-        <DataGrid Name="dtRegistros" HorizontalAlignment="Left" Margin="17,311,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Button Content="Novo" HorizontalAlignment="Left" Margin="441,521,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
+        <DataGrid Name="dtRegistros" IsReadOnly="True" HorizontalAlignment="Left" Margin="17,311,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Button Content="Novo" HorizontalAlignment="Left" Margin="441,521,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF" Click="Button_Click"/>
 
     </Grid>
 </Window>

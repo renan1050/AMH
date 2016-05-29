@@ -113,6 +113,8 @@ namespace AllianzMaintenanceHelper
                     
                 }   
             }
+
+            dtRegistros.CanUserAddRows = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
