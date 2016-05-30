@@ -451,66 +451,58 @@ namespace InterfaceBase
 
         public static bool ValidateCNPJ(string pCNPJ)
         {
+            int[] lMultiplier1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-            string lCNPJValue = pCNPJ.Replace(".", "");
-            lCNPJValue = pCNPJ.Replace("/", "");
-            lCNPJValue = pCNPJ.Replace("-", "");
+            int[] lMultiplier2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-            int[] lDigits, lSum, lResult;
-            int lDigitNumber;
-            string ftmt;
-            bool[] lIsTrue;
+            int lSum;
 
-            ftmt = "6543298765432";
-            lDigits = new int[14];
-            lSum = new int[2];
-            lSum[0] = 0;
-            lSum[1] = 0;
-            lResult = new int[2];
-            lResult[0] = 0;
-            lResult[1] = 0;
-            lIsTrue = new bool[2];
-            lIsTrue[0] = false;
-            lIsTrue[1] = false;
+            int lLeft;
 
-            try
-            {
-                for (lDigitNumber = 0; lDigitNumber < 14; lDigitNumber++)
-                {
-                    lDigits[lDigitNumber] = int.Parse(
-                     lCNPJValue.Substring(lDigitNumber, 1));
-                    if (lDigitNumber <= 11)
-                        lSum[0] += (lDigits[lDigitNumber] *
-                        int.Parse(ftmt.Substring(
-                          lDigitNumber + 1, 1)));
-                    if (lDigitNumber <= 12)
-                        lSum[1] += (lDigits[lDigitNumber] *
-                        int.Parse(ftmt.Substring(
-                          lDigitNumber, 1)));
-                }
+            string lDigit;
 
-                for (lDigitNumber = 0; lDigitNumber < 2; lDigitNumber++)
-                {
-                    lResult[lDigitNumber] = (lSum[lDigitNumber] % 11);
-                    if ((lResult[lDigitNumber] == 0) || (lResult[lDigitNumber] == 1))
-                        lIsTrue[lDigitNumber] = (
-                        lDigits[12 + lDigitNumber] == 0);
+            string lTempCNPJ;
 
-                    else
-                        lIsTrue[lDigitNumber] = (
-                        lDigits[12 + lDigitNumber] == (
-                        11 - lResult[lDigitNumber]));
+            pCNPJ = pCNPJ.Trim();
 
-                }
+            pCNPJ = pCNPJ.Replace(".", "").Replace("-", "").Replace("/", "");
 
-                return (lIsTrue[0] && lIsTrue[1]);
-
-            }
-            catch
-            {
+            if (pCNPJ.Length != 14)
                 return false;
-            }
 
+            lTempCNPJ = pCNPJ.Substring(0, 12);
+
+            lSum = 0;
+
+            for (int i = 0; i < 12; i++)
+                lSum += int.Parse(lTempCNPJ[i].ToString()) * lMultiplier1[i];
+
+            lLeft = (lSum % 11);
+
+            if (lLeft < 2)
+                lLeft = 0;
+            else
+                lLeft = 11 - lLeft;
+
+            lDigit = lLeft.ToString();
+
+            lTempCNPJ = lTempCNPJ + lDigit;
+
+            lSum = 0;
+
+            for (int i = 0; i < 13; i++)
+                lSum += int.Parse(lTempCNPJ[i].ToString()) * lMultiplier2[i];
+
+            lLeft = (lSum % 11);
+
+            if (lLeft < 2)
+                lLeft = 0;
+            else
+                lLeft = 11 - lLeft;
+
+            lDigit = lDigit + lLeft.ToString();
+
+            return pCNPJ.EndsWith(lDigit);
         }
 
         #endregion
