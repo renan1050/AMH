@@ -39,6 +39,9 @@
                         <MenuItem Header="Consulta" />
                     </MenuItem>
                 </MenuItem>
+                <MenuItem Header="Sobre" HorizontalAlignment="Right">
+                    <MenuItem Header="Créditos" Click="Sobre_Click" />
+                </MenuItem>
             </Menu>
         </DockPanel>
 
