@@ -62,7 +62,7 @@ namespace AllianzMaintenanceHelper
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             Pessoa lPessoa = new Pessoa();
             PessoaDM lPessoaDM = lPessoa.SelectCodigo(pCodigo);
-            lInterfaceManagement.CarregarDM(this, lPessoaDM);
+            lInterfaceManagement.CarregarDM(this, lPessoaDM, estCodigo_SelectionChanged, estCodigo.Name);
             
             if (lPessoaDM != null)
             {
@@ -227,16 +227,24 @@ namespace AllianzMaintenanceHelper
             Categoria_Fi.IsChecked = false;
         }
 
-        private void estCodigo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void estCodigo_SelectionChanged(object sender, EventArgs e)
         {
-            if (gLastVal != null && gLastVal != (int)estCodigo.SelectedValue)
+            int? lNewValue = (estCodigo.SelectedValue != null ? Convert.ToInt16(estCodigo.SelectedValue) : 0);
+
+            if(estCodigo.SelectedValue == null)
+                lNewValue = null;
+
+            if (gLastVal != null && gLastVal != lNewValue)
             {
-                List<CidadeDM> lFilter = gSource.Where(x => x.estCodigo == (int)estCodigo.SelectedValue).ToList();
+                List<CidadeDM> lFilter = gSource.Where(x => x.estCodigo == lNewValue).ToList();
                 cidCodigo.ItemsSource = lFilter;
                 cidCodigo.DisplayMemberPath = "cidNome";
                 cidCodigo.SelectedValuePath = "cidCodigo";
 
-                gLastVal = (int)estCodigo.SelectedValue;
+                if (lNewValue == null)
+                    gLastVal = 0;
+                else
+                    gLastVal = lNewValue;
             }
         }
     }

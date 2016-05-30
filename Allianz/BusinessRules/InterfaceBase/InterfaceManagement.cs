@@ -252,7 +252,7 @@ namespace InterfaceBase
         
         }
 
-        public bool CarregarDM(DependencyObject pWindow, object pDM)
+        public bool CarregarDM(DependencyObject pWindow, object pDM, Action<object,EventArgs> pOnchange = null, string pName =  null)
         {
             if (pDM == null)
             {
@@ -298,15 +298,19 @@ namespace InterfaceBase
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lComboBox.Name).First();
                         if (lPropriedade.GetValue(pDM) != null)
+                        {
                             lComboBox.SelectedValue = lPropriedade.GetValue(pDM).ToString();
+                            if (pOnchange != null && lComboBox.Name == pName)
+                                pOnchange(lComboBox, new EventArgs());
+                        }
                         else
                         {
                             DependencyProperty lRefers = DependencyObjectHelper.GetDependencyPropertyByName("Refers", lComboBox);
 
-                            if(lRefers != null)
+                            if (lRefers != null)
                             {
                                 string[] lRef = lComboBox.GetValue(lRefers).ToString().Split(';');
-                                foreach(string lItem in lRef)
+                                foreach (string lItem in lRef)
                                 {
                                     lPropriedade = lPropriedades.Where(x => x.Name == lItem).First();
                                     if (lPropriedade.GetValue(pDM) != null)
