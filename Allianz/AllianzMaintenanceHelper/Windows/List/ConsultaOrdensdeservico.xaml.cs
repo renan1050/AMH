@@ -46,45 +46,52 @@ namespace AllianzMaintenanceHelper
         
         private void Atualizar(bool pAbrindo = false)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Ordem lOrdem = new Ordem();
-            Dictionary<string, string> lParametro = new Dictionary<string, string>();
-
-            lParametro.Add(pesCodigoC.Name, pesCodigoC.Text);
-            lParametro.Add(veiCodigo.Name, veiCodigo.Text);
-
-            lParametro.Add(ordDataEntrada_Inicio.Name, ordDataEntrada_Inicio.Text);
-            lParametro.Add(ordDataEntrada_Fim.Name, ordDataEntrada_Fim.Text);
-
-            lParametro.Add(ordDataSaida_Inicio.Name, ordDataSaida_Inicio.Text);
-            lParametro.Add(ordDataSaida_Fim.Name, ordDataSaida_Fim.Text);
-            dtRegistros.ItemsSource = null;
-            dtRegistros.ItemsSource = lOrdem.AtualizarGrade(lParametro);
-            dtRegistros.AutoGenerateColumns = false;
-            dtRegistros.AutoGenerateColumns = true;
-
-            if (!pAbrindo)
+            try
             {
-                int lCount = 0;
-                FormatedName lAtributo;
-                List<int> lRemover = new List<int>();
-                foreach (PropertyInfo lProperty in typeof(ServicoxOrdemDM).GetProperties())
-                {
-                    lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
-                    if (lAtributo != null)
-                    {
-                        dtRegistros.Columns[lCount].Header = lAtributo.Name;
-                        dtRegistros.Columns[lCount].IsReadOnly = true;
-                        lCount++;
-                    }
-                    else
-                    {
-                        dtRegistros.Columns.RemoveAt(lCount);
-                    }
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Ordem lOrdem = new Ordem();
+                Dictionary<string, string> lParametro = new Dictionary<string, string>();
 
+                lParametro.Add(pesCodigoC.Name, pesCodigoC.Text);
+                lParametro.Add(veiCodigo.Name, veiCodigo.Text);
+
+                lParametro.Add(ordDataEntrada_Inicio.Name, ordDataEntrada_Inicio.Text);
+                lParametro.Add(ordDataEntrada_Fim.Name, ordDataEntrada_Fim.Text);
+
+                lParametro.Add(ordDataSaida_Inicio.Name, ordDataSaida_Inicio.Text);
+                lParametro.Add(ordDataSaida_Fim.Name, ordDataSaida_Fim.Text);
+                dtRegistros.ItemsSource = null;
+                dtRegistros.ItemsSource = lOrdem.AtualizarGrade(lParametro);
+                dtRegistros.AutoGenerateColumns = false;
+                dtRegistros.AutoGenerateColumns = true;
+
+                if (!pAbrindo)
+                {
+                    int lCount = 0;
+                    FormatedName lAtributo;
+                    List<int> lRemover = new List<int>();
+                    foreach (PropertyInfo lProperty in typeof(ServicoxOrdemDM).GetProperties())
+                    {
+                        lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
+                        if (lAtributo != null)
+                        {
+                            dtRegistros.Columns[lCount].Header = lAtributo.Name;
+                            dtRegistros.Columns[lCount].IsReadOnly = true;
+                            lCount++;
+                        }
+                        else
+                        {
+                            dtRegistros.Columns.RemoveAt(lCount);
+                        }
+
+                    }
                 }
+                dtRegistros.CanUserAddRows = false;
             }
-            dtRegistros.CanUserAddRows = false;
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
 
         }
 

@@ -26,23 +26,35 @@ namespace AllianzMaintenanceHelper.Windows.Edit
 
         private void Load(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
-                                             this,
-                                             LoadContaPagar,
-                                             txtCodigoCarregar.Text);
-            if (txtCodigoCarregar.IsVisible)
-                txtCodigoCarregar.Focus();
+            try
+            {
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
+                                                 this,
+                                                 LoadContaPagar,
+                                                 txtCodigoCarregar.Text);
+                if (txtCodigoCarregar.IsVisible)
+                    txtCodigoCarregar.Focus();
+            }
+            catch (Exception pE) {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void LoadContaPagar(string pCodigo)
         {
-            Clear();
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            ContasPagar lContasPagar = new ContasPagar();
-            ContasPagarDM ContasPagarDM = lContasPagar.SelectCodigo(pCodigo);
-            lInterfaceManagement.CarregarDM(this, ContasPagarDM);
-            txtCodigoCarregar.Text = null;
+            try
+            {
+                Clear();
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                ContasPagar lContasPagar = new ContasPagar();
+                ContasPagarDM ContasPagarDM = lContasPagar.SelectCodigo(pCodigo);
+                lInterfaceManagement.CarregarDM(this, ContasPagarDM);
+                txtCodigoCarregar.Text = null;
+            }
+            catch(Exception pE){
+                MessageBox.Show(pE.Message);
+            }
         }
 
 

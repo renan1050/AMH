@@ -16,31 +16,38 @@ namespace InterfaceBase
         #region MÉTODO PARA A EXIBIÇÃO/ESCONDAÇÃO DO CAMPO CODIGO E DO CARREGAMENTO DE UM REGISTRO
         public void LoadByValue(string pValue, Window pWindow, Action<string> pLoadAction = null, string pLoadValue = null)
         {
-            if (!string.IsNullOrEmpty(pValue))
+            try
             {
-                List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow,"RelativeField").Where(x => x.GetValue(WPFExtension.RelativeFieldProperty).Equals(pValue)).ToList();
-                foreach (DependencyObject lItem in lDependencyObjectList)
+                if (!string.IsNullOrEmpty(pValue))
                 {
-                    UIElement lUIElement = lItem as UIElement;
-
-                    if (lUIElement == null)
-                        return;
-                    else
+                    List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow, "RelativeField").Where(x => x.GetValue(WPFExtension.RelativeFieldProperty).Equals(pValue)).ToList();
+                    foreach (DependencyObject lItem in lDependencyObjectList)
                     {
-                        if (lUIElement.IsVisible)
-                        {
-                            if (!string.IsNullOrEmpty(pLoadValue))
-                            {
-                                if (pLoadAction != null)
-                                    pLoadAction(pLoadValue);                                
-                            }
+                        UIElement lUIElement = lItem as UIElement;
 
-                            lUIElement.Visibility = Visibility.Hidden;
-                        }
+                        if (lUIElement == null)
+                            return;
                         else
-                            lUIElement.Visibility = Visibility.Visible;
+                        {
+                            if (lUIElement.IsVisible)
+                            {
+                                if (!string.IsNullOrEmpty(pLoadValue))
+                                {
+                                    if (pLoadAction != null)
+                                        pLoadAction(pLoadValue);
+                                }
+
+                                lUIElement.Visibility = Visibility.Hidden;
+                            }
+                            else
+                                lUIElement.Visibility = Visibility.Visible;
+                        }
                     }
                 }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
         #endregion
@@ -48,20 +55,27 @@ namespace InterfaceBase
         #region MÉTODOS PARA MOSTRAR/ESCONDER CAMPOS COM BASE NO VALOR DE ATRIBUTOS
         public void ShowByAttribute(string pValue, Window pWindow)
         {
-            if (!string.IsNullOrEmpty(pValue))
+            try
             {
-                List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow, "RelativeField").Where(x => x.GetValue(WPFExtension.RelativeFieldProperty).Equals(pValue)).ToList();
-                foreach (DependencyObject lItem in lDependencyObjectList)
+                if (!string.IsNullOrEmpty(pValue))
                 {
-                    UIElement lUIElement = lItem as UIElement;
-
-                    if (lUIElement == null)
-                        return;
-                    else
+                    List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow, "RelativeField").Where(x => x.GetValue(WPFExtension.RelativeFieldProperty).Equals(pValue)).ToList();
+                    foreach (DependencyObject lItem in lDependencyObjectList)
                     {
-                        lUIElement.Visibility = Visibility.Visible;
+                        UIElement lUIElement = lItem as UIElement;
+
+                        if (lUIElement == null)
+                            return;
+                        else
+                        {
+                            lUIElement.Visibility = Visibility.Visible;
+                        }
                     }
                 }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
 
