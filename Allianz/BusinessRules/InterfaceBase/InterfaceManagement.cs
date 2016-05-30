@@ -533,7 +533,16 @@ namespace InterfaceBase
 
         public static bool ValidateEmail(string pEmail)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(pEmail, ("(?<user>[^@]+)@(?<host>.+)"));
+            try
+            {
+                var lAddress = new System.Net.Mail.MailAddress(pEmail);
+                return lAddress.Address == pEmail;
+            }
+            catch 
+            {
+                return false;
+            }
+            //return System.Text.RegularExpressions.Regex.IsMatch(pEmail, ("(?<user>[^@]+)@(?<host>.+)"));
         }
 
         #endregion

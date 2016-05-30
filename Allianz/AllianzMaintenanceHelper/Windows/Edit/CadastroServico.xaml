@@ -16,9 +16,10 @@
 
         <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="383,79,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="507,79,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
-        <TextBox x:Name="serDescricao" HorizontalAlignment="Left" Height="23" Margin="169,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <TextBox x:Name="serValor" HorizontalAlignment="Left" Height="23" Margin="461,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <TextBox x:Name="serDescricao" HorizontalAlignment="Left" Height="23" Margin="169,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="#FFFDC1C1"/>
+        <TextBox x:Name="serValor" HorizontalAlignment="Left" Height="23" Margin="461,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="#FFFDC1C1"/>
         <Label Content="Valor" HorizontalAlignment="Left" Margin="461,193,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label Content="Descrição" HorizontalAlignment="Left" Margin="169,193,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <Label Content="Campos obrigatórios em vermelho" HorizontalAlignment="Left" Margin="526,301,0,0" VerticalAlignment="Top" Background="#FFFDC1C1" Foreground="#FF1700FF"/>
     </Grid>
 </Window>
