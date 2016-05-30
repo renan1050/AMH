@@ -42,6 +42,6 @@
         <Label Content="Data de criação" local:WPFExtension.Refers="pesCodigoF" HorizontalAlignment="Left" Margin="96,152,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label x:Name="labelC" Content="*" HorizontalAlignment="Left" Margin="135,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.974,1.154"/>
         <Label x:Name="labelC_Copy" Content="*" HorizontalAlignment="Left" Margin="425,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.974,1.154"/>
-        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="345,629,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="345,625,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

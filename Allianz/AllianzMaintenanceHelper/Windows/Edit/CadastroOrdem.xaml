@@ -44,5 +44,9 @@
         <DatePicker Name="ordDataSaida" HorizontalAlignment="Left" Margin="532,181,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.119,-0.147"/>
         <Label Content="Data de entrada" local:WPFExtension.Refers="pesCodigoF" HorizontalAlignment="Left" Margin="378,152,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label Content="Data de saída" local:WPFExtension.Refers="pesCodigoF" HorizontalAlignment="Left" Margin="532,157,0,0" VerticalAlignment="Top" Width="104" Foreground="#FF1700FF"/>
+        <Label x:Name="labelCliente" Content="*" HorizontalAlignment="Left" Margin="133,107,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelVeiculo" Content="*" HorizontalAlignment="Left" Margin="421,108,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelFuncionario" Content="*" HorizontalAlignment="Left" Margin="160,161,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="345,634,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
