@@ -28,17 +28,7 @@
                 <MenuItem Header="Ordem de Serviço">
                     <MenuItem Header="Cadastro" Click="OrdCadastro_Click" />
                     <MenuItem Header="Consulta" Click="OrdConsulta_Click"/>
-                </MenuItem>
-                <MenuItem Header="Contas">
-                    <MenuItem Header="Contas a Pagar" >
-                        <MenuItem Header="Cadastro" Click="CopCadastro_Click" />
-                        <MenuItem Header="Consulta"/>
-                    </MenuItem>
-                    <MenuItem Header="Contas a Receber" >
-                        <MenuItem Header="Cadastro" Click="CorCadastro_Click"/>
-                        <MenuItem Header="Consulta" />
-                    </MenuItem>
-                </MenuItem>
+                </MenuItem>                
                 <MenuItem Header="Sobre" HorizontalAlignment="Right">
                     <MenuItem Header="Créditos" Click="Sobre_Click" />
                 </MenuItem>
