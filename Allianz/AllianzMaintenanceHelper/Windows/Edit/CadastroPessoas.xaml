@@ -35,7 +35,7 @@
         <TextBox x:Name="pesComplemento" HorizontalAlignment="Left" Height="23" Margin="557,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <TextBox x:Name="pesBairro" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="44,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Estado" local:WPFExtension.Refers="estCodigo" HorizontalAlignment="Left" Margin="209,261,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF1700FF"/>
-        <ComboBox x:Name="estCodigo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="209,287,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF1700FF" BorderBrush="#FF0A1444" />
+        <ComboBox x:Name="estCodigo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="209,287,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF1700FF" BorderBrush="#FF0A1444" SelectionChanged="estCodigo_SelectionChanged" />
         <ComboBox x:Name="cidCodigo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="264,287,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <TextBox x:Name="pesCEP" HorizontalAlignment="Left" Height="23" Margin="425,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         

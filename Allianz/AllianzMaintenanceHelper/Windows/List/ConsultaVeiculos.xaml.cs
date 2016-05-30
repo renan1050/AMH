@@ -70,6 +70,8 @@ namespace AllianzMaintenanceHelper
 
                 }
             }
+
+            dtRegistros.CanUserAddRows = false;
         }
 
         private void pesCodigoC_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -43,6 +43,8 @@ namespace AllianzMaintenanceHelper
                                              this,
                                              LoadVeiculo,
                                              txtCodigoCarregar.Text);
+            if (txtCodigoCarregar.IsVisible)
+                txtCodigoCarregar.Focus();
         }
 
         private void LoadVeiculo(string pCodigo)

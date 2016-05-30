@@ -63,7 +63,7 @@ namespace AllianzMaintenanceHelper.Windows.List
 
                 }
             }
-
+            dtRegistros.CanUserAddRows = false;
         }
 
         private void serDescricao_LostFocus(object sender, RoutedEventArgs e)

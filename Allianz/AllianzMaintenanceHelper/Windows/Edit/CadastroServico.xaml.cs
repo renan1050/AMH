@@ -27,6 +27,8 @@ namespace AllianzMaintenanceHelper
                                              this,
                                              LoadServico,
                                              txtCodigoCarregar.Text);
+            if (txtCodigoCarregar.IsVisible)
+                txtCodigoCarregar.Focus();
         }
 
         private void LoadServico(string pCodigo)

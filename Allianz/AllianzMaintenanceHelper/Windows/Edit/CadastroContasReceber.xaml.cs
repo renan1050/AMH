@@ -108,6 +108,8 @@ namespace AllianzMaintenanceHelper.Windows.Edit
                                              this,
                                              LoadContaReceber,
                                              txtCodigoCarregar.Text);
+            if (txtCodigoCarregar.IsVisible)
+                txtCodigoCarregar.Focus();
         }
 
         private void LoadContaReceber(string pCodigo)

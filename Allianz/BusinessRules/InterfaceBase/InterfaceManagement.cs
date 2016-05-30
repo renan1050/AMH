@@ -151,6 +151,25 @@ namespace InterfaceBase
                         }
                     }
                 }
+                if (lSender is DatePicker)
+                {
+                    DatePicker lDatePicker = (DatePicker)lSender;
+                    if (!string.IsNullOrEmpty(lDatePicker.Text) && lPropriedades.Select(x => x.Name).ToList().Contains(lDatePicker.Name))
+                    {
+                        lPropriedade = lPropriedades.Where(x => x.Name == lDatePicker.Name).First();
+                        lPropriedade.SetValue(lRetorno, Database.ChangeType(lDatePicker.Text, lPropriedade.PropertyType));
+                    }
+                    else
+                    {
+                        DependencyProperty lRequired = DependencyObjectHelper.GetDependencyPropertyByName("Required", lDatePicker);
+
+                        if (lRequired != null && lDatePicker.GetValue(lRequired).ToString().Split(';').Contains(pEnviador))
+                        {
+                            var lLabel = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lDatePicker.Name)).FirstOrDefault();
+                            pErrosValidacao.Add(string.Concat("O campo ", (lLabel != null ? ((Label)lLabel).Content.ToString() : lDatePicker.Name), " é obrigatório."));
+                        }
+                    }
+                }
                 else if (lSender is ComboBox)
                 {
                     ComboBox lComboBox = (ComboBox)lSender;
@@ -260,6 +279,18 @@ namespace InterfaceBase
                             lTextBox.Text = string.Empty;
                     }
                 }
+                else if (lSender is DatePicker)
+                {
+                    DatePicker lDatePicker = (DatePicker)lSender;
+                    if (lPropriedades.Select(x => x.Name).ToList().Contains(lDatePicker.Name))
+                    {
+                        lPropriedade = lPropriedades.Where(x => x.Name == lDatePicker.Name).First();
+                        if (lPropriedade.GetValue(pDM) != null)
+                            lDatePicker.Text = lPropriedade.GetValue(pDM).ToString();
+                        else
+                            lDatePicker.Text = string.Empty;
+                    }
+                }
                 else if (lSender is ComboBox)
                 {
                     ComboBox lComboBox = (ComboBox)lSender;
@@ -329,6 +360,8 @@ namespace InterfaceBase
 
                 if (lChild is TextBox && (pNoVisibilityCheck || ((TextBox)lChild).IsVisible))
                     pChildren.Add(lChild as TextBox);
+                if (lChild is DatePicker && (pNoVisibilityCheck || ((DatePicker)lChild).IsVisible))
+                    pChildren.Add(lChild as DatePicker);
                 else if (lChild is ComboBox && (pNoVisibilityCheck || ((ComboBox)lChild).IsVisible))
                     pChildren.Add(lChild as ComboBox);
                 else if (lChild is CheckBox && (pNoCheck || (bool)((CheckBox)lChild).IsChecked) && (pNoVisibilityCheck || ((CheckBox)lChild).IsVisible))

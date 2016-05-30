@@ -6,7 +6,7 @@
         <TextBox x:Name="proNome" LostFocus="proNome_LostFocus" HorizontalAlignment="Left" Height="23" Margin="23,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Nome" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>
 
-        <DataGrid x:Name="dtRegistros" HorizontalAlignment="Left" Margin="23,90,0,0" VerticalAlignment="Top" Height="238" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <DataGrid x:Name="dtRegistros" IsReadOnly="True" HorizontalAlignment="Left" Margin="23,90,0,0" VerticalAlignment="Top" Height="238" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Button Content="Novo" HorizontalAlignment="Left" Margin="447,349,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF" Click="Button_Click"/>
 
     </Grid>

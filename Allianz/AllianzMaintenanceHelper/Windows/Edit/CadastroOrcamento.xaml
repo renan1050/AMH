@@ -17,7 +17,7 @@
         <ComboBox x:Name="pesCodigoC" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="92,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Veículo" local:WPFExtension.Refers="veiCodigo" HorizontalAlignment="Left" Margin="378,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
         <ComboBox x:Name="veiCodigo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="378,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <GroupBox Name="gItens" Header="Itens" HorizontalAlignment="Left" Margin="12,172,0,93" Width="732">
+        <GroupBox Name="gItens" Header="Itens" HorizontalAlignment="Left" Margin="12,211,0,54" Width="732">
             <Border>
                 <Viewbox Margin="0,0,17,0" Stretch="Fill">
                     <Grid Height="285" Width="703">
@@ -33,9 +33,12 @@
                         <TextBox x:Name="genValorTotal" local:WPFExtension.Required="btnSalvarSub" IsEnabled="False" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Foreground="#FF1700FF" BorderBrush="#FF0A1444" RenderTransformOrigin="-0.197,0.601" Margin="479,24,0,0"/>
                         <Label Content="Valor total" local:WPFExtension.Refers="genValorTotal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" Margin="479,-2,0,0" RenderTransformOrigin="0.342,-2.293"/>
                         <Button x:Name="btnSalvarSub" Content="Adicionar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Margin="589,24,-6,0" Click="btnSalvarSub_Click"/>
-                        <DataGrid Name="dtItens" HorizontalAlignment="Left" VerticalAlignment="Top" Height="205" Width="704" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Margin="14,66,-15,0" MouseDoubleClick="dtItens_MouseDoubleClick"/>                    </Grid>
+                        <DataGrid Name="dtItens" HorizontalAlignment="Left" VerticalAlignment="Top" Height="205" Width="704" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Margin="14,66,-15,0" MouseDoubleClick="dtItens_MouseDoubleClick"/>
+                    </Grid>
                 </Viewbox>
             </Border>
         </GroupBox>
+        <DatePicker IsEnabled="False"  x:Name="orcDataCriacao" HorizontalAlignment="Left" Margin="96,181,0,0" VerticalAlignment="Top" Width="117"/>
+        <Label Content="Data de criação" local:WPFExtension.Refers="pesCodigoF" HorizontalAlignment="Left" Margin="96,152,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
     </Grid>
 </Window>

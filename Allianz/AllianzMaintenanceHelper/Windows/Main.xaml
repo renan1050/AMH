@@ -1,7 +1,7 @@
 ﻿<Window x:Class="AllianzMaintenanceHelper.Windows.Main"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Menu Principal - Allianz Maintenance Helper" Height="571.605" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Cadastro de pessoas" Height="571.605" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <DockPanel Margin="0,0,0,513">
             <Menu DockPanel.Dock="Top">
@@ -39,9 +39,6 @@
                         <MenuItem Header="Consulta" />
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Sobre" Click="Sobre_Click">
-                </MenuItem>
-                
             </Menu>
         </DockPanel>
 

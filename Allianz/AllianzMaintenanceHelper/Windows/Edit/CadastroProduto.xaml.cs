@@ -36,6 +36,8 @@ namespace AllianzMaintenanceHelper
                                              this,
                                              LoadProduto,
                                              txtCodigoCarregar.Text);
+            if (txtCodigoCarregar.IsVisible)
+                txtCodigoCarregar.Focus();
         }
 
         private void LoadProduto(string pCodigo)
