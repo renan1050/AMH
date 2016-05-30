@@ -17,15 +17,14 @@
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="508,76,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
         <Label Content="Cliente" local:WPFExtension.Refers="pesCodigoC" HorizontalAlignment="Left" Margin="117,166,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
         <ComboBox x:Name="pesCodigoC" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="119,190,0,0" VerticalAlignment="Top" Width="255" Background="White" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
-        <TextBox x:Name="veiMarca" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="380,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="#FFFDC1C1"/>
-        <TextBox x:Name="veiModelo" local:WPFExtension.Required="btnSalvar"  Text="" HorizontalAlignment="Left" Height="23" Margin="506,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="#FFFDC1C1"/>
-        <TextBox x:Name="veiPlaca" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="117,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="#FFFDC1C1"/>
+        <TextBox x:Name="veiMarca" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="380,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
+        <TextBox x:Name="veiModelo" local:WPFExtension.Required="btnSalvar"  Text="" HorizontalAlignment="Left" Height="23" Margin="506,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
+        <TextBox x:Name="veiPlaca" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="117,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
         <Label Content="Placa" local:WPFExtension.Refers="veiPlaca"  HorizontalAlignment="Left" Margin="117,229,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label Content="Marca" local:WPFExtension.Refers="veiMarca" HorizontalAlignment="Left" Margin="380,166,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label Content="Modelo" local:WPFExtension.Refers="veiModelo" HorizontalAlignment="Left" Margin="506,166,0,0" VerticalAlignment="Top" Width="119" Foreground="#FF1700FF"/>
-        <TextBox x:Name="veiRENAVAM" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="248,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="#FFFDC1C1"/>
+        <TextBox x:Name="veiRENAVAM" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="248,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
         <Label Content="RENAVAM" local:WPFExtension.Refers="veiRENAVAM" HorizontalAlignment="Left" Margin="248,229,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <Label Content="Campos obrigatórios em vermelho" HorizontalAlignment="Left" Margin="535,357,0,0" VerticalAlignment="Top" Background="#FFFDC1C1" Foreground="#FF1700FF"/>
 
 
     </Grid>
