@@ -5,41 +5,46 @@
     <Grid>
         <DockPanel Margin="0,0,0,513">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Pessoa">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Header="Pessoa" Grid.Column="0">
                     <MenuItem Header="Cadastro" Click="PesCadastro_Click" />
                     <MenuItem Header="Consulta" Click="PesConsulta_Click" />
                 </MenuItem>
-                <MenuItem Header="Veículo">
+                <MenuItem Header="Veículo" Grid.Column="1">
                     <MenuItem Header="Cadastro" Click="VeiCadastro_Click" />
                     <MenuItem Header="Consulta" Click="VeiConsulta_Click" />
                 </MenuItem>
-                <MenuItem Header="Produto">
+                <MenuItem Header="Produto" Grid.Column="2">
                     <MenuItem Header="Cadastro" Click="ProCadastro_Click" />
                     <MenuItem Header="Consulta" Click="ProConsulta_Click" />
                 </MenuItem>
-                <MenuItem Header="Serviço">
+                <MenuItem Header="Serviço" Grid.Column="3">
                     <MenuItem Header="Cadastro" Click="SerCadastro_Click" />
                     <MenuItem Header="Consulta" Click="SerConsulta_Click" />
                 </MenuItem>
-                <MenuItem Header="Orçamento">
+                <MenuItem Header="Orçamento" Grid.Column="4">
                     <MenuItem Header="Cadastro" Click="OrcCadastro_Click" />
                     <MenuItem Header="Consulta" Click="OrcConsulta_Click"/>
                 </MenuItem>
-                <MenuItem Header="Ordem de Serviço">
+                <MenuItem Header="Ordem de Serviço" Grid.Column="5">
                     <MenuItem Header="Cadastro" Click="OrdCadastro_Click" />
                     <MenuItem Header="Consulta" Click="OrdConsulta_Click"/>
                 </MenuItem>
-                <MenuItem Header="Contas">
-                    <MenuItem Header="Contas a Pagar" >
-                        <MenuItem Header="Cadastro" Click="CopCadastro_Click" />
-                        <MenuItem Header="Consulta"/>
-                    </MenuItem>
-                    <MenuItem Header="Contas a Receber" >
-                        <MenuItem Header="Cadastro" Click="CorCadastro_Click"/>
-                        <MenuItem Header="Consulta" />
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem Header="Sobre" HorizontalAlignment="Right">
+                <MenuItem Header="Sobre" Grid.Column="6" HorizontalAlignment="Right">
                     <MenuItem Header="Créditos" Click="Sobre_Click" />
                 </MenuItem>
             </Menu>
