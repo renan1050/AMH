@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.CadastroServico"
-        Title="Cadastro de Serviços" Height="380.534" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
+        Title="Cadastro de Serviços" Height="380.534" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <TextBox x:Name="serCodigo" HorizontalAlignment="Left" Height="23" Margin="118,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Código" HorizontalAlignment="Left" Margin="118,53,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
@@ -16,9 +16,12 @@
 
         <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="383,79,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="507,79,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
-        <TextBox x:Name="serDescricao" HorizontalAlignment="Left" Height="23" Margin="169,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <TextBox x:Name="serValor" HorizontalAlignment="Left" Height="23" Margin="461,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Valor" HorizontalAlignment="Left" Margin="461,193,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <Label Content="Descrição" HorizontalAlignment="Left" Margin="169,193,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <TextBox x:Name="serDescricao" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="169,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
+        <TextBox x:Name="serValor" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="461,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
+        <Label Content="Valor" local:WPFExtension.Refers="serValor" HorizontalAlignment="Left" Margin="461,193,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Label Content="Descrição" local:WPFExtension.Refers="serDescricao" HorizontalAlignment="Left" Margin="169,193,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="348,314,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelDescricao" Content="*" HorizontalAlignment="Left" Margin="223,197,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelValor" Content="*" HorizontalAlignment="Left" Margin="492,196,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultarVeiculos"
-        Title="Consulta de veiculos" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
+        Title="Consulta de veiculos" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,13,5">
         <ComboBox x:Name="pesCodigoC" SelectionChanged="pesCodigoC_SelectionChanged" InterfaceBase:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="23,35,0,0" VerticalAlignment="Top" Width="190" Background="White" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
         <Label Content="Nome do cliente" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="190" Foreground="#FF1700FF"/>
@@ -11,7 +11,7 @@
         <Label Content="Placa" HorizontalAlignment="Left" Margin="229,10,0,0" VerticalAlignment="Top" Width="101" Foreground="#FF1700FF"/>
         <TextBox x:Name="veiModelo" LostFocus="veiModelo_LostFocus" HorizontalAlignment="Left" Height="23" Margin="345,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Modelo" HorizontalAlignment="Left" Margin="345,10,0,0" VerticalAlignment="Top" Width="177" Foreground="#FF1700FF"/>
-        <DataGrid Name="dtRegistros" HorizontalAlignment="Left" Margin="23,76,0,0" VerticalAlignment="Top" Height="252" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <DataGrid Name="dtRegistros" IsReadOnly="True" HorizontalAlignment="Left" Margin="23,76,0,0" VerticalAlignment="Top" Height="252" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Button Content="Novo" HorizontalAlignment="Left" Margin="447,349,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF" Click="Button_Click"/>
     </Grid>
 </Window>

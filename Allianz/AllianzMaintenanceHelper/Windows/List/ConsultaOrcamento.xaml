@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=BusinessRules"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=BusinessRules" x:Class="AllianzMaintenanceHelper.ConsultaOrcamento"
-        Title="Consulta de orçamento" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
+        Title="Consulta de orçamento" Height="445.782" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,13,5">
         <ComboBox x:Name="pesCodigoC" SelectionChanged="pesCodigoC_SelectionChanged" InterfaceBase:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="23,36,0,0" VerticalAlignment="Top" Width="287" Background="White" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
         <GroupBox Header="Data de início" HorizontalAlignment="Left" Margin="23,68,0,0" VerticalAlignment="Top" Height="85" Width="287"/>
@@ -30,7 +30,7 @@
             </DatePicker.BorderBrush>
         </DatePicker>
         <Label Content="Fim" HorizontalAlignment="Left" Margin="168,90,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
-        <DataGrid Name="dtRegistros" HorizontalAlignment="Left" Margin="23,169,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,378,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
+        <DataGrid Name="dtRegistros" IsReadOnly="True" HorizontalAlignment="Left" Margin="23,169,0,0" VerticalAlignment="Top" Height="191" Width="499" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Button Content="Novo" HorizontalAlignment="Left" Margin="447,378,0,0" VerticalAlignment="Top" Width="75" Background="#FF4882FF" BorderBrush="#FF0A1444" Foreground="#FF1700FF" Click="Button_Click"/>
     </Grid>
 </Window>

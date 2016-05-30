@@ -19,9 +19,9 @@ namespace BusinessRules.DatabaseBase.Model
         public int? pesCodigoF { get; set; }
 
         [FormatedName("Data de entrada")]
-        public DateTime ordDataEntrada { get; set; }
+        public string ordDataEntrada { get; set; }
 
         [FormatedName("Data de saída")]
-        public DateTime ordDataSaida { get; set; }
+        public string ordDataSaida { get; set; }
     }
 }

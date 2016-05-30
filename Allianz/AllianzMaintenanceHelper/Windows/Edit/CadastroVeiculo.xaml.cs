@@ -38,57 +38,87 @@ namespace AllianzMaintenanceHelper
 
         private void Load(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
-                                             this,
-                                             LoadVeiculo,
-                                             txtCodigoCarregar.Text);
+            try
+            {
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
+                                                 this,
+                                                 LoadVeiculo,
+                                                 txtCodigoCarregar.Text);
+                if (txtCodigoCarregar.IsVisible)
+                    txtCodigoCarregar.Focus();
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void LoadVeiculo(string pCodigo)
         {
-            Clear();
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Veiculo lVeiculo = new Veiculo();
-            VeiculoDM lVeiculoDM = lVeiculo.SelectCodigo(pCodigo);
-            lInterfaceManagement.CarregarDM(this, lVeiculoDM); 
-            txtCodigoCarregar.Text = null;
+            try
+            {
+                Clear();
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Veiculo lVeiculo = new Veiculo();
+                VeiculoDM lVeiculoDM = lVeiculo.SelectCodigo(pCodigo);
+                lInterfaceManagement.CarregarDM(this, lVeiculoDM);
+                txtCodigoCarregar.Text = null;
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Veiculo lVeiculo = new Veiculo();
-            List<string> lErrosValidacao = new List<string>();
-            VeiculoDM lVeiculoDM = (VeiculoDM)lInterfaceManagement.BuildDM(this, typeof(VeiculoDM), ((Button)sender).Name, lErrosValidacao);
-            if (lErrosValidacao != null && lErrosValidacao.Count > 0)
+            try
             {
-                MessageBox.Show(string.Join(Environment.NewLine,lErrosValidacao));
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(veiCodigo.Text))
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Veiculo lVeiculo = new Veiculo();
+                List<string> lErrosValidacao = new List<string>();
+                VeiculoDM lVeiculoDM = (VeiculoDM)lInterfaceManagement.BuildDM(this, typeof(VeiculoDM), ((Button)sender).Name, lErrosValidacao);
+                if (lErrosValidacao != null && lErrosValidacao.Count > 0)
                 {
-                    if (lVeiculo.EditarCliente(lVeiculoDM))
-                        MessageBox.Show("Editado com sucesso");
-                    else
-                        MessageBox.Show("Erro ao editar");
+                    MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
                 }
                 else
                 {
-                    if (lVeiculo.NovoCliente(lVeiculoDM, LoadVeiculo))
-                        MessageBox.Show("Salvo com sucesso");
+                    if (!string.IsNullOrEmpty(veiCodigo.Text))
+                    {
+                        if (lVeiculo.EditarCliente(lVeiculoDM))
+                            MessageBox.Show("Editado com sucesso");
+                        else
+                            MessageBox.Show("Erro ao editar");
+                    }
                     else
-                        MessageBox.Show("Erro ao salvar");
+                    {
+                        if (lVeiculo.NovoCliente(lVeiculoDM, LoadVeiculo))
+                            MessageBox.Show("Salvo com sucesso");
+                        else
+                            MessageBox.Show("Erro ao salvar");
+                    }
                 }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
 
         private void btnExcluir_Click(object sender, RoutedEventArgs e)
         {
-            Veiculo lVeiculo = new Veiculo();
-            lVeiculo.ExcluirCliente(veiCodigo.Text);
-            Clear();
+            try
+            {
+                Veiculo lVeiculo = new Veiculo();
+                lVeiculo.ExcluirCliente(veiCodigo.Text);
+                Clear();
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void Clear()

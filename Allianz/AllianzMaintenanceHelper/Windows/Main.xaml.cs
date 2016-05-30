@@ -156,5 +156,17 @@ namespace AllianzMaintenanceHelper.Windows
         }
 
         #endregion
+
+        #region Sobre
+
+        private void Sobre_Click(object sender, RoutedEventArgs e)
+        {
+            Sobre lSobre = new Sobre();
+            lSobre.Show();
+        }
+
+
+        #endregion
+
     }
 }

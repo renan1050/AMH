@@ -32,38 +32,45 @@ namespace AllianzMaintenanceHelper.Windows.List
 
         private void Atualizar(bool pAbrindo = false)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Produto lProduto = new Produto();
-            Dictionary<string, string> lParametro = new Dictionary<string, string>();
-
-            lParametro.Add(proNome.Name, proNome.Text);
-            dtRegistros.ItemsSource = null;
-            dtRegistros.ItemsSource = lProduto.AtualizarGrade(lParametro);
-            dtRegistros.AutoGenerateColumns = false;
-            dtRegistros.AutoGenerateColumns = true;
-
-            if (!pAbrindo)
+            try
             {
-                int lCount = 0;
-                FormatedName lAtributo;
-                List<int> lRemover = new List<int>();
-                foreach (PropertyInfo lProperty in typeof(ProdutoDM).GetProperties())
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Produto lProduto = new Produto();
+                Dictionary<string, string> lParametro = new Dictionary<string, string>();
+
+                lParametro.Add(proNome.Name, proNome.Text);
+                dtRegistros.ItemsSource = null;
+                dtRegistros.ItemsSource = lProduto.AtualizarGrade(lParametro);
+                dtRegistros.AutoGenerateColumns = false;
+                dtRegistros.AutoGenerateColumns = true;
+
+                if (!pAbrindo)
                 {
-                    lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
-                    if (lAtributo != null)
+                    int lCount = 0;
+                    FormatedName lAtributo;
+                    List<int> lRemover = new List<int>();
+                    foreach (PropertyInfo lProperty in typeof(ProdutoDM).GetProperties())
                     {
-                        dtRegistros.Columns[lCount].Header = lAtributo.Name;
-                        dtRegistros.Columns[lCount].IsReadOnly = true;
-                        lCount++;
-                    }
-                    else
-                    {
-                        dtRegistros.Columns.RemoveAt(lCount);
-                    }
+                        lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
+                        if (lAtributo != null)
+                        {
+                            dtRegistros.Columns[lCount].Header = lAtributo.Name;
+                            dtRegistros.Columns[lCount].IsReadOnly = true;
+                            lCount++;
+                        }
+                        else
+                        {
+                            dtRegistros.Columns.RemoveAt(lCount);
+                        }
 
+                    }
                 }
+                dtRegistros.CanUserAddRows = false;
             }
-
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
