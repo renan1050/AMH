@@ -17,10 +17,10 @@
 
         <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="385,68,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="509,68,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
-        <TextBox x:Name="proNome" HorizontalAlignment="Left" Height="23" Margin="171,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
-        <TextBox x:Name="proValorUnitario" HorizontalAlignment="Left" Height="23" Margin="463,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
-        <Label Content="Valor Unitário" HorizontalAlignment="Left" Margin="463,182,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <Label Content="Descrição" HorizontalAlignment="Left" Margin="171,182,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <TextBox x:Name="proNome" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="171,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
+        <TextBox x:Name="proValorUnitario" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="463,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
+        <Label Content="Valor Unitário" local:WPFExtension.Refers="proValorUnitario" HorizontalAlignment="Left" Margin="463,182,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Label Content="Descrição" local:WPFExtension.Refers="proNome" HorizontalAlignment="Left" Margin="171,182,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
 
     </Grid>
 </Window>
