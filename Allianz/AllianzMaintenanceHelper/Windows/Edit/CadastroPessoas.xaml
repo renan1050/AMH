@@ -23,7 +23,7 @@
         <GroupBox Header="Categoria"  local:WPFExtension.Refers="Categoria" HorizontalAlignment="Left" Margin="44,95,0,0" VerticalAlignment="Top" Height="47" Width="668" Foreground="#FF1700FF">
             <Grid x:Name="Categoria" local:WPFExtension.Required="btnSalvar" Background="#FFC4D7FF">
                 <CheckBox x:Name="Categoria_F" local:WPFExtension.RelativeFieldCode="F" local:WPFExtension.Value="3" Content="Funcionário" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Unchecked="UncheckCategoria" Checked="CheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-                <CheckBox x:Name="Categoria_C" local:WPFExtension.RelativeFieldCode="C" local:WPFExtension.Value="1" Content="Cliente" HorizontalAlignment="Left" Margin="111,5,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+                <CheckBox x:Name="Categoria_C" local:WPFExtension.RelativeFieldCode="C" local:WPFExtension.Value="1" Content="Cliente" HorizontalAlignment="Left" Margin="111,0,0,4" VerticalAlignment="Bottom" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
                 <CheckBox x:Name="Categoria_Fi" local:WPFExtension.RelativeFieldCode="Fi" local:WPFExtension.Value="2" Content="Filial" HorizontalAlignment="Left" Margin="209,5,0,0" VerticalAlignment="Top" Checked="CheckCategoria" Unchecked="UncheckCategoria" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
             </Grid>
         </GroupBox>
@@ -36,7 +36,7 @@
         <TextBox x:Name="pesNumero" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="499,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
         <TextBox x:Name="pesComplemento" HorizontalAlignment="Left" Height="23" Margin="557,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <TextBox x:Name="pesBairro" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="44,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
-        <Label Content="Estado" local:WPFExtension.Refers="estCodigo" HorizontalAlignment="Left" Margin="209,261,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF1700FF"/>
+        <Label Content="Estado" local:WPFExtension.Refers="estCodigo" HorizontalAlignment="Left" Margin="205,260,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF1700FF"/>
         <ComboBox x:Name="estCodigo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="209,287,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF1700FF" BorderBrush="#FF0A1444" SelectionChanged="estCodigo_SelectionChanged" />
         <ComboBox x:Name="cidCodigo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="264,287,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <TextBox x:Name="pesCEP" HorizontalAlignment="Left" Height="23" Margin="425,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
@@ -46,7 +46,7 @@
         <Label Content="Cidade" local:WPFExtension.Refers="cidCodigo" HorizontalAlignment="Left" Margin="264,261,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
         <Label Content="Bairro" local:WPFExtension.Refers="pesBairro" HorizontalAlignment="Left" Margin="44,260,0,0" VerticalAlignment="Top" Width="160" Foreground="#FF1700FF"/>
         <Label Content="Complemento" HorizontalAlignment="Left" Margin="557,205,0,0" VerticalAlignment="Top" Width="140" Foreground="#FF1700FF"/>
-        <Label Content="Número" local:WPFExtension.Refers="pesNumero" HorizontalAlignment="Left" Margin="499,205,0,0" VerticalAlignment="Top" Width="53" Foreground="#FF1700FF"/>
+        <Label Content="Número" local:WPFExtension.Refers="pesNumero" HorizontalAlignment="Left" Margin="495,205,0,0" VerticalAlignment="Top" Width="53" Foreground="#FF1700FF"/>
         <Label Content="Endereço" local:WPFExtension.Refers="pesEndereco" HorizontalAlignment="Left" Margin="258,205,0,0" VerticalAlignment="Top" Width="227" Foreground="#FF1700FF"/>
         <Label Content="CEP" local:WPFExtension.Refers="pesCEP" HorizontalAlignment="Left" Margin="425,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.719,0.775" Width="76" Foreground="#FF1700FF"/>
         <Label Content="Email" local:WPFExtension.Refers="pesEmail" HorizontalAlignment="Left" Margin="44,206,0,0" VerticalAlignment="Top" Width="209" Foreground="#FF1700FF"/>
@@ -91,9 +91,22 @@
                 </DatePicker.BorderBrush>
             </DatePicker>
         </Grid>
-        <Grid local:WPFExtension.RelativeField="F" HorizontalAlignment="Left" Height="51" Margin="425,318,0,0" VerticalAlignment="Top" Width="287" Visibility="Hidden">
+        <Grid local:WPFExtension.RelativeField="F" HorizontalAlignment="Left" Height="51" Margin="425,318,0,0" VerticalAlignment="Top" Width="287"  Visibility="Hidden">
             <TextBox x:Name="pesCargo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="167,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
             <Label Content="Cargo" local:WPFExtension.Refers="pesCargo" HorizontalAlignment="Left" Margin="167,0,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+            <Label x:Name="labelCargo" local:WPFExtension.Refers="pesCargo" Content="*" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="4,2.731" Margin="205,2,0,0"/>
         </Grid>
+        <Label x:Name="labelCategoria" Content="*" HorizontalAlignment="Left" Margin="30,94,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelNome" Content="*" HorizontalAlignment="Left" Margin="80,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelEndereço" Content="*" HorizontalAlignment="Left" Margin="315,209,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelNumero" Content="*" HorizontalAlignment="Left" Margin="541,209,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelBairro" Content="*" HorizontalAlignment="Left" Margin="80,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelEstado" Content="*" HorizontalAlignment="Left" Margin="245,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelCidade" Content="*" HorizontalAlignment="Left" Margin="305,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelCPF" Content="*" HorizontalAlignment="Left" Margin="191,322,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelRazao" Content="*" HorizontalAlignment="Left" Margin="115,377,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelCNPJ" Content="*" HorizontalAlignment="Left" Margin="324,376,0,0" VerticalAlignment="Top" RenderTransformOrigin="4,2.731"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="350,487,0,0" VerticalAlignment="Top"/>
+        
     </Grid>
 </Window>

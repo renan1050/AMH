@@ -20,5 +20,8 @@
         <TextBox x:Name="serValor" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="461,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
         <Label Content="Valor" local:WPFExtension.Refers="serValor" HorizontalAlignment="Left" Margin="461,193,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label Content="Descrição" local:WPFExtension.Refers="serDescricao" HorizontalAlignment="Left" Margin="169,193,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="348,314,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelDescricao" Content="*" HorizontalAlignment="Left" Margin="223,197,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelValor" Content="*" HorizontalAlignment="Left" Margin="492,196,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

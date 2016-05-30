@@ -155,9 +155,20 @@ namespace AllianzMaintenanceHelper
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
             RadioButton lRadioButton = sender as RadioButton;
             if (lRadioButton.Name == "pesTipoPessoa_PF")
+            {
                 UncheckPJ();
+                labelCPF.Visibility = Visibility.Visible;
+                labelRazao.Visibility = Visibility.Hidden;
+                labelCNPJ.Visibility = Visibility.Hidden;
+            }
             else
+            {
                 UncheckPF();
+                labelCPF.Visibility = Visibility.Hidden;
+                labelRazao.Visibility = Visibility.Visible;
+                labelCNPJ.Visibility = Visibility.Visible;
+            }
+                
 
             lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
         }
@@ -171,13 +182,21 @@ namespace AllianzMaintenanceHelper
         private void UncheckPF()
         {
             if (pesTipoPessoa_PF != null)
+            {
                 pesTipoPessoa_PF.IsChecked = false;
+                
+            }
+
         }
 
         private void UncheckPJ()
         {
             if (pesTipoPessoa_PJ != null)
+            {
                 pesTipoPessoa_PJ.IsChecked = false;
+                
+            }
+                
         }
 
         private void CheckCategoria(object sender, RoutedEventArgs e)
