@@ -21,6 +21,9 @@
         <TextBox x:Name="proValorUnitario" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="463,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
         <Label Content="Valor Unitário" local:WPFExtension.Refers="proValorUnitario" HorizontalAlignment="Left" Margin="463,182,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Label Content="Descrição" local:WPFExtension.Refers="proNome" HorizontalAlignment="Left" Margin="171,182,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <Label x:Name="labelDescrição" Content="*" HorizontalAlignment="Left" Margin="230,185,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.974,-2.885"/>
+        <Label x:Name="labelValor" Content="*" HorizontalAlignment="Left" Margin="540,185,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.974,-2.885"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="348,314,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

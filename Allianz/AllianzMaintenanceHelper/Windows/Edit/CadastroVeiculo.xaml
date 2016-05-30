@@ -25,6 +25,12 @@
         <Label Content="Modelo" local:WPFExtension.Refers="veiModelo" HorizontalAlignment="Left" Margin="506,166,0,0" VerticalAlignment="Top" Width="119" Foreground="#FF1700FF"/>
         <TextBox x:Name="veiRENAVAM" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="248,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
         <Label Content="RENAVAM" local:WPFExtension.Refers="veiRENAVAM" HorizontalAlignment="Left" Margin="248,229,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Label x:Name="labelCçliente" Content="*" HorizontalAlignment="Left" Margin="159,170,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelMarca" Content="*" HorizontalAlignment="Left" Margin="417,170,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelModelo" Content="*" HorizontalAlignment="Left" Margin="552,169,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelPlaca" Content="*" HorizontalAlignment="Left" Margin="149,232,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelRenavam" Content="*" HorizontalAlignment="Left" Margin="310,232,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="350,371,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>
