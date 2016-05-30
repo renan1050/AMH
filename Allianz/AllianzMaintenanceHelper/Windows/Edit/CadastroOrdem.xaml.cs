@@ -73,98 +73,133 @@ namespace AllianzMaintenanceHelper
 
         private void Load(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
-                                             this,
-                                             LoadOrdem,
-                                             txtCodigoCarregar.Text);
-            if (txtCodigoCarregar.IsVisible)
-                txtCodigoCarregar.Focus();
+            try
+            {
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
+                                                 this,
+                                                 LoadOrdem,
+                                                 txtCodigoCarregar.Text);
+                if (txtCodigoCarregar.IsVisible)
+                    txtCodigoCarregar.Focus();
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void LoadOrdem(string pCodigo)
         {
-            Clear();
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Ordem lOrdem = new Ordem();
-            OrdemDM lOrdemDM = lOrdem.SelectCodigo(pCodigo);
-
-            if (lInterfaceManagement.CarregarDM(this, lOrdemDM))
+            try
             {
-                gItens.Visibility = Visibility.Visible;
-                LoadSub(lOrdemDM.ordCodigo.ToString());
-            }
+                Clear();
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Ordem lOrdem = new Ordem();
+                OrdemDM lOrdemDM = lOrdem.SelectCodigo(pCodigo);
 
-            txtCodigoCarregar.Text = null;
+                if (lInterfaceManagement.CarregarDM(this, lOrdemDM))
+                {
+                    gItens.Visibility = Visibility.Visible;
+                    LoadSub(lOrdemDM.ordCodigo.ToString());
+                }
+
+                txtCodigoCarregar.Text = null;
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void LoadSub(string pCodigo)
         {
-            ClearSub();
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            ServicoxOrdem lServicoxOrdem = new ServicoxOrdem();
-            List<ServicoxOrdemDM> lServicoxOrdemList = lServicoxOrdem.SelectPorOrdem(pCodigo);
-            dtItens.ItemsSource = null;
-            dtItens.ItemsSource = lServicoxOrdemList;
-            dtItens.AutoGenerateColumns = false;
-            dtItens.AutoGenerateColumns = true;
-            int lCount = 0;
-            FormatedName lAtributo;
-            List<int> lRemover = new List<int>();
-            foreach (PropertyInfo lProperty in typeof(ServicoxOrdemDM).GetProperties())
+            try
             {
-                lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
-                if (lAtributo != null)
+                ClearSub();
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                ServicoxOrdem lServicoxOrdem = new ServicoxOrdem();
+                List<ServicoxOrdemDM> lServicoxOrdemList = lServicoxOrdem.SelectPorOrdem(pCodigo);
+                dtItens.ItemsSource = null;
+                dtItens.ItemsSource = lServicoxOrdemList;
+                dtItens.AutoGenerateColumns = false;
+                dtItens.AutoGenerateColumns = true;
+                int lCount = 0;
+                FormatedName lAtributo;
+                List<int> lRemover = new List<int>();
+                foreach (PropertyInfo lProperty in typeof(ServicoxOrdemDM).GetProperties())
                 {
-                    dtItens.Columns[lCount].Header = lAtributo.Name;
-                    dtItens.Columns[lCount].IsReadOnly = true;
-                    lCount++;
-                }
-                else
-                {
-                    dtItens.Columns.RemoveAt(lCount);
+                    lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
+                    if (lAtributo != null)
+                    {
+                        dtItens.Columns[lCount].Header = lAtributo.Name;
+                        dtItens.Columns[lCount].IsReadOnly = true;
+                        lCount++;
+                    }
+                    else
+                    {
+                        dtItens.Columns.RemoveAt(lCount);
+                    }
+
                 }
 
+                dtItens.CanUserAddRows = false;
             }
-
-            dtItens.CanUserAddRows = false;
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Ordem lOrdem = new Ordem();
-            List<string> lErrosValidacao = new List<string>();
-            OrdemDM lOrdemDM = (OrdemDM)lInterfaceManagement.BuildDM(this, typeof(OrdemDM), ((Button)sender).Name, lErrosValidacao);
-            if (lErrosValidacao != null && lErrosValidacao.Count > 0)
+            try
             {
-                MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(ordCodigo.Text))
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Ordem lOrdem = new Ordem();
+                List<string> lErrosValidacao = new List<string>();
+                OrdemDM lOrdemDM = (OrdemDM)lInterfaceManagement.BuildDM(this, typeof(OrdemDM), ((Button)sender).Name, lErrosValidacao);
+                if (lErrosValidacao != null && lErrosValidacao.Count > 0)
                 {
-                    if (lOrdem.EditarCliente(lOrdemDM))                    
-                        MessageBox.Show("Editado com sucesso");                    
-                    else
-                        MessageBox.Show("Erro ao editar");
+                    MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
                 }
                 else
                 {
-                    lOrdemDM.ordDataEntrada = DateTime.Now.ToString("dd/MM/yyyy");
-                    if (lOrdem.NovoCliente(lOrdemDM, LoadOrdem))                    
-                        MessageBox.Show("Salvo com sucesso");
+                    if (!string.IsNullOrEmpty(ordCodigo.Text))
+                    {
+                        if (lOrdem.EditarCliente(lOrdemDM))
+                            MessageBox.Show("Editado com sucesso");
+                        else
+                            MessageBox.Show("Erro ao editar");
+                    }
                     else
-                        MessageBox.Show("Erro ao salvar");
-                }                
+                    {
+                        lOrdemDM.ordDataEntrada = DateTime.Now.ToString("dd/MM/yyyy");
+                        if (lOrdem.NovoCliente(lOrdemDM, LoadOrdem))
+                            MessageBox.Show("Salvo com sucesso");
+                        else
+                            MessageBox.Show("Erro ao salvar");
+                    }
+                }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
 
         private void btnExcluir_Click(object sender, RoutedEventArgs e)
         {
-            Ordem lOrdem = new Ordem();
-            lOrdem.ExcluirCliente(ordCodigo.Text);
-            Clear();                      
+            try
+            {
+                Ordem lOrdem = new Ordem();
+                lOrdem.ExcluirCliente(ordCodigo.Text);
+                Clear();
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }          
         }
 
         private void Clear()
@@ -194,32 +229,39 @@ namespace AllianzMaintenanceHelper
 
         private void btnSalvarSub_Click(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            ServicoxOrdem lServicoxOrdem = new ServicoxOrdem();
-            List<string> lErrosValidacao = new List<string>();
-            ServicoxOrdemDM lServicoxOrdemDM = (ServicoxOrdemDM)lInterfaceManagement.BuildDM(this, typeof(ServicoxOrdemDM), ((Button)sender).Name, lErrosValidacao);
-            if (lErrosValidacao != null && lErrosValidacao.Count > 0)
+            try
             {
-                MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(genCodigo.Text))
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                ServicoxOrdem lServicoxOrdem = new ServicoxOrdem();
+                List<string> lErrosValidacao = new List<string>();
+                ServicoxOrdemDM lServicoxOrdemDM = (ServicoxOrdemDM)lInterfaceManagement.BuildDM(this, typeof(ServicoxOrdemDM), ((Button)sender).Name, lErrosValidacao);
+                if (lErrosValidacao != null && lErrosValidacao.Count > 0)
                 {
-                    if (lServicoxOrdem.EditarCliente(lServicoxOrdemDM))
-                        MessageBox.Show("Editado com sucesso");
-                    else
-                        MessageBox.Show("Erro ao editar");
+                    MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
                 }
                 else
                 {
-                    if (lServicoxOrdem.NovoCliente(lServicoxOrdemDM))
-                        MessageBox.Show("Salvo com sucesso");
+                    if (!string.IsNullOrEmpty(genCodigo.Text))
+                    {
+                        if (lServicoxOrdem.EditarCliente(lServicoxOrdemDM))
+                            MessageBox.Show("Editado com sucesso");
+                        else
+                            MessageBox.Show("Erro ao editar");
+                    }
                     else
-                        MessageBox.Show("Erro ao salvar");
-                }
+                    {
+                        if (lServicoxOrdem.NovoCliente(lServicoxOrdemDM))
+                            MessageBox.Show("Salvo com sucesso");
+                        else
+                            MessageBox.Show("Erro ao salvar");
+                    }
 
-                LoadSub(ordCodigo.Text);
+                    LoadSub(ordCodigo.Text);
+                }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
 
@@ -235,32 +277,53 @@ namespace AllianzMaintenanceHelper
 
         private void ChangeTotalValue()
         {
-            decimal lValorUnitario; 
-            int lQuantidade; 
-            if(!decimal.TryParse(genValorUnitario.Text, out lValorUnitario))
-               lValorUnitario = 0;
-            
-            if(!int.TryParse(genQuantidade.Text, out lQuantidade))
-               lQuantidade = 0;
+            try
+            {
+                decimal lValorUnitario;
+                int lQuantidade;
+                if (!decimal.TryParse(genValorUnitario.Text, out lValorUnitario))
+                    lValorUnitario = 0;
 
-            genValorTotal.Text = ((decimal)(lQuantidade * lValorUnitario)).ToString();
+                if (!int.TryParse(genQuantidade.Text, out lQuantidade))
+                    lQuantidade = 0;
+
+                genValorTotal.Text = ((decimal)(lQuantidade * lValorUnitario)).ToString();
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void proCodigo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(proCodigo.SelectedItem != null)
-                genValorUnitario.Text = (proCodigo.SelectedItem as InterfaceManagement.Item).Adicional.ToString();
+            try
+            {
+                if (proCodigo.SelectedItem != null)
+                    genValorUnitario.Text = (proCodigo.SelectedItem as InterfaceManagement.Item).Adicional.ToString();
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void dtItens_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if ((sender as DataGrid).SelectedItem != null)
+            try
             {
-                ServicoxOrdem lServicoxOrdem = new ServicoxOrdem();
-                if (lServicoxOrdem.ExcluirCliente(((sender as DataGrid).SelectedItem as ServicoxOrdemDM).genCodigo.ToString()))
+                if ((sender as DataGrid).SelectedItem != null)
                 {
-                    LoadSub(ordCodigo.Text);
+                    ServicoxOrdem lServicoxOrdem = new ServicoxOrdem();
+                    if (lServicoxOrdem.ExcluirCliente(((sender as DataGrid).SelectedItem as ServicoxOrdemDM).genCodigo.ToString()))
+                    {
+                        LoadSub(ordCodigo.Text);
+                    }
                 }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }        
     }    

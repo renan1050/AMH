@@ -31,59 +31,87 @@ namespace AllianzMaintenanceHelper
 
         private void Load(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
-                                             this,
-                                             LoadProduto,
-                                             txtCodigoCarregar.Text);
-            if (txtCodigoCarregar.IsVisible)
-                txtCodigoCarregar.Focus();
+            try
+            {
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                lInterfaceManagement.LoadByValue(((Button)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(),
+                                                 this,
+                                                 LoadProduto,
+                                                 txtCodigoCarregar.Text);
+                if (txtCodigoCarregar.IsVisible)
+                    txtCodigoCarregar.Focus();
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void LoadProduto(string pCodigo)
         {
-            Clear();
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Produto lProduto = new Produto();
-            ProdutoDM lProdutoDM = lProduto.SelectCodigo(pCodigo);
-            lInterfaceManagement.CarregarDM(this, lProdutoDM);
-            txtCodigoCarregar.Text = null;
+            try
+            {
+                Clear();
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Produto lProduto = new Produto();
+                ProdutoDM lProdutoDM = lProduto.SelectCodigo(pCodigo);
+                lInterfaceManagement.CarregarDM(this, lProdutoDM);
+                txtCodigoCarregar.Text = null;
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Produto lProduto = new Produto();
-            List<string> lErrosValidacao = new List<string>();
-            ProdutoDM lProdutoDM = (ProdutoDM)lInterfaceManagement.BuildDM(this, typeof(ProdutoDM), ((Button)sender).Name, lErrosValidacao);
-            if (lErrosValidacao != null && lErrosValidacao.Count > 0)
+            try
             {
-                MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(proCodigo.Text))
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Produto lProduto = new Produto();
+                List<string> lErrosValidacao = new List<string>();
+                ProdutoDM lProdutoDM = (ProdutoDM)lInterfaceManagement.BuildDM(this, typeof(ProdutoDM), ((Button)sender).Name, lErrosValidacao);
+                if (lErrosValidacao != null && lErrosValidacao.Count > 0)
                 {
-                    if (lProduto.EditarCliente(lProdutoDM))
-                        MessageBox.Show("Editado com sucesso");
-                    else
-                        MessageBox.Show("Erro ao editar");
+                    MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
                 }
                 else
                 {
-                    if (lProduto.NovoCliente(lProdutoDM, LoadProduto))
-                        MessageBox.Show("Salvo com sucesso");
+                    if (!string.IsNullOrEmpty(proCodigo.Text))
+                    {
+                        if (lProduto.EditarCliente(lProdutoDM))
+                            MessageBox.Show("Editado com sucesso");
+                        else
+                            MessageBox.Show("Erro ao editar");
+                    }
                     else
-                        MessageBox.Show("Erro ao salvar");
+                    {
+                        if (lProduto.NovoCliente(lProdutoDM, LoadProduto))
+                            MessageBox.Show("Salvo com sucesso");
+                        else
+                            MessageBox.Show("Erro ao salvar");
+                    }
                 }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
 
         private void btnExcluir_Click(object sender, RoutedEventArgs e)
         {
-            Produto lProduto = new Produto();
-            lProduto.ExcluirCliente(proCodigo.Text);
-            Clear();
+            try
+            {
+                Produto lProduto = new Produto();
+                lProduto.ExcluirCliente(proCodigo.Text);
+                Clear();
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void Clear()
