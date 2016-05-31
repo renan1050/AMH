@@ -3,24 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios" x:Class="Vinicula.CadastroProduto"
-        Title="Cadastro de Produtos" Height="380.534" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Cadastro de Produtos" Height="300.84" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,8">
+        <TextBox x:Name="proCodigo" HorizontalAlignment="Left" Height="23" Margin="120,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Código" HorizontalAlignment="Left" Margin="120,7,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Button x:Name="btnCarregar" InterfaceBase:WPFExtension.RelativeFieldCode="Carregar" Content="Carregar"  HorizontalAlignment="Left" Margin="260,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Click="Load" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
 
-        <TextBox x:Name="proCodigo" HorizontalAlignment="Left" Height="23" Margin="120,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Código" HorizontalAlignment="Left" Margin="120,42,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <Button x:Name="btnCarregar" InterfaceBase:WPFExtension.RelativeFieldCode="Carregar" Content="Carregar"  HorizontalAlignment="Left" Margin="260,68,0,0" VerticalAlignment="Top" Width="120" Height="23" Click="Load" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
-
-        <WrapPanel local:WPFExtension.RelativeField="Carregar" HorizontalAlignment="Left" Height="27" Margin="190,60,0,0" VerticalAlignment="Top" Width="297" Visibility="Hidden">
+        <WrapPanel local:WPFExtension.RelativeField="Carregar" HorizontalAlignment="Left" Height="27" Margin="260,61,0,0" VerticalAlignment="Top" Width="297" >
             <Label Content="Código" Foreground="#FF1700FF"/>
             <TextBox x:Name="txtCodigoCarregar" Height="22" TextWrapping="Wrap" Width="245" Foreground="#FF1700FF"/>
         </WrapPanel>
 
-        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="385,68,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
-        <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="509,68,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
-        <TextBox x:Name="proNome" HorizontalAlignment="Left" Height="23" Margin="171,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <TextBox x:Name="proValorUnitario" HorizontalAlignment="Left" Height="23" Margin="463,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Valor Unitário" HorizontalAlignment="Left" Margin="463,182,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
-        <Label Content="Descrição" HorizontalAlignment="Left" Margin="171,182,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
-
+        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="385,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
+        <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="509,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
+        <TextBox x:Name="proNome" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="164,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
+        <TextBox x:Name="proValorUnitario" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="456,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444" Background="White"/>
+        <TextBox x:Name="proDescricao" AcceptsReturn="True" HorizontalAlignment="Left" Height="80" Margin="164,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="412" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Valor Unitário" local:WPFExtension.Refers="proValorUnitario" HorizontalAlignment="Left" Margin="456,107,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Label Content="Nome" local:WPFExtension.Refers="proNome" HorizontalAlignment="Left" Margin="164,107,0,0" VerticalAlignment="Top" Width="288" Foreground="#FF1700FF"/>
+        <Label x:Name="labelDescrição" Content="*" HorizontalAlignment="Left" Margin="223,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.974,-2.885"/>
+        <Label x:Name="labelValor" Content="*" HorizontalAlignment="Left" Margin="533,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.974,-2.885"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="348,314,0,0" VerticalAlignment="Top"/>
+        <Label Content="Descrição" HorizontalAlignment="Left" Margin="164,161,0,0" VerticalAlignment="Top" Width="60" Foreground="#FF1700FF"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="223,161,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.974,-2.885"/>
     </Grid>
 </Window>

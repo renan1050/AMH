@@ -79,10 +79,10 @@ namespace Vinicula
         {
             ClearSub();
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            ServicoxOrcamento lServicoxOrcamento = new ServicoxOrcamento();
-            List<ServicoxOrcamentoDM> lServicoxOrcamentoDMList = lServicoxOrcamento.SelectPorOrcamento(pCodigo);
+            ProdutoxOrcamento lProdutoxOrcamento = new ProdutoxOrcamento();
+            List<ProdutoxOrcamentoDM> lProdutoxOrcamentoDMList = lProdutoxOrcamento.SelectPorOrcamento(pCodigo);
             dtItens.ItemsSource = null;
-            dtItens.ItemsSource = lServicoxOrcamentoDMList;
+            dtItens.ItemsSource = lProdutoxOrcamentoDMList;
             dtItens.AutoGenerateColumns = false;
             dtItens.AutoGenerateColumns = true;
 
@@ -147,7 +147,7 @@ namespace Vinicula
         {
             orcCodigo.Text = null;
             pesCodigoC.Text = null;
-            veiCodigo.Text = null;
+            orcStatus.Text = null;
             proCodigo.Text = null;
             genQuantidade.Text = null;
             genValorUnitario.Text = null;
@@ -168,9 +168,9 @@ namespace Vinicula
         private void btnSalvarSub_Click(object sender, RoutedEventArgs e)
         {
             InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            ServicoxOrcamento lServicoxOrcamento = new ServicoxOrcamento();
+            ProdutoxOrcamento lProdutoxOrcamento = new ProdutoxOrcamento();
             List<string> lErrosValidacao = new List<string>();
-            ServicoxOrcamentoDM lServicoxOrcamentoDM = (ServicoxOrcamentoDM)lInterfaceManagement.BuildDM(this, typeof(ServicoxOrcamentoDM), ((Button)sender).Name, lErrosValidacao);
+            ProdutoxOrcamentoDM lProdutoxOrcamentoDM = (ProdutoxOrcamentoDM)lInterfaceManagement.BuildDM(this, typeof(ProdutoxOrcamentoDM), ((Button)sender).Name, lErrosValidacao);
             if (lErrosValidacao != null && lErrosValidacao.Count > 0)
             {
                 MessageBox.Show(string.Join(Environment.NewLine, lErrosValidacao));
@@ -179,14 +179,14 @@ namespace Vinicula
             {
                 if (!string.IsNullOrEmpty(genCodigo.Text))
                 {
-                    if (lServicoxOrcamento.EditarCliente(lServicoxOrcamentoDM))
+                    if (lProdutoxOrcamento.EditarCliente(lProdutoxOrcamentoDM))
                         MessageBox.Show("Editado com sucesso");
                     else
                         MessageBox.Show("Erro ao editar");
                 }
                 else
                 {
-                    if (lServicoxOrcamento.NovoCliente(lServicoxOrcamentoDM))
+                    if (lProdutoxOrcamento.NovoCliente(lProdutoxOrcamentoDM))
                         MessageBox.Show("Salvo com sucesso");
                     else
                         MessageBox.Show("Erro ao salvar");
@@ -229,8 +229,8 @@ namespace Vinicula
         {
             if ((sender as DataGrid).SelectedItem != null)
             {
-                ServicoxOrcamento lServicoxOrcamento = new ServicoxOrcamento();
-                if (lServicoxOrcamento.ExcluirCliente(((sender as DataGrid).SelectedItem as ServicoxOrcamentoDM).genCodigo.ToString()))
+                ProdutoxOrcamento lProdutoxOrcamento = new ProdutoxOrcamento();
+                if (lProdutoxOrcamento.ExcluirCliente(((sender as DataGrid).SelectedItem as ProdutoxOrcamentoDM).genCodigo.ToString()))
                 {
                     LoadSub(orcCodigo.Text);
                 }

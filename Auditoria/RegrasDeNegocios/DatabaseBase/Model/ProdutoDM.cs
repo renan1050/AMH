@@ -14,6 +14,9 @@ namespace BusinessRules.DatabaseBase.Model
         [FormatedName("Nome")]
         public string proNome { get; set; }
 
+        [FormatedName("Descrição")]
+        public string proDescricao { get; set; }
+
         [FormatedName("Valor unitário")]
         public decimal? proValorUnitario { get; set; }
     }

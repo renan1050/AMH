@@ -8,7 +8,7 @@ namespace BusinessRules.DatabaseBase.Model
 {
     public class EstadoDM
     {
-        //[FormatedName("Código")]
+        [FormatedName("Código")]
         public int? estCodigo { get; set; }
         
         [FormatedName("Sigla")]

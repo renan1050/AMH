@@ -15,9 +15,9 @@
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="499,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
         <Label Content="Cliente" local:WPFExtension.Refers="pesCodigoC" HorizontalAlignment="Left" Margin="92,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
         <ComboBox x:Name="pesCodigoC" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="92,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Veículo" local:WPFExtension.Refers="veiCodigo" HorizontalAlignment="Left" Margin="378,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
-        <ComboBox x:Name="veiCodigo" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="378,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <GroupBox Name="gItens" Header="Itens" HorizontalAlignment="Left" Margin="12,172,0,93" Width="732">
+        <Label Content="Status" local:WPFExtension.Refers="veiCodigo" HorizontalAlignment="Left" Margin="378,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
+        <ComboBox x:Name="orcStatus" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="378,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <GroupBox Name="gItens" Header="Itens" HorizontalAlignment="Left" Margin="12,211,0,54" Width="732">
             <Border>
                 <Viewbox Margin="0,0,17,0" Stretch="Fill">
                     <Grid Height="285" Width="703">
@@ -38,5 +38,10 @@
                 </Viewbox>
             </Border>
         </GroupBox>
+        <DatePicker IsEnabled="False"  x:Name="orcDataCriacao" HorizontalAlignment="Left" Margin="96,181,0,0" VerticalAlignment="Top" Width="117"/>
+        <Label Content="Data de criação" local:WPFExtension.Refers="pesCodigoF" HorizontalAlignment="Left" Margin="96,152,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
+        <Label x:Name="labelC" Content="*" HorizontalAlignment="Left" Margin="135,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.974,1.154"/>
+        <Label x:Name="labelC_Copy" Content="*" HorizontalAlignment="Left" Margin="425,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.974,1.154"/>
+        <Label x:Name="labelObrigatorio" Content="Todos os campos sinalizados com * possuem preenchimento obrigatório" HorizontalAlignment="Left" Margin="345,625,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

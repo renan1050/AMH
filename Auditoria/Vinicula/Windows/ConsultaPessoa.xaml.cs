@@ -32,28 +32,42 @@ namespace Vinicula
 
         private void CheckTipo(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            RadioButton lRadioButton = sender as RadioButton;
-                    
-            if (lRadioButton.Name == "pesTipoPessoa_PF")
+            try
             {
-                UncheckPJ();
-                Atualizar(); 
-            }            
-            else
-            {
-                UncheckPF();
-                Atualizar();
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                RadioButton lRadioButton = sender as RadioButton;
+
+                if (lRadioButton.Name == "pesTipoPessoa_PF")
+                {
+                    UncheckPJ();
+                    Atualizar();
+                }
+                else
+                {
+                    UncheckPF();
+                    Atualizar();
+                }
+
+
+                lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
             }
-                
-            
-            lInterfaceManagement.ShowByAttribute(lRadioButton.GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void UncheckTipo(object sender, RoutedEventArgs e)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            lInterfaceManagement.HideByAttribute(((RadioButton)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
+            try
+            {
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                lInterfaceManagement.HideByAttribute(((RadioButton)sender).GetValue(WPFExtension.RelativeFieldCodeProperty).ToString(), this);
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
+            }
         }
 
         private void UncheckPF()
@@ -70,47 +84,56 @@ namespace Vinicula
 
         private void Atualizar(bool pAbrindo = false)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Pessoa lPessoa = new Pessoa();
-            Dictionary<string, string> lParametro = new Dictionary<string, string>();
-            List<Object> lChildren = new List<Object>();
-            lInterfaceManagement.GetControlsList(pesTipoPessoa, lChildren, pNoVisibilityCheck: pAbrindo);
-            if (lChildren.Count > 0)
+            try
             {
-                string[] lTipoPessoa = ((RadioButton)lChildren.First()).Name.Split('_');
-                lParametro.Add(lTipoPessoa[0], lTipoPessoa[1]);
-
-            }
-            lParametro.Add(pesNome.Name, pesNome.Text);
-            lParametro.Add(pesCPF.Name, pesCPF.Text);
-            lParametro.Add(pesCNPJ.Name, pesCNPJ.Text);
-            lParametro.Add(pesRG.Name, pesRG.Text);
-            dtRegistros.ItemsSource = null;
-            dtRegistros.ItemsSource = lPessoa.AtualizarGrade(lParametro);
-            dtRegistros.AutoGenerateColumns = false;
-            dtRegistros.AutoGenerateColumns = true;
-            
-            if (!pAbrindo)
-            {
-
-                int lCount = 0;
-                FormatedName lAtributo;
-                List<int> lRemover = new List<int>();
-                foreach (PropertyInfo lProperty in typeof(PessoaDM).GetProperties())
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Pessoa lPessoa = new Pessoa();
+                Dictionary<string, string> lParametro = new Dictionary<string, string>();
+                List<Object> lChildren = new List<Object>();
+                lInterfaceManagement.GetControlsList(pesTipoPessoa, lChildren, pNoVisibilityCheck: pAbrindo);
+                if (lChildren.Count > 0)
                 {
-                    lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
-                    if (lAtributo != null)
+                    string[] lTipoPessoa = ((RadioButton)lChildren.First()).Name.Split('_');
+                    lParametro.Add(lTipoPessoa[0], lTipoPessoa[1]);
+
+                }
+                lParametro.Add(pesNome.Name, pesNome.Text);
+                lParametro.Add(pesCPF.Name, pesCPF.Text);
+                lParametro.Add(pesCNPJ.Name, pesCNPJ.Text);
+                lParametro.Add(pesRG.Name, pesRG.Text);
+                dtRegistros.ItemsSource = null;
+                dtRegistros.ItemsSource = lPessoa.AtualizarGrade(lParametro);
+                dtRegistros.AutoGenerateColumns = false;
+                dtRegistros.AutoGenerateColumns = true;
+
+                if (!pAbrindo)
+                {
+
+                    int lCount = 0;
+                    FormatedName lAtributo;
+                    List<int> lRemover = new List<int>();
+                    foreach (PropertyInfo lProperty in typeof(PessoaDM).GetProperties())
                     {
-                        dtRegistros.Columns[lCount].Header = lAtributo.Name;
-                        dtRegistros.Columns[lCount].IsReadOnly = true;
-                        lCount++;
+                        lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
+                        if (lAtributo != null)
+                        {
+                            dtRegistros.Columns[lCount].Header = lAtributo.Name;
+                            dtRegistros.Columns[lCount].IsReadOnly = true;
+                            lCount++;
+                        }
+                        else
+                        {
+                            dtRegistros.Columns.RemoveAt(lCount);
+                        }
+
                     }
-                    else
-                    {
-                        dtRegistros.Columns.RemoveAt(lCount);
-                    }
-                    
-                }   
+                }
+
+                dtRegistros.CanUserAddRows = false;
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
 

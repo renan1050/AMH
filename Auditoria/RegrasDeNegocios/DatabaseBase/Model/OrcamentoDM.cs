@@ -16,6 +16,7 @@ namespace BusinessRules.DatabaseBase.Model
 
         public int? pesCodigoC { get; set; }
 
-        public int? veiCodigo { get; set; }
+        [FormatedName("Status")]
+        public int? orcStatus { get; set; }
     }
 }

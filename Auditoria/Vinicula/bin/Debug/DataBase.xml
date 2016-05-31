@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<bancodedados>
+  <usuario>root</usuario>
+  <senha></senha>
+  <host>127.0.0.1</host>
+  <nomebanco>vinicula</nomebanco>
+  <tiposervidor>mysql</tiposervidor>
+</bancodedados>

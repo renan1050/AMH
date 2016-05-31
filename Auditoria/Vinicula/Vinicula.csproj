@@ -74,7 +74,16 @@
     <Compile Include="Windows\ConsultaProduto.xaml.cs">
       <DependentUpon>ConsultaProduto.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Veiculo.cs" />
+    <Compile Include="Windows\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Sobre.xaml.cs">
+      <DependentUpon>Sobre.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Windows\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,6 +124,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\Sobre.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -148,6 +161,12 @@
       <Project>{3c1981a9-25a5-4dad-96b7-99338d527298}</Project>
       <Name>RegrasDeNegocios</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Debug\DataBase.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagens\cadeado.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

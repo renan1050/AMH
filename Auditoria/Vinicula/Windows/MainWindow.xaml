@@ -17,6 +17,8 @@
                     <MenuItem Header="Cadastro" Click="OrcCadastro_Click" />
                     <MenuItem Header="Consulta" Click="OrcConsulta_Click"/>
                 </MenuItem>
+                <MenuItem Header="Sobre" Click="Sobre_Click" />
+
             </Menu>
         </DockPanel>
 

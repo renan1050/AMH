@@ -36,38 +36,47 @@ namespace Vinicula
 
         private void Atualizar(bool pAbrindo = false)
         {
-            InterfaceManagement lInterfaceManagement = new InterfaceManagement();
-            Orcamento lOrcamento = new Orcamento();
-            Dictionary<string, string> lParametro = new Dictionary<string, string>();
-
-            lParametro.Add(orcDataCriacao_Inicio.Name, orcDataCriacao_Inicio.Text);
-            lParametro.Add(orcDataCriacao_Fim.Name, orcDataCriacao_Fim.Text);
-            lParametro.Add(pesCodigoC.Name, (pesCodigoC.SelectedValue != null ? pesCodigoC.SelectedValue.ToString() : ""));
-            dtRegistros.ItemsSource = null;
-            dtRegistros.ItemsSource = lOrcamento.AtualizarGrade(lParametro);
-            dtRegistros.AutoGenerateColumns = false;
-            dtRegistros.AutoGenerateColumns = true;
-
-            if (!pAbrindo)
+            try
             {
-                int lCount = 0;
-                FormatedName lAtributo;
-                List<int> lRemover = new List<int>();
-                foreach (PropertyInfo lProperty in typeof(OrcamentoDM).GetProperties())
-                {
-                    lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
-                    if (lAtributo != null)
-                    {
-                        dtRegistros.Columns[lCount].Header = lAtributo.Name;
-                        dtRegistros.Columns[lCount].IsReadOnly = true;
-                        lCount++;
-                    }
-                    else
-                    {
-                        dtRegistros.Columns.RemoveAt(lCount);
-                    }
+                InterfaceManagement lInterfaceManagement = new InterfaceManagement();
+                Orcamento lOrcamento = new Orcamento();
+                Dictionary<string, string> lParametro = new Dictionary<string, string>();
 
+                lParametro.Add(orcDataCriacao_Inicio.Name, orcDataCriacao_Inicio.Text);
+                lParametro.Add(orcDataCriacao_Fim.Name, orcDataCriacao_Fim.Text);
+                lParametro.Add(pesCodigoC.Name, (pesCodigoC.SelectedValue != null ? pesCodigoC.SelectedValue.ToString() : ""));
+                dtRegistros.ItemsSource = null;
+                dtRegistros.ItemsSource = lOrcamento.AtualizarGrade(lParametro);
+                dtRegistros.AutoGenerateColumns = false;
+                dtRegistros.AutoGenerateColumns = true;
+
+                if (!pAbrindo)
+                {
+                    int lCount = 0;
+                    FormatedName lAtributo;
+                    List<int> lRemover = new List<int>();
+                    foreach (PropertyInfo lProperty in typeof(OrcamentoDM).GetProperties())
+                    {
+                        lAtributo = lProperty.GetCustomAttributes(typeof(FormatedName), false).Cast<FormatedName>().FirstOrDefault();
+                        if (lAtributo != null)
+                        {
+                            dtRegistros.Columns[lCount].Header = lAtributo.Name;
+                            dtRegistros.Columns[lCount].IsReadOnly = true;
+                            lCount++;
+                        }
+                        else
+                        {
+                            dtRegistros.Columns.RemoveAt(lCount);
+                        }
+
+                    }
                 }
+
+                dtRegistros.CanUserAddRows = false;
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
 
         }
@@ -75,6 +84,12 @@ namespace Vinicula
         private void pesCodigoC_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Atualizar();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroOrcamento lCadastroOrcamento = new CadastroOrcamento();
+            lCadastroOrcamento.Show();
         }
     }
 }

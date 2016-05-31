@@ -63,12 +63,15 @@
     <Compile Include="DatabaseBase\Model\EstadoDM.cs" />
     <Compile Include="DatabaseBase\Model\OrcamentoDM.cs" />
     <Compile Include="DatabaseBase\Model\OrdemDM.cs" />
+    <Compile Include="DatabaseBase\Model\PerfilDM.cs" />
+    <Compile Include="DatabaseBase\Model\PerfilxTelaDM.cs" />
     <Compile Include="DatabaseBase\Model\PessoaDM.cs" />
     <Compile Include="DatabaseBase\Model\PessoaxTipoDM.cs" />
     <Compile Include="DatabaseBase\Model\ProdutoDM.cs" />
     <Compile Include="DatabaseBase\Model\ProdutoxOrcamentoDM.cs" />
     <Compile Include="DatabaseBase\Model\ProdutoxOrdemDM.cs" />
     <Compile Include="DatabaseBase\Model\TipoPessoaDM.cs" />
+    <Compile Include="DatabaseBase\Model\UsuarioDM.cs" />
     <Compile Include="InterfaceBase\InterfaceManagement.cs" />
     <Compile Include="InterfaceBase\WPFExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

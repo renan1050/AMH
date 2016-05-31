@@ -24,5 +24,64 @@ namespace Vinicula
         {
             InitializeComponent();
         }
+
+        #region Pessoa
+
+        private void PesCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroPessoa lCadastroPessoa = new CadastroPessoa();
+            lCadastroPessoa.Show();
+        }
+
+        private void PesConsulta_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaPessoa lConsultaPessoas = new ConsultaPessoa();
+            lConsultaPessoas.Show();
+        }
+
+        #endregion
+
+        #region Orçamento
+
+        private void OrcCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroOrcamento lCadastroOrcamento = new CadastroOrcamento();
+            lCadastroOrcamento.Show();
+        }
+
+        private void OrcConsulta_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaOrcamento lConsultaOrcamento = new ConsultaOrcamento();
+            lConsultaOrcamento.Show();
+        }
+
+        #endregion
+
+        #region Produto
+
+        private void ProCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroProduto lCadastroProduto = new CadastroProduto();
+            lCadastroProduto.Show();
+        }
+
+        private void ProConsulta_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaProduto lConsultaProduto = new ConsultaProduto();
+            lConsultaProduto.Show();
+        }
+
+        #endregion
+
+        #region Sobre
+
+        private void Sobre_Click(object sender, RoutedEventArgs e)
+        {
+            Sobre lSobre = new Sobre();
+            lSobre.Show();
+        }
+
+
+        #endregion
     }
 }

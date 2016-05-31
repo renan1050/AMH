@@ -16,31 +16,38 @@ namespace InterfaceBase
         #region MÉTODO PARA A EXIBIÇÃO/ESCONDAÇÃO DO CAMPO CODIGO E DO CARREGAMENTO DE UM REGISTRO
         public void LoadByValue(string pValue, Window pWindow, Action<string> pLoadAction = null, string pLoadValue = null)
         {
-            if (!string.IsNullOrEmpty(pValue))
+            try
             {
-                List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow,"RelativeField").Where(x => x.GetValue(WPFExtension.RelativeFieldProperty).Equals(pValue)).ToList();
-                foreach (DependencyObject lItem in lDependencyObjectList)
+                if (!string.IsNullOrEmpty(pValue))
                 {
-                    UIElement lUIElement = lItem as UIElement;
-
-                    if (lUIElement == null)
-                        return;
-                    else
+                    List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow, "RelativeField").Where(x => x.GetValue(WPFExtension.RelativeFieldProperty).Equals(pValue)).ToList();
+                    foreach (DependencyObject lItem in lDependencyObjectList)
                     {
-                        if (lUIElement.IsVisible)
-                        {
-                            if (!string.IsNullOrEmpty(pLoadValue))
-                            {
-                                if (pLoadAction != null)
-                                    pLoadAction(pLoadValue);                                
-                            }
+                        UIElement lUIElement = lItem as UIElement;
 
-                            lUIElement.Visibility = Visibility.Hidden;
-                        }
+                        if (lUIElement == null)
+                            return;
                         else
-                            lUIElement.Visibility = Visibility.Visible;
+                        {
+                            if (lUIElement.IsVisible)
+                            {
+                                if (!string.IsNullOrEmpty(pLoadValue))
+                                {
+                                    if (pLoadAction != null)
+                                        pLoadAction(pLoadValue);
+                                }
+
+                                lUIElement.Visibility = Visibility.Hidden;
+                            }
+                            else
+                                lUIElement.Visibility = Visibility.Visible;
+                        }
                     }
                 }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
         #endregion
@@ -48,20 +55,27 @@ namespace InterfaceBase
         #region MÉTODOS PARA MOSTRAR/ESCONDER CAMPOS COM BASE NO VALOR DE ATRIBUTOS
         public void ShowByAttribute(string pValue, Window pWindow)
         {
-            if (!string.IsNullOrEmpty(pValue))
+            try
             {
-                List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow, "RelativeField").Where(x => x.GetValue(WPFExtension.RelativeFieldProperty).Equals(pValue)).ToList();
-                foreach (DependencyObject lItem in lDependencyObjectList)
+                if (!string.IsNullOrEmpty(pValue))
                 {
-                    UIElement lUIElement = lItem as UIElement;
-
-                    if (lUIElement == null)
-                        return;
-                    else
+                    List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(pWindow, "RelativeField").Where(x => x.GetValue(WPFExtension.RelativeFieldProperty).Equals(pValue)).ToList();
+                    foreach (DependencyObject lItem in lDependencyObjectList)
                     {
-                        lUIElement.Visibility = Visibility.Visible;
+                        UIElement lUIElement = lItem as UIElement;
+
+                        if (lUIElement == null)
+                            return;
+                        else
+                        {
+                            lUIElement.Visibility = Visibility.Visible;
+                        }
                     }
                 }
+            }
+            catch (Exception pE)
+            {
+                MessageBox.Show(pE.Message);
             }
         }
 
@@ -151,6 +165,25 @@ namespace InterfaceBase
                         }
                     }
                 }
+                if (lSender is DatePicker)
+                {
+                    DatePicker lDatePicker = (DatePicker)lSender;
+                    if (!string.IsNullOrEmpty(lDatePicker.Text) && lPropriedades.Select(x => x.Name).ToList().Contains(lDatePicker.Name))
+                    {
+                        lPropriedade = lPropriedades.Where(x => x.Name == lDatePicker.Name).First();
+                        lPropriedade.SetValue(lRetorno, Database.ChangeType(lDatePicker.Text, lPropriedade.PropertyType));
+                    }
+                    else
+                    {
+                        DependencyProperty lRequired = DependencyObjectHelper.GetDependencyPropertyByName("Required", lDatePicker);
+
+                        if (lRequired != null && lDatePicker.GetValue(lRequired).ToString().Split(';').Contains(pEnviador))
+                        {
+                            var lLabel = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lDatePicker.Name)).FirstOrDefault();
+                            pErrosValidacao.Add(string.Concat("O campo ", (lLabel != null ? ((Label)lLabel).Content.ToString() : lDatePicker.Name), " é obrigatório."));
+                        }
+                    }
+                }
                 else if (lSender is ComboBox)
                 {
                     ComboBox lComboBox = (ComboBox)lSender;
@@ -233,7 +266,7 @@ namespace InterfaceBase
         
         }
 
-        public bool CarregarDM(DependencyObject pWindow, object pDM)
+        public bool CarregarDM(DependencyObject pWindow, object pDM, Action<object,EventArgs> pOnchange = null, string pName =  null)
         {
             if (pDM == null)
             {
@@ -260,6 +293,18 @@ namespace InterfaceBase
                             lTextBox.Text = string.Empty;
                     }
                 }
+                else if (lSender is DatePicker)
+                {
+                    DatePicker lDatePicker = (DatePicker)lSender;
+                    if (lPropriedades.Select(x => x.Name).ToList().Contains(lDatePicker.Name))
+                    {
+                        lPropriedade = lPropriedades.Where(x => x.Name == lDatePicker.Name).First();
+                        if (lPropriedade.GetValue(pDM) != null)
+                            lDatePicker.Text = lPropriedade.GetValue(pDM).ToString();
+                        else
+                            lDatePicker.Text = string.Empty;
+                    }
+                }
                 else if (lSender is ComboBox)
                 {
                     ComboBox lComboBox = (ComboBox)lSender;
@@ -267,15 +312,19 @@ namespace InterfaceBase
                     {
                         lPropriedade = lPropriedades.Where(x => x.Name == lComboBox.Name).First();
                         if (lPropriedade.GetValue(pDM) != null)
+                        {
                             lComboBox.SelectedValue = lPropriedade.GetValue(pDM).ToString();
+                            if (pOnchange != null && lComboBox.Name == pName)
+                                pOnchange(lComboBox, new EventArgs());
+                        }
                         else
                         {
                             DependencyProperty lRefers = DependencyObjectHelper.GetDependencyPropertyByName("Refers", lComboBox);
 
-                            if(lRefers != null)
+                            if (lRefers != null)
                             {
                                 string[] lRef = lComboBox.GetValue(lRefers).ToString().Split(';');
-                                foreach(string lItem in lRef)
+                                foreach (string lItem in lRef)
                                 {
                                     lPropriedade = lPropriedades.Where(x => x.Name == lItem).First();
                                     if (lPropriedade.GetValue(pDM) != null)
@@ -329,6 +378,8 @@ namespace InterfaceBase
 
                 if (lChild is TextBox && (pNoVisibilityCheck || ((TextBox)lChild).IsVisible))
                     pChildren.Add(lChild as TextBox);
+                if (lChild is DatePicker && (pNoVisibilityCheck || ((DatePicker)lChild).IsVisible))
+                    pChildren.Add(lChild as DatePicker);
                 else if (lChild is ComboBox && (pNoVisibilityCheck || ((ComboBox)lChild).IsVisible))
                     pChildren.Add(lChild as ComboBox);
                 else if (lChild is CheckBox && (pNoCheck || (bool)((CheckBox)lChild).IsChecked) && (pNoVisibilityCheck || ((CheckBox)lChild).IsVisible))
@@ -418,66 +469,58 @@ namespace InterfaceBase
 
         public static bool ValidateCNPJ(string pCNPJ)
         {
+            int[] lMultiplier1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-            string lCNPJValue = pCNPJ.Replace(".", "");
-            lCNPJValue = pCNPJ.Replace("/", "");
-            lCNPJValue = pCNPJ.Replace("-", "");
+            int[] lMultiplier2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-            int[] lDigits, lSum, lResult;
-            int lDigitNumber;
-            string ftmt;
-            bool[] lIsTrue;
+            int lSum;
 
-            ftmt = "6543298765432";
-            lDigits = new int[14];
-            lSum = new int[2];
-            lSum[0] = 0;
-            lSum[1] = 0;
-            lResult = new int[2];
-            lResult[0] = 0;
-            lResult[1] = 0;
-            lIsTrue = new bool[2];
-            lIsTrue[0] = false;
-            lIsTrue[1] = false;
+            int lLeft;
 
-            try
-            {
-                for (lDigitNumber = 0; lDigitNumber < 14; lDigitNumber++)
-                {
-                    lDigits[lDigitNumber] = int.Parse(
-                     lCNPJValue.Substring(lDigitNumber, 1));
-                    if (lDigitNumber <= 11)
-                        lSum[0] += (lDigits[lDigitNumber] *
-                        int.Parse(ftmt.Substring(
-                          lDigitNumber + 1, 1)));
-                    if (lDigitNumber <= 12)
-                        lSum[1] += (lDigits[lDigitNumber] *
-                        int.Parse(ftmt.Substring(
-                          lDigitNumber, 1)));
-                }
+            string lDigit;
 
-                for (lDigitNumber = 0; lDigitNumber < 2; lDigitNumber++)
-                {
-                    lResult[lDigitNumber] = (lSum[lDigitNumber] % 11);
-                    if ((lResult[lDigitNumber] == 0) || (lResult[lDigitNumber] == 1))
-                        lIsTrue[lDigitNumber] = (
-                        lDigits[12 + lDigitNumber] == 0);
+            string lTempCNPJ;
 
-                    else
-                        lIsTrue[lDigitNumber] = (
-                        lDigits[12 + lDigitNumber] == (
-                        11 - lResult[lDigitNumber]));
+            pCNPJ = pCNPJ.Trim();
 
-                }
+            pCNPJ = pCNPJ.Replace(".", "").Replace("-", "").Replace("/", "");
 
-                return (lIsTrue[0] && lIsTrue[1]);
-
-            }
-            catch
-            {
+            if (pCNPJ.Length != 14)
                 return false;
-            }
 
+            lTempCNPJ = pCNPJ.Substring(0, 12);
+
+            lSum = 0;
+
+            for (int i = 0; i < 12; i++)
+                lSum += int.Parse(lTempCNPJ[i].ToString()) * lMultiplier1[i];
+
+            lLeft = (lSum % 11);
+
+            if (lLeft < 2)
+                lLeft = 0;
+            else
+                lLeft = 11 - lLeft;
+
+            lDigit = lLeft.ToString();
+
+            lTempCNPJ = lTempCNPJ + lDigit;
+
+            lSum = 0;
+
+            for (int i = 0; i < 13; i++)
+                lSum += int.Parse(lTempCNPJ[i].ToString()) * lMultiplier2[i];
+
+            lLeft = (lSum % 11);
+
+            if (lLeft < 2)
+                lLeft = 0;
+            else
+                lLeft = 11 - lLeft;
+
+            lDigit = lDigit + lLeft.ToString();
+
+            return pCNPJ.EndsWith(lDigit);
         }
 
         #endregion
@@ -500,7 +543,16 @@ namespace InterfaceBase
 
         public static bool ValidateEmail(string pEmail)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(pEmail, ("(?<user>[^@]+)@(?<host>.+)"));
+            try
+            {
+                var lAddress = new System.Net.Mail.MailAddress(pEmail);
+                return lAddress.Address == pEmail;
+            }
+            catch 
+            {
+                return false;
+            }
+            //return System.Text.RegularExpressions.Regex.IsMatch(pEmail, ("(?<user>[^@]+)@(?<host>.+)"));
         }
 
         #endregion

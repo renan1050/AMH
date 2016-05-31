@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace BusinessRules.DatabaseBase.Model
 {
-    public class ServicoxOrcamentoDM
+    public class ProdutoxOrcamentoDM
     {
         [FormatedName("Código")]
         public int? genCodigo { get; set; }
-
-        public int? serCodigo { get; set; }
-                
+        
         public int? orcCodigo { get; set; }
 
         public int? proCodigo { get; set; }

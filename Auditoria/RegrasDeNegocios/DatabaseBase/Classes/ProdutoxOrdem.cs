@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace BusinessRules.DatabaseBase.Classes
 {
-    public class ServicoxOrdem
+    public class ProdutoxOrdem
     {
-        public static string gTabela = "servicoxordem";
+        public static string gTabela = "produtoxordem";
         //seleciona todos dados no banco clientes e retorna um datatable
         public DataTable AtualizarGrade()
         {
             return Database.SelecionarTudo(gTabela);
         }
 
-        public List<ServicoxOrdemDM> SelecionarTudo()
+        public List<ProdutoxOrdemDM> SelecionarTudo()
         {
-            return Database.SelecionarTudo(gTabela, typeof(ServicoxOrdemDM)).Cast<ServicoxOrdemDM>().ToList();
+            return Database.SelecionarTudo(gTabela, typeof(ProdutoxOrdemDM)).Cast<ProdutoxOrdemDM>().ToList();
         }
 
         //insere novo cliente
-        public bool NovoCliente(ServicoxOrdemDM pServicoxOrdemDM, Action<string> pCarregar = null)
+        public bool NovoCliente(ProdutoxOrdemDM pProdutoxOrdemDM, Action<string> pCarregar = null)
         {
-            if (Database.Insert(gTabela, pServicoxOrdemDM))
+            if (Database.Insert(gTabela, pProdutoxOrdemDM))
             {
                 if (pCarregar != null)
                     pCarregar(Database.SelecionarUltimoId(gTabela));
@@ -38,26 +38,26 @@ namespace BusinessRules.DatabaseBase.Classes
         }
 
         //seleciona um cliente de acordo com seu codigo
-        public ServicoxOrdemDM SelectCodigo(string pChave)
+        public ProdutoxOrdemDM SelectCodigo(string pChave)
         {
-            return (ServicoxOrdemDM)Database.SelecionarPorCodigo(gTabela, pChave, typeof(ServicoxOrdemDM));
+            return (ProdutoxOrdemDM)Database.SelecionarPorCodigo(gTabela, pChave, typeof(ProdutoxOrdemDM));
         }
 
-        public List<ServicoxOrdemDM> SelectPorOrdem(string pChave)
+        public List<ProdutoxOrdemDM> SelectPorOrdem(string pChave)
         {
-            return Database.SelecionarPorCampo(gTabela, pChave, "ordCodigo", typeof(ServicoxOrdemDM)).Cast<ServicoxOrdemDM>().ToList();
+            return Database.SelecionarPorCampo(gTabela, pChave, "ordCodigo", typeof(ProdutoxOrdemDM)).Cast<ProdutoxOrdemDM>().ToList();
         }
 
         //salva ediçoes no cliente
-        public bool EditarCliente(ServicoxOrdemDM pServicoxOrdemDM)
+        public bool EditarCliente(ProdutoxOrdemDM pProdutoxOrdemDM)
         {
-            return Database.Update(gTabela, pServicoxOrdemDM);
+            return Database.Update(gTabela, pProdutoxOrdemDM);
         }
 
         //exclui cliente com o codigo informado
         public bool ExcluirCliente(string pChave)
         {
-            return Database.Delete(gTabela, pChave, typeof(ServicoxOrdemDM));
+            return Database.Delete(gTabela, pChave, typeof(ProdutoxOrdemDM));
         }
     }
 }
