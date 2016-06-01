@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.1.9-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.1.13-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win32
 -- HeidiSQL Versão:              9.3.0.4984
 -- --------------------------------------------------------
@@ -17,13 +17,16 @@ USE `vinicula`;
 
 -- Copiando estrutura para tabela vinicula.auditorcamento
 CREATE TABLE IF NOT EXISTS `auditorcamento` (
-  `orcCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `genCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `genTipo` char(1) NOT NULL DEFAULT '0',
+  `orcCodigo` int(11) DEFAULT NULL,
   `orcDataCriacao` varchar(50) DEFAULT NULL,
   `pesCodigoC` int(11) DEFAULT NULL,
   `pesCodigoF` int(11) DEFAULT NULL,
   `orcStatus` int(11) DEFAULT NULL,
-  PRIMARY KEY (`orcCodigo`),
-  UNIQUE KEY `orcCodigo_UNIQUE` (`orcCodigo`),
+  `genData` date DEFAULT NULL,
+  `genHora` time DEFAULT NULL,
+  PRIMARY KEY (`genCodigo`),
   KEY `fk_orcamento_pessoa1_idx` (`pesCodigoC`),
   KEY `pesCodigoF` (`pesCodigoF`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -35,7 +38,9 @@ CREATE TABLE IF NOT EXISTS `auditorcamento` (
 
 -- Copiando estrutura para tabela vinicula.auditpessoa
 CREATE TABLE IF NOT EXISTS `auditpessoa` (
-  `pesCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `genCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `genTipo` char(1) DEFAULT NULL,
+  `pesCodigo` int(11) DEFAULT NULL,
   `pesNome` varchar(50) DEFAULT NULL,
   `pesRazaoSocial` varchar(50) DEFAULT NULL,
   `pesTipoPessoa` char(2) DEFAULT NULL,
@@ -55,34 +60,38 @@ CREATE TABLE IF NOT EXISTS `auditpessoa` (
   `estCodigo` int(11) DEFAULT NULL,
   `cidCodigo` int(11) DEFAULT NULL,
   `pesCargo` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`pesCodigo`),
-  UNIQUE KEY `pesCodigo_UNIQUE` (`pesCodigo`),
+  `genData` date DEFAULT NULL,
+  `genHora` time DEFAULT NULL,
+  PRIMARY KEY (`genCodigo`),
   KEY `fk_pessoa_estado1_idx` (`estCodigo`),
   KEY `fk_pessoa_cidade1_idx` (`cidCodigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Copiando dados para a tabela vinicula.auditpessoa: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `auditpessoa` DISABLE KEYS */;
-INSERT INTO `auditpessoa` (`pesCodigo`, `pesNome`, `pesRazaoSocial`, `pesTipoPessoa`, `pesRG`, `pesCPF`, `pesCNPJ`, `pesTelResidencial`, `pesTelComercial`, `pesCelular`, `pesEmail`, `pesNascimento`, `pesCEP`, `pesEndereco`, `pesNumero`, `pesComplemento`, `pesBairro`, `estCodigo`, `cidCodigo`, `pesCargo`) VALUES
-	(2, 'Roger Fracs', NULL, 'PF', '4544544', '546.780.770-65', NULL, '(19)4478-5858', '(19)4406-7667', '(19)99875-7858', 'roger@francs.com', '1996-05-13', '13468741', 'Rua da Consolação ', '119', NULL, 'Mirante', 35, 3501608, NULL);
+INSERT INTO `auditpessoa` (`genCodigo`, `genTipo`, `pesCodigo`, `pesNome`, `pesRazaoSocial`, `pesTipoPessoa`, `pesRG`, `pesCPF`, `pesCNPJ`, `pesTelResidencial`, `pesTelComercial`, `pesCelular`, `pesEmail`, `pesNascimento`, `pesCEP`, `pesEndereco`, `pesNumero`, `pesComplemento`, `pesBairro`, `estCodigo`, `cidCodigo`, `pesCargo`, `genData`, `genHora`) VALUES
+	(3, NULL, 2, 'Roger Fracs', NULL, 'PF', '4544544', '546.780.770-65', NULL, '(19)4478-5858', '(19)4406-7667', '(19)99875-7858', 'roger@francs.com', '1996-05-13', '13468741', 'Rua da Consolação ', '119', NULL, 'Mirante', 35, 3501608, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `auditpessoa` ENABLE KEYS */;
 
 
 -- Copiando estrutura para tabela vinicula.auditproduto
 CREATE TABLE IF NOT EXISTS `auditproduto` (
-  `proCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `genCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `genTipo` char(1) DEFAULT NULL,
+  `proCodigo` int(11) DEFAULT NULL,
   `proNome` varchar(50) DEFAULT NULL,
   `proValorUnitario` decimal(8,2) DEFAULT NULL,
   `proDescricao` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`proCodigo`),
-  UNIQUE KEY `proCodigo_UNIQUE` (`proCodigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `genData` date DEFAULT NULL,
+  `genHora` time DEFAULT NULL,
+  PRIMARY KEY (`genCodigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Copiando dados para a tabela vinicula.auditproduto: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `auditproduto` DISABLE KEYS */;
-INSERT INTO `auditproduto` (`proCodigo`, `proNome`, `proValorUnitario`, `proDescricao`) VALUES
-	(2, 'Vinho Suave Branco ', 10.99, '1 litro '),
-	(3, 'Vinho da Serra', 10.66, 'Vinho da Serra do Dem');
+INSERT INTO `auditproduto` (`genCodigo`, `genTipo`, `proCodigo`, `proNome`, `proValorUnitario`, `proDescricao`, `genData`, `genHora`) VALUES
+	(4, NULL, 2, 'Vinho Suave Branco ', 10.99, '1 litro ', NULL, NULL),
+	(5, NULL, 3, 'Vinho da Serra', 10.66, 'Vinho da Serra do Dem', NULL, NULL);
 /*!40000 ALTER TABLE `auditproduto` ENABLE KEYS */;
 
 
@@ -5851,7 +5860,7 @@ CREATE TABLE IF NOT EXISTS `perfil` (
   PRIMARY KEY (`perCodigo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela vinicula.perfil: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela vinicula.perfil: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
 INSERT INTO `perfil` (`perCodigo`, `perNome`) VALUES
 	(1, 'Admin'),
@@ -5866,9 +5875,9 @@ CREATE TABLE IF NOT EXISTS `perfilxtela` (
   `pxtTela` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`pxtCodigo`),
   KEY `perCodigo` (`perCodigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela vinicula.perfilxtela: ~15 rows (aproximadamente)
+-- Copiando dados para a tabela vinicula.perfilxtela: ~19 rows (aproximadamente)
 /*!40000 ALTER TABLE `perfilxtela` DISABLE KEYS */;
 INSERT INTO `perfilxtela` (`pxtCodigo`, `perCodigo`, `pxtTela`) VALUES
 	(1, 1, 'CadastroOrcamento'),
@@ -5885,7 +5894,11 @@ INSERT INTO `perfilxtela` (`pxtCodigo`, `perCodigo`, `pxtTela`) VALUES
 	(13, 2, 'ConsultaOrcamento'),
 	(14, 2, 'ConsultaPessoa'),
 	(15, 2, 'ConsultaProduto'),
-	(16, 2, 'Sobre');
+	(16, 2, 'Sobre'),
+	(17, 1, 'CadastroUsuario'),
+	(18, 1, 'CadastroPerfil'),
+	(19, 1, 'ConsultaUsuario'),
+	(20, 1, 'ConsultaPerfil');
 /*!40000 ALTER TABLE `perfilxtela` ENABLE KEYS */;
 
 
@@ -6019,6 +6032,66 @@ INSERT INTO `usuario` (`usuCodigo`, `usuNome`, `usuSenha`, `pesCodigo`, `perCodi
 	(1, 'Admin', '123456', 1, 1),
 	(2, 'Funcionario', '123456', 2, 2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+
+
+-- Copiando estrutura para trigger vinicula.orcamento_after_delete
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `orcamento_after_delete` AFTER DELETE ON `orcamento` FOR EACH ROW BEGIN
+	INSERT INTO auditorcamento (genTipo, orcDataCriacao, pesCodigoC, pesCodigoF, orcStatus, genData, genHora) values ('D', old.orcCodigo, old.orcDataCriacao, old.pesCodigoC, old.pesCodigoF, old.orcStatus,(select curdate()),(select curtime()));
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+-- Copiando estrutura para trigger vinicula.orcamento_after_update
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `orcamento_after_update` AFTER UPDATE ON `orcamento` FOR EACH ROW BEGIN
+	INSERT INTO auditorcamento (genTipo, orcCodigo, orcDataCriacao, pesCodigoC, pesCodigoF, orcStatus, genData, genHora) values ('A', old.orcCodigo, old.orcDataCriacao, old.pesCodigoC, old.pesCodigoF, old.orcStatus,(select curdate()),(select curtime()));
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+-- Copiando estrutura para trigger vinicula.pessoa_after_delete
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `pessoa_after_delete` AFTER DELETE ON `pessoa` FOR EACH ROW BEGIN
+	INSERT INTO auditpessoa (genTipo, pesCodigo, pesNome, pesRazaoSocial, pesTipoPessoa, pesRG, pesCPF, pesCNPJ, pesTelResidencial, pesTelComercial, pesCelular, pesEmail, pesNascimento, pesCEP, pesEndereco, pesNumero, pesComplemento, pesBairro, estCodigo, cidCodigo, pesCargo, genData, genHora) values ('D', old.pesCodigo, old.pesNome, old.pesRazaoSocial, old.pesTipoPessoa, old.pesRG, old.pesCPF, old.pesCNPJ, old.pesTelResidencial, old.pesTelComercial, old.pesCelular, old.pesEmail, old.pesNascimento, old.pesCEP, old.pesEndereco, old.pesNumero, old.pesComplemento, old.pesBairro, old.estCodigo, old.cidCodigo, old.pesCargo,(select curdate()),(select curtime()));
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+-- Copiando estrutura para trigger vinicula.pessoa_after_update
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `pessoa_after_update` AFTER UPDATE ON `pessoa` FOR EACH ROW BEGIN
+	INSERT INTO auditpessoa (genTipo, pesCodigo, pesNome, pesRazaoSocial, pesTipoPessoa, pesRG, pesCPF, pesCNPJ, pesTelResidencial, pesTelComercial, pesCelular, pesEmail, pesNascimento, pesCEP, pesEndereco, pesNumero, pesComplemento, pesBairro, estCodigo, cidCodigo, pesCargo, genData, genHora) values ('A', old.pesCodigo, old.pesNome, old.pesRazaoSocial, old.pesTipoPessoa, old.pesRG, old.pesCPF, old.pesCNPJ, old.pesTelResidencial, old.pesTelComercial, old.pesCelular, old.pesEmail, old.pesNascimento, old.pesCEP, old.pesEndereco, old.pesNumero, old.pesComplemento, old.pesBairro, old.estCodigo, old.cidCodigo, old.pesCargo,(select curdate()),(select curtime()));
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+-- Copiando estrutura para trigger vinicula.produto_after_delete
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `produto_after_delete` AFTER DELETE ON `produto` FOR EACH ROW BEGIN
+	INSERT INTO auditproduto (genTipo, proCodigo, proNome, proValorUnitario, proDescricao, genData, genHora) values ('D', old.proCodigo, old.proNome, old.proValorUnitario, old.proDescricao,(select curdate()),(select curtime()));
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+
+-- Copiando estrutura para trigger vinicula.produto_after_update
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `produto_after_update` AFTER UPDATE ON `produto` FOR EACH ROW BEGIN
+	INSERT INTO auditproduto (genTipo, proCodigo, proNome, proValorUnitario, proDescricao, genData, genHora) values ('A', old.proCodigo, old.proNome, old.proValorUnitario, old.proDescricao,(select curdate()),(select curtime()));
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
