@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios" x:Class="Vinicula.CadastroUsuario"
-        Title="Cadastro de Produtos" Height="316.84" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
+        Title="Cadastro de Usuarios" Height="316.84" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,8">
         <TextBox x:Name="usuCodigo" HorizontalAlignment="Left" Height="23" Margin="120,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Código" HorizontalAlignment="Left" Margin="120,7,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>

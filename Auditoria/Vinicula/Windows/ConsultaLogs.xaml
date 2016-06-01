@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios" x:Class="Vinicula.ConsultaLogs"
-        Title="Consulta de orçamento" Height="325.656" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
+        Title="Consulta de Logs" Height="325.656" Width="552.632" Background="#FFC4D7FF" Foreground="#FF1700FF" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,13,5">
         <ComboBox x:Name="usuCodigo" SelectionChanged="usuCodigo_SelectionChanged" HorizontalAlignment="Left" Margin="23,36,0,0" VerticalAlignment="Top" Width="287" Background="White" BorderBrush="#FF0A1444" Foreground="#FF1700FF"/>
         <Label Content="Usuário" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Width="287" Foreground="#FF1700FF"/>

@@ -10,32 +10,21 @@
 
         <Label x:Name="lbEquipe" Content="Equipe:" HorizontalAlignment="Left" Margin="15,60,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="txtEquipetxt" IsEnabled="False" HorizontalAlignment="Left" Height="125" Margin="96,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424"
-                 Text="A  equipe  responsável  pelo  desenvolvimento  do  software  é composta  pelos integrantes:                                                                                                 
-                 - Lucas  Menezes - Gerente de Projeto 
-                                                                       
-                 - Guilherme  Fonseca - Progrmador 
-                                                             
-                 - Renan  Campos - DBA
-                                                            
-                         
-                 - Mateus  Ferreira Pinto - Tester                                                                               
-                 - Vinicius  Pinheiro - Designer"
+                 Text="A  equipe  responsável  pelo  desenvolvimento  do  software  é composta  pelos integrantes:                                                                                                                   -Guilherme Antonio Fonseca&#xD;&#xA;-Lucas de Souza Lizzi&#xD;&#xA;-Mateus Ferreira Pinto&#xD;&#xA;-Renan Campos da Nunciação"
                  
                  />
                
-        <Label x:Name="lbSoftware" Content="Software:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <Label x:Name="lbSoftware" Content="Projeto:" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="txtSoftwaretxt" IsEnabled="False" HorizontalAlignment="Left" Height="80" Margin="96,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424" 
-                 Text="AMH (Allianz Maintenance Helper) é uma ferramenta de gestão de negócios com ênfase em controle de ordens de serviços e manutenção de clientes.  
-                      O software incluí as funcionalidades de cadastro de veículos, clientes, funcionários, ordens de serviço e estoque." 
-                 TextAlignment="Justify"/>
+                 TextAlignment="Justify" Text="Projeto desenvolvido para apresentação na disciplina de Auditoria de Sistemas como requisito avaliativo."/>
 
         <Label x:Name="lbContato" Content="Contato:" HorizontalAlignment="Left" Margin="10,281,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="txtContato" IsEnabled="False" HorizontalAlignment="Left" Height="79" Margin="96,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="424" 
-                 Text="Para entrar em contato com nossa equipe, segue os dados abaixo:                                    Website: allianzproject.com.br                                                                     Facebook: Allianz Projetos e Sistemas                                                               &#xD;&#xA;E-mail: allianz.suporte@gmail.com                  "
+                 Text="Para entrar em contato com nossa equipe                                                               Facebook: XYZ Solutions                                                               &#xA;E-mail: suporte@xyz.com                  "
               
                  />       
         
-        <Label x:Name="lbCopyright" Content="Allianz - Copyright - Todos direitos reservados" HorizontalAlignment="Left" Margin="145,374,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbCopyright" Content="XYZ Solutions- Copyright - Todos direitos reservados" HorizontalAlignment="Left" Margin="145,374,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>
