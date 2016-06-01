@@ -13,6 +13,7 @@ namespace RegrasDeNegocios.DatabaseBase.Model
 
         public int? perCodigo { get; set; }
 
+        [FormatedName("Tela")]
         public string pxtTela { get; set; }
     }
 }

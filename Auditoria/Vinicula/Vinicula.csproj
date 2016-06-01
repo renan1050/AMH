@@ -53,14 +53,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\CadastroPerfil.xaml.cs">
+      <DependentUpon>CadastroPerfil.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CadastroOrcamento.xaml.cs">
       <DependentUpon>CadastroOrcamento.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\CadastroPessoa.xaml.cs">
       <DependentUpon>CadastroPessoa.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\CadastroUsuario.xaml.cs">
+      <DependentUpon>CadastroUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CadastroProduto.xaml.cs">
       <DependentUpon>CadastroProduto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ConsultaPerfil.xaml.cs">
+      <DependentUpon>ConsultaPerfil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ConsultaUsuario.xaml.cs">
+      <DependentUpon>ConsultaUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ConsultaLogs.xaml.cs">
       <DependentUpon>ConsultaLogs.xaml</DependentUpon>
@@ -80,6 +92,22 @@
     <Compile Include="Windows\Sobre.xaml.cs">
       <DependentUpon>Sobre.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\CadastroPerfil.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\CadastroUsuario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ConsultaPerfil.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ConsultaUsuario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

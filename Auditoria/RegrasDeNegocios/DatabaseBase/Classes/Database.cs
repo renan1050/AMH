@@ -168,6 +168,66 @@ namespace RegrasDeNegocios.DatabaseBase.Classes
             }
         }
 
+        public static List<object> SelecionarTudoJoinUser(string pTabela, Dictionary<string, string> pParametros, Type pTipoObjeto)
+        {
+            try
+            {
+                MySqlConnection lConnection = DatabaseConnection.getInstance().getConnection();
+                lConnection.Open();
+
+                List<object> lRetornos = new List<object>();
+                string lSelect = "SELECT *, pesNome  as Pessoa, perNome as Perfil FROM " + pTabela + " inner join pessoa on " + pTabela + ".pesCodigo = pessoa.pesCodigo inner join perfil on " + pTabela + ".perCodigo = perfil.perCodigo  WHERE ";
+                bool lFirst = true;
+                foreach (KeyValuePair<string, string> lParametro in pParametros)
+                {
+                    if (!lFirst)
+                        lSelect = string.Concat(lSelect, " AND ");
+                    else
+                        lFirst = false;
+                    if (lParametro.Key.Contains("_"))
+                    {
+                        string[] lDate = lParametro.Key.Split('_');
+                        if (lDate[1] == "Inicio")
+                            lSelect = string.Concat(lSelect, " ('", lParametro.Value, "' = '' OR (STR_TO_DATE(", lDate[0], ", '%Y-%c-%e %T') ", " >= STR_TO_DATE(", (string.IsNullOrEmpty(lParametro.Value) ? "''" : lParametro.Value), ", '%Y-%c-%e %T')))");
+                        else
+                            lSelect = string.Concat(lSelect, " ('", lParametro.Value, "' = '' OR (STR_TO_DATE(", lDate[0], ", '%Y-%c-%e %T') ", " <= STR_TO_DATE(", (string.IsNullOrEmpty(lParametro.Value) ? "''" : lParametro.Value), ", '%Y-%c-%e %T')))");
+                    }
+                    else
+                        lSelect = string.Concat(lSelect, " (", pTabela, ".", lParametro.Key, " LIKE '%", lParametro.Value, "%' OR '", lParametro.Value, "' = '')");
+                }
+
+
+                MySqlCommand lCommand = new MySqlCommand(lSelect, lConnection);
+
+                MySqlDataReader lReader = lCommand.ExecuteReader();
+
+                var lPropriedades = pTipoObjeto.GetProperties();
+
+                object lRetorno;
+
+                while (lReader.Read())
+                {
+                    lRetorno = Activator.CreateInstance(pTipoObjeto);
+
+                    foreach (var lPropriedade in lPropriedades)
+                    {
+                        lPropriedade.SetValue(lRetorno, lReader[lPropriedade.Name] is DBNull ? null : ChangeType(lReader[lPropriedade.Name], lPropriedade.PropertyType));
+                    }
+
+                    lRetornos.Add(lRetorno);
+                }
+
+                lConnection.Close();
+
+                return lRetornos;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ocorreu um erro no servidor, contate o administrador do sistema");
+                return null;
+            }
+        }
+
         public static string SelecionarUltimoId(string pTabela)
         {
             try

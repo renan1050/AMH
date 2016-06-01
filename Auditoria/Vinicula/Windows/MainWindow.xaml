@@ -18,6 +18,14 @@
                     <MenuItem local:WPFExtension.Refers="CadastroOrcamento" Header="Cadastro" Click="OrcCadastro_Click" Visibility="Hidden" />
                     <MenuItem local:WPFExtension.Refers="ConsultaOrcamento" Header="Consulta" Click="OrcConsulta_Click" Visibility="Hidden"/>
                 </MenuItem>
+                <MenuItem Header="Usuario">
+                    <MenuItem local:WPFExtension.Refers="CadastroUsuario" Header="Cadastro" Click="UsuCadastro_Click" Visibility="Hidden" />
+                    <MenuItem local:WPFExtension.Refers="ConsultaUsuario" Header="Consulta" Click="UsuConsulta_Click" Visibility="Hidden"/>
+                </MenuItem>
+                <MenuItem Header="Perfil">
+                    <MenuItem local:WPFExtension.Refers="CadastroPerfil" Header="Cadastro" Click="PerCadastro_Click" Visibility="Hidden" />
+                    <MenuItem local:WPFExtension.Refers="ConsultaPerfil" Header="Consulta" Click="PerConsulta_Click" Visibility="Hidden"/>
+                </MenuItem>
                 <MenuItem Header="Controle de acesso">
                     <MenuItem local:WPFExtension.Refers="ConsultaLogs" Header="Consulta de logs" Click="ConsultaLogs_Click" Visibility="Hidden" />                    
                 </MenuItem>

@@ -95,6 +95,38 @@ namespace Vinicula
 
         #endregion
 
+        #region Usuario
+
+        private void UsuCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroUsuario lCadastroUsuario = new CadastroUsuario();
+            lCadastroUsuario.Show();
+        }
+
+        private void UsuConsulta_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaUsuario lConsultaUsuario = new ConsultaUsuario();
+            lConsultaUsuario.Show();
+        }
+
+        #endregion
+
+        #region Perfil
+
+        private void PerCadastro_Click(object sender, RoutedEventArgs e)
+        {
+            CadastroPerfil lCadastroPerfil = new CadastroPerfil();
+            lCadastroPerfil.Show();
+        }
+
+        private void PerConsulta_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaPerfil lConsultaPerfil = new ConsultaPerfil();
+            lConsultaPerfil.Show();
+        }
+
+        #endregion
+
         private void ConsultaLogs_Click(object sender, RoutedEventArgs e)
         {
             ConsultaLogs lConsultaLogs = new ConsultaLogs();

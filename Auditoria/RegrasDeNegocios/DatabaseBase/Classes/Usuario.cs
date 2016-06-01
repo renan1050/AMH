@@ -17,6 +17,11 @@ namespace RegrasDeNegocios.DatabaseBase.Classes
             return Database.SelecionarTudo(gTabela, typeof(UsuarioDM)).Cast<UsuarioDM>().ToList();
         }
 
+        public List<UsuarioVM> AtualizarGrade(Dictionary<string, string> pParamentros)
+        {
+            return Database.SelecionarTudoJoinUser(gTabela, pParamentros, typeof(UsuarioVM)).Cast<UsuarioVM>().ToList();
+        }
+
         //insere novo cliente
         public bool NovoCliente(UsuarioDM pUsuarioDM, Action<string> pCarregar)
         {
