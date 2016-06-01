@@ -1,4 +1,6 @@
-﻿using RegrasDeNegocios.DatabaseBase.Classes;
+﻿using InterfaceBase;
+using RegrasDeNegocios.DatabaseBase.Classes;
+using RegrasDeNegocios.DatabaseBase.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +23,17 @@ namespace Vinicula
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
+        public MainWindow(List<PerfilxTelaDM> pPermissoes)
+        {            
             InitializeComponent();
-            Logs.Log("MainWindow", "Abrir");
+            Logs.Log("MainWindow", "Abrir");            
+            
+            List<DependencyObject> lDependencyObjectList = DependencyObjectHelper.GetDependencyObjectsWithProperty(this, "Refers").Where(x => pPermissoes.Select(y => y.pxtTela).Contains(x.GetValue(WPFExtension.RefersProperty))).ToList();
+            foreach (DependencyObject lItem in lDependencyObjectList)
+            {
+                UIElement lUIElement = lItem as UIElement;                
+                lUIElement.Visibility = Visibility.Visible;                
+            }        
         }
 
         #region Pessoa
@@ -85,5 +94,11 @@ namespace Vinicula
 
 
         #endregion
+
+        private void ConsultaLogs_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaLogs lConsultaLogs = new ConsultaLogs();
+            lConsultaLogs.Show();
+        }
     }
 }

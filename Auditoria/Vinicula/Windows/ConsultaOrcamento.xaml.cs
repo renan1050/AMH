@@ -74,6 +74,7 @@ namespace Vinicula
                 }
 
                 dtRegistros.CanUserAddRows = false;
+                Logs.Log("ConsultaOrcamento", "Atualizar");
             }
             catch (Exception pE)
             {

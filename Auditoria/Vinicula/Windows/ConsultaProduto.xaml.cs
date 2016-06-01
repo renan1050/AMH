@@ -27,6 +27,7 @@ namespace Vinicula
         {
             InitializeComponent();
             Atualizar(true);
+            Logs.Log("ConsultaProduto", "Abrir");
         }
 
         private void Atualizar(bool pAbrindo = false)
@@ -65,6 +66,8 @@ namespace Vinicula
                     }
                 }
                 dtRegistros.CanUserAddRows = false;
+
+                Logs.Log("ConsultaProduto", "Atualizar");
             }
             catch (Exception pE)
             {

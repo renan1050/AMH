@@ -125,6 +125,7 @@ namespace Vinicula
             proCodigo.Text = null;
             proNome.Text = null;
             proValorUnitario.Text = null;
+            proDescricao.Text = null;
         }
     }
 }

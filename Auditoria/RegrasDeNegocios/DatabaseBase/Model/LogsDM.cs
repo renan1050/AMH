@@ -18,4 +18,22 @@ namespace RegrasDeNegocios.DatabaseBase.Model
         
         public int? usuCodigo { get; set; }
     }
+
+    public class LogsVM
+    {
+        [FormatedName("Código")]
+        public int? logCodigo { get; set; }
+
+        [FormatedName("Data e Hora")]
+        public string logDiaHora { get; set; }
+
+        [FormatedName("Classe")]
+        public string logClasse { get; set; }
+
+        [FormatedName("Método")]
+        public string logMetodo { get; set; }
+
+        [FormatedName("Usuário")]
+        public string Nome { get; set; }
+    }
 }

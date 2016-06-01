@@ -12,6 +12,12 @@ namespace RegrasDeNegocios.DatabaseBase.Classes
     public class Logs
     {
         private static string gTabela = "logs";
+
+        public List<LogsVM> AtualizarGrade(Dictionary<string, string> pParamentros)
+        {
+            return Database.SelecionarTudoJoin(gTabela, pParamentros, typeof(LogsVM)).Cast<LogsVM>().ToList();
+        }
+
         public static bool Log(string pClasse, string pMetodo)
         {
             LogsDM lLogsDM = new LogsDM();
@@ -22,15 +28,5 @@ namespace RegrasDeNegocios.DatabaseBase.Classes
 
             return Database.Insert(gTabela, lLogsDM);            
         }
-
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static string GetCurrentMethod()
-        {
-            StackTrace st = new StackTrace();
-            StackFrame sf = st.GetFrame(1);
-
-            return sf.GetMethod().Name;
-        }
-       
     }
 }

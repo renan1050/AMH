@@ -1,23 +1,27 @@
 ﻿<Window x:Class="Vinicula.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios"
         Title="Cadastro de pessoas" Height="571.605" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
     <Grid>
         <DockPanel Margin="0,0,0,513">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Pessoa">
-                    <MenuItem Header="Cadastro" Click="PesCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="PesConsulta_Click" />
+                    <MenuItem local:WPFExtension.Refers="CadastroPessoa" Header="Cadastro" Click="PesCadastro_Click" Visibility="Hidden" />
+                    <MenuItem local:WPFExtension.Refers="ConsultaPessoa" Header="Consulta" Click="PesConsulta_Click" Visibility="Hidden" />
                 </MenuItem>
                 <MenuItem Header="Produto">
-                    <MenuItem Header="Cadastro" Click="ProCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="ProConsulta_Click" />
+                    <MenuItem local:WPFExtension.Refers="CadastroProduto" Header="Cadastro" Click="ProCadastro_Click" Visibility="Hidden" />
+                    <MenuItem local:WPFExtension.Refers="ConsultaProduto" Header="Consulta" Click="ProConsulta_Click" Visibility="Hidden" />
                 </MenuItem>
                 <MenuItem Header="Orçamento">
-                    <MenuItem Header="Cadastro" Click="OrcCadastro_Click" />
-                    <MenuItem Header="Consulta" Click="OrcConsulta_Click"/>
+                    <MenuItem local:WPFExtension.Refers="CadastroOrcamento" Header="Cadastro" Click="OrcCadastro_Click" Visibility="Hidden" />
+                    <MenuItem local:WPFExtension.Refers="ConsultaOrcamento" Header="Consulta" Click="OrcConsulta_Click" Visibility="Hidden"/>
                 </MenuItem>
-                <MenuItem Header="Sobre" Click="Sobre_Click" />
+                <MenuItem Header="Controle de acesso">
+                    <MenuItem local:WPFExtension.Refers="ConsultaLogs" Header="Consulta de logs" Click="ConsultaLogs_Click" Visibility="Hidden" />                    
+                </MenuItem>
+                <MenuItem Header="Sobre" Click="Sobre_Click" local:WPFExtension.Refers="Sobre" Visibility="Hidden" />
 
             </Menu>
         </DockPanel>

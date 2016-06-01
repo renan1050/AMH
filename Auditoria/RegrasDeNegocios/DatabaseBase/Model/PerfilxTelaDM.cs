@@ -8,5 +8,11 @@ namespace RegrasDeNegocios.DatabaseBase.Model
 {
     public class PerfilxTelaDM
     {
+        [FormatedName("Código")]
+        public int? pxtCodigo { get; set; }
+
+        public int? perCodigo { get; set; }
+
+        public string pxtTela { get; set; }
     }
 }

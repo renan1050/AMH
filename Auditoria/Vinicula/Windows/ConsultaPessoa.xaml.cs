@@ -27,7 +27,8 @@ namespace Vinicula
         {
             InitializeComponent();
             Atualizar(true);
-            //pesTipoPessoa_PF.IsChecked = true;            
+            //pesTipoPessoa_PF.IsChecked = true;        
+            Logs.Log("ConsultaPessoa", "Abrir");
         }
 
         private void CheckTipo(object sender, RoutedEventArgs e)
@@ -130,6 +131,8 @@ namespace Vinicula
                 }
 
                 dtRegistros.CanUserAddRows = false;
+
+                Logs.Log("ConsultaPessoa", "Atualizar");
             }
             catch (Exception pE)
             {

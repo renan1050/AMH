@@ -49,6 +49,8 @@ namespace Vinicula
             proCodigo.DisplayMemberPath = "Name";
             proCodigo.SelectedValuePath = "Value";
 
+            orcStatus.SelectedValuePath = "Tag";
+
             Logs.Log("CadastroOrcamento", "Abrir");
         }
 

@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios"
         xmlns:InterfaceBase="clr-namespace:InterfaceBase;assembly=RegrasDeNegocios" x:Class="Vinicula.CadastroProduto"
-        Title="Cadastro de Produtos" Height="300.84" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
+        Title="Cadastro de Produtos" Height="316.84" Width="762.287" Background="#FFC4D7FF" Foreground="Black" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,8">
         <TextBox x:Name="proCodigo" HorizontalAlignment="Left" Height="23" Margin="120,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
         <Label Content="Código" HorizontalAlignment="Left" Margin="120,7,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF"/>
         <Button x:Name="btnCarregar" InterfaceBase:WPFExtension.RelativeFieldCode="Carregar" Content="Carregar"  HorizontalAlignment="Left" Margin="260,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Click="Load" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444"/>
 
-        <WrapPanel local:WPFExtension.RelativeField="Carregar" HorizontalAlignment="Left" Height="27" Margin="260,61,0,0" VerticalAlignment="Top" Width="297" >
+        <WrapPanel local:WPFExtension.RelativeField="Carregar" HorizontalAlignment="Left" Height="27" Margin="260,61,0,0" VerticalAlignment="Top" Width="297" Visibility="Hidden" >
             <Label Content="Código" Foreground="#FF1700FF"/>
             <TextBox x:Name="txtCodigoCarregar" Height="22" TextWrapping="Wrap" Width="245" Foreground="#FF1700FF"/>
         </WrapPanel>

@@ -38,7 +38,12 @@ namespace Vinicula.Windows
                 if(lUsuarioDMList.Count > 0)
                 {
                     Database.setUsuario(lUsuarioDMList.First());
-                    MainWindow lMainWindow = new MainWindow();
+
+                    lParametros = new Dictionary<string,string>();
+                    lParametros.Add("perCodigo",  lUsuarioDMList.First().perCodigo.ToString());
+
+                    List<PerfilxTelaDM> lPerfilxTelaDMList = Database.SelecionarTudo("perfilxtela", lParametros, typeof(PerfilxTelaDM)).Cast<PerfilxTelaDM>().ToList();
+                    MainWindow lMainWindow = new MainWindow(lPerfilxTelaDMList);
                     lMainWindow.Show();
                     this.Close();
                 }

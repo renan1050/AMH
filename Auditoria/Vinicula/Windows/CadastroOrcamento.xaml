@@ -15,8 +15,13 @@
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="499,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
         <Label Content="Cliente" local:WPFExtension.Refers="pesCodigoC" HorizontalAlignment="Left" Margin="92,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
         <ComboBox x:Name="pesCodigoC" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="92,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
-        <Label Content="Status" local:WPFExtension.Refers="veiCodigo" HorizontalAlignment="Left" Margin="378,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
-        <ComboBox x:Name="orcStatus" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="378,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>
+        <Label Content="Status" local:WPFExtension.Refers="orcStatus" HorizontalAlignment="Left" Margin="378,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
+        <ComboBox x:Name="orcStatus" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Margin="378,130,0,0" VerticalAlignment="Top" Width="258" Foreground="#FF1700FF" BorderBrush="#FF0A1444">
+            <ComboBoxItem Tag="1">Em aberto</ComboBoxItem>
+            <ComboBoxItem Tag="2">Cancelado</ComboBoxItem>
+            <ComboBoxItem Tag="3">Aguardando retorno</ComboBoxItem>
+            <ComboBoxItem Tag="4">Finalizado</ComboBoxItem>
+        </ComboBox>
         <GroupBox Name="gItens" Header="Itens" HorizontalAlignment="Left" Margin="12,211,0,54" Width="732">
             <Border>
                 <Viewbox Margin="0,0,17,0" Stretch="Fill">

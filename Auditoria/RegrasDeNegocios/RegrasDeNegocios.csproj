@@ -59,6 +59,7 @@
     <Compile Include="DatabaseBase\Classes\ProdutoxOrcamento.cs" />
     <Compile Include="DatabaseBase\Classes\ProdutoxOrdem.cs" />
     <Compile Include="DatabaseBase\Classes\TipoPessoa.cs" />
+    <Compile Include="DatabaseBase\Classes\Usuario.cs" />
     <Compile Include="DatabaseBase\DatabaseConnection.cs" />
     <Compile Include="DatabaseBase\Model\CidadeDM.cs" />
     <Compile Include="DatabaseBase\Model\EstadoDM.cs" />
