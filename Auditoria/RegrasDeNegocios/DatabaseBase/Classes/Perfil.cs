@@ -39,7 +39,7 @@ namespace RegrasDeNegocios.DatabaseBase.Classes
         //seleciona um cliente de acordo com seu codigo
         public PerfilDM SelectCodigo(string pChave)
         {
-            return (PerfilDM)Database.SelecionarPorCodigo(gTabela, pChave, typeof(EstadoDM));
+            return (PerfilDM)Database.SelecionarPorCodigo(gTabela, pChave, typeof(PerfilDM));
         }
 
         //salva ediçoes no cliente

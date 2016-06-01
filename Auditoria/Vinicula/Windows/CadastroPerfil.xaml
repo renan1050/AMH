@@ -14,7 +14,7 @@
         <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="375,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnExcluir_Click"/>
         <Button x:Name="btnSalvar" Content="Salvar" HorizontalAlignment="Left" Margin="499,33,0,0" VerticalAlignment="Top" Width="120" Height="23" Background="#FF4882FF" Foreground="Black" BorderBrush="#FF0A1444" Click="btnSalvar_Click"/>
         <Label Content="Nome" local:WPFExtension.Refers="perNome" HorizontalAlignment="Left" Margin="92,104,0,0" VerticalAlignment="Top" Width="157" Foreground="#FF1700FF"/>
-        <TextBox x:Name="perNome" HorizontalAlignment="Left" Height="23" Margin="96,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>        
+        <TextBox x:Name="perNome" local:WPFExtension.Required="btnSalvar" HorizontalAlignment="Left" Height="23" Margin="96,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FF1700FF" BorderBrush="#FF0A1444"/>        
         <GroupBox Name="gItens" Header="Itens" HorizontalAlignment="Left" Margin="12,166,0,99" Width="732">
             <Border>
                 <Viewbox Margin="0,0,17,0" Stretch="Fill">

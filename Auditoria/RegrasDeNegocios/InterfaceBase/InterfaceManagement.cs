@@ -12,7 +12,7 @@ using System.Windows.Media;
 namespace InterfaceBase
 {
     public class InterfaceManagement
-    {        
+    {
         #region MÉTODO PARA A EXIBIÇÃO/ESCONDAÇÃO DO CAMPO CODIGO E DO CARREGAMENTO DE UM REGISTRO
         public void LoadByValue(string pValue, Window pWindow, Action<string> pLoadAction = null, string pLoadValue = null)
         {
@@ -110,9 +110,10 @@ namespace InterfaceBase
             PropertyInfo lPropriedade;
             List<Object> lParents = new List<Object>();
             bool lResult;
-            foreach (Object lSender in lChildren) 
+            foreach (Object lSender in lChildren)
             {
-                if(lSender is TextBox){
+                if (lSender is TextBox)
+                {
                     TextBox lTextBox = (TextBox)lSender;
                     if (!string.IsNullOrEmpty(lTextBox.Text) && lPropriedades.Select(x => x.Name).ToList().Contains(lTextBox.Name))
                     {
@@ -152,7 +153,7 @@ namespace InterfaceBase
                         else
                             lPropriedade.SetValue(lRetorno, Database.ChangeType(lTextBox.Text, lPropriedade.PropertyType));
 
-                        
+
                     }
                     else
                     {
@@ -181,6 +182,25 @@ namespace InterfaceBase
                         {
                             var lLabel = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lDatePicker.Name)).FirstOrDefault();
                             pErrosValidacao.Add(string.Concat("O campo ", (lLabel != null ? ((Label)lLabel).Content.ToString() : lDatePicker.Name), " é obrigatório."));
+                        }
+                    }
+                }
+                if (lSender is PasswordBox)
+                {
+                    PasswordBox lPasswordBox = (PasswordBox)lSender;
+                    if (!string.IsNullOrEmpty(lPasswordBox.Password) && lPropriedades.Select(x => x.Name).ToList().Contains(lPasswordBox.Name))
+                    {
+                        lPropriedade = lPropriedades.Where(x => x.Name == lPasswordBox.Name).First();
+                        lPropriedade.SetValue(lRetorno, Database.ChangeType(lPasswordBox.Password, lPropriedade.PropertyType));
+                    }
+                    else
+                    {
+                        DependencyProperty lRequired = DependencyObjectHelper.GetDependencyPropertyByName("Required", lPasswordBox);
+
+                        if (lRequired != null && lPasswordBox.GetValue(lRequired).ToString().Split(';').Contains(pEnviador))
+                        {
+                            var lLabel = lLabels.Where(x => x.GetValue(WPFExtension.RefersProperty).Equals(lPasswordBox.Name)).FirstOrDefault();
+                            pErrosValidacao.Add(string.Concat("O campo ", (lLabel != null ? ((Label)lLabel).Content.ToString() : lPasswordBox.Name), " é obrigatório."));
                         }
                     }
                 }
@@ -259,14 +279,14 @@ namespace InterfaceBase
                         }
                     }
                 }
-                
-            }                
+
+            }
 
             return lRetorno;
-        
+
         }
 
-        public bool CarregarDM(DependencyObject pWindow, object pDM, Action<object,EventArgs> pOnchange = null, string pName =  null)
+        public bool CarregarDM(DependencyObject pWindow, object pDM, Action<object, EventArgs> pOnchange = null, string pName = null)
         {
             if (pDM == null)
             {
@@ -369,7 +389,7 @@ namespace InterfaceBase
         }
 
         public void GetControlsList(DependencyObject pControl, List<Object> pChildren, bool pNoCheck = false, bool pNoVisibilityCheck = false)
-        {   
+        {
             int lChildNumber = VisualTreeHelper.GetChildrenCount(pControl);
 
             for (int i = 0; i <= lChildNumber - 1; i++)
@@ -380,6 +400,8 @@ namespace InterfaceBase
                     pChildren.Add(lChild as TextBox);
                 if (lChild is DatePicker && (pNoVisibilityCheck || ((DatePicker)lChild).IsVisible))
                     pChildren.Add(lChild as DatePicker);
+                if (lChild is PasswordBox && (pNoVisibilityCheck || ((PasswordBox)lChild).IsVisible))
+                    pChildren.Add(lChild as PasswordBox);
                 else if (lChild is ComboBox && (pNoVisibilityCheck || ((ComboBox)lChild).IsVisible))
                     pChildren.Add(lChild as ComboBox);
                 else if (lChild is CheckBox && (pNoCheck || (bool)((CheckBox)lChild).IsChecked) && (pNoVisibilityCheck || ((CheckBox)lChild).IsVisible))
@@ -548,7 +570,7 @@ namespace InterfaceBase
                 var lAddress = new System.Net.Mail.MailAddress(pEmail);
                 return lAddress.Address == pEmail;
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -565,5 +587,5 @@ namespace InterfaceBase
         }
 
         #endregion
-    } 
+    }
 }

@@ -34,9 +34,9 @@ namespace Vinicula
 
             Perfil lPerfil = new Perfil();
             List<PerfilDM> lPerfilDM = lPerfil.SelecionarTudo();
-            pesCodigo.ItemsSource = lPerfilDM.ToDictionary(x => x.perCodigo, x => x.perNome);
-            pesCodigo.DisplayMemberPath = "Value";
-            pesCodigo.SelectedValuePath = "Key";
+            perCodigo.ItemsSource = lPerfilDM.ToDictionary(x => x.perCodigo, x => x.perNome);
+            perCodigo.DisplayMemberPath = "Value";
+            perCodigo.SelectedValuePath = "Key";
 
             Logs.Log("CadastroUsuario", "Abrir");
         }
