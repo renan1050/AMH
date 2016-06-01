@@ -13,7 +13,78 @@
 -- Copiando estrutura do banco de dados para vinicula
 CREATE DATABASE IF NOT EXISTS `vinicula` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `vinicula`;
- 
+
+
+-- Copiando estrutura para tabela vinicula.auditorcamento
+CREATE TABLE IF NOT EXISTS `auditorcamento` (
+  `orcCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `orcDataCriacao` varchar(50) DEFAULT NULL,
+  `pesCodigoC` int(11) DEFAULT NULL,
+  `pesCodigoF` int(11) DEFAULT NULL,
+  `orcStatus` int(11) DEFAULT NULL,
+  PRIMARY KEY (`orcCodigo`),
+  UNIQUE KEY `orcCodigo_UNIQUE` (`orcCodigo`),
+  KEY `fk_orcamento_pessoa1_idx` (`pesCodigoC`),
+  KEY `pesCodigoF` (`pesCodigoF`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- Copiando dados para a tabela vinicula.auditorcamento: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `auditorcamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auditorcamento` ENABLE KEYS */;
+
+
+-- Copiando estrutura para tabela vinicula.auditpessoa
+CREATE TABLE IF NOT EXISTS `auditpessoa` (
+  `pesCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `pesNome` varchar(50) DEFAULT NULL,
+  `pesRazaoSocial` varchar(50) DEFAULT NULL,
+  `pesTipoPessoa` char(2) DEFAULT NULL,
+  `pesRG` varchar(20) DEFAULT NULL,
+  `pesCPF` varchar(14) DEFAULT NULL,
+  `pesCNPJ` varchar(18) DEFAULT NULL,
+  `pesTelResidencial` varchar(15) DEFAULT NULL,
+  `pesTelComercial` varchar(15) DEFAULT NULL,
+  `pesCelular` varchar(15) DEFAULT NULL,
+  `pesEmail` varchar(100) DEFAULT NULL,
+  `pesNascimento` date DEFAULT NULL,
+  `pesCEP` varchar(9) DEFAULT NULL,
+  `pesEndereco` varchar(100) DEFAULT NULL,
+  `pesNumero` varchar(6) DEFAULT NULL,
+  `pesComplemento` varchar(20) DEFAULT NULL,
+  `pesBairro` varchar(50) DEFAULT NULL,
+  `estCodigo` int(11) DEFAULT NULL,
+  `cidCodigo` int(11) DEFAULT NULL,
+  `pesCargo` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`pesCodigo`),
+  UNIQUE KEY `pesCodigo_UNIQUE` (`pesCodigo`),
+  KEY `fk_pessoa_estado1_idx` (`estCodigo`),
+  KEY `fk_pessoa_cidade1_idx` (`cidCodigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- Copiando dados para a tabela vinicula.auditpessoa: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `auditpessoa` DISABLE KEYS */;
+INSERT INTO `auditpessoa` (`pesCodigo`, `pesNome`, `pesRazaoSocial`, `pesTipoPessoa`, `pesRG`, `pesCPF`, `pesCNPJ`, `pesTelResidencial`, `pesTelComercial`, `pesCelular`, `pesEmail`, `pesNascimento`, `pesCEP`, `pesEndereco`, `pesNumero`, `pesComplemento`, `pesBairro`, `estCodigo`, `cidCodigo`, `pesCargo`) VALUES
+	(2, 'Roger Fracs', NULL, 'PF', '4544544', '546.780.770-65', NULL, '(19)4478-5858', '(19)4406-7667', '(19)99875-7858', 'roger@francs.com', '1996-05-13', '13468741', 'Rua da Consolação ', '119', NULL, 'Mirante', 35, 3501608, NULL);
+/*!40000 ALTER TABLE `auditpessoa` ENABLE KEYS */;
+
+
+-- Copiando estrutura para tabela vinicula.auditproduto
+CREATE TABLE IF NOT EXISTS `auditproduto` (
+  `proCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `proNome` varchar(50) DEFAULT NULL,
+  `proValorUnitario` decimal(8,2) DEFAULT NULL,
+  `proDescricao` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`proCodigo`),
+  UNIQUE KEY `proCodigo_UNIQUE` (`proCodigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- Copiando dados para a tabela vinicula.auditproduto: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `auditproduto` DISABLE KEYS */;
+INSERT INTO `auditproduto` (`proCodigo`, `proNome`, `proValorUnitario`, `proDescricao`) VALUES
+	(2, 'Vinho Suave Branco ', 10.99, '1 litro '),
+	(3, 'Vinho da Serra', 10.66, 'Vinho da Serra do Dem');
+/*!40000 ALTER TABLE `auditproduto` ENABLE KEYS */;
+
 
 -- Copiando estrutura para tabela vinicula.cidade
 CREATE TABLE IF NOT EXISTS `cidade` (
@@ -22,8 +93,7 @@ CREATE TABLE IF NOT EXISTS `cidade` (
   `cidNome` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cidCodigo`),
   UNIQUE KEY `cidCodigo_UNIQUE` (`cidCodigo`),
-  KEY `fk_cidade_estado1_idx` (`estCodigo`),
-  CONSTRAINT `fk_cidade_estado1` FOREIGN KEY (`estCodigo`) REFERENCES `estado` (`estCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_cidade_estado1_idx` (`estCodigo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5300109 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela vinicula.cidade: ~5.570 rows (aproximadamente)
@@ -5644,6 +5714,118 @@ INSERT INTO `estado` (`estCodigo`, `estSigla`, `estNome`) VALUES
 /*!40000 ALTER TABLE `estado` ENABLE KEYS */;
 
 
+-- Copiando estrutura para tabela vinicula.logs
+CREATE TABLE IF NOT EXISTS `logs` (
+  `logCodigo` bigint(50) NOT NULL AUTO_INCREMENT,
+  `logDiaHora` varchar(50) DEFAULT NULL,
+  `logClasse` varchar(100) DEFAULT NULL,
+  `logMetodo` varchar(100) DEFAULT NULL,
+  `usuCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`logCodigo`),
+  KEY `usuCodigo` (`usuCodigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela vinicula.logs: ~95 rows (aproximadamente)
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+INSERT INTO `logs` (`logCodigo`, `logDiaHora`, `logClasse`, `logMetodo`, `usuCodigo`) VALUES
+	(1, '01/06/2018 09:59:58', 'MainWindow', 'Abrir', 1),
+	(2, '01/06/2016 10:00:01', 'CadastroPessoa', 'Abrir', 1),
+	(3, '01/06/2016 10:00:06', 'CadastroPessoa', 'Carregar pessoa, código: 1', 1),
+	(4, '01/06/2016 10:00:16', 'CadastroPessoa', 'Atualizar tipos', 1),
+	(5, '01/06/2016 10:00:17', 'CadastroPessoa', 'Editar pessoa, código: 1', 1),
+	(6, '01/06/2016 10:00:33', 'CadastroPessoa', 'Excluir pessoa, código: 1', 1),
+	(7, '01/06/2016 10:02:13', 'CadastroPessoa', 'Carregar pessoa, código: 1', 1),
+	(8, '01/06/2016 10:02:16', 'CadastroPessoa', 'Excluir pessoa, código: 1', 1),
+	(9, '01/06/2016 10:02:43', 'CadastroPessoa', 'Carregar pessoa, código: 1', 1),
+	(10, '01/06/2016 10:03:31', 'CadastroPessoa', 'Excluir pessoa, código: 1', 1),
+	(11, '01/06/2016 10:05:52', 'CadastroPessoa', 'Carregar pessoa, código: 1', 1),
+	(12, '01/06/2016 10:05:56', 'CadastroPessoa', 'Excluir pessoa, código: 1', 1),
+	(13, '01/06/2016 10:06:00', 'CadastroPessoa', 'Carregar pessoa, código: 1', 1),
+	(14, '01/06/2016 10:06:33', 'ConsultaPessoa', 'Atualizar', 1),
+	(15, '01/06/2016 10:06:34', 'ConsultaPessoa', 'Abrir', 1),
+	(16, '01/06/2016 10:06:36', 'ConsultaPessoa', 'Atualizar', 1),
+	(17, '01/06/2016 10:06:37', 'ConsultaPessoa', 'Atualizar', 1),
+	(18, '01/06/2016 10:06:38', 'ConsultaPessoa', 'Atualizar', 1),
+	(19, '01/06/2016 10:06:41', 'CadastroPessoa', 'Abrir', 1),
+	(20, '01/06/2016 10:06:45', 'CadastroProduto', 'Abrir', 1),
+	(21, '01/06/2016 10:07:31', 'CadastroProduto', 'Carregar produto, código: 3', 1),
+	(22, '01/06/2016 10:07:33', 'CadastroProduto', 'Inserir produto', 1),
+	(23, '01/06/2016 10:07:37', 'CadastroProduto', 'Carregar produto, código: 2', 1),
+	(24, '01/06/2016 10:07:44', 'ConsultaProduto', 'Atualizar', 1),
+	(25, '01/06/2016 10:07:44', 'ConsultaProduto', 'Abrir', 1),
+	(26, '01/06/2016 10:07:53', 'ConsultaProduto', 'Atualizar', 1),
+	(27, '01/06/2016 10:08:01', 'ConsultaProduto', 'Atualizar', 1),
+	(28, '01/06/2016 10:08:08', 'ConsultaProduto', 'Atualizar', 1),
+	(29, '01/06/2016 10:08:09', 'CadastroProduto', 'Abrir', 1),
+	(30, '01/06/2016 10:08:14', 'CadastroProduto', 'Carregar produto, código: 1', 1),
+	(31, '01/06/2016 10:08:16', 'CadastroProduto', 'Excluir produto, código: 1', 1),
+	(32, '01/06/2016 10:08:29', 'CadastroOrcamento', 'Abrir', 1),
+	(33, '01/06/2016 10:18:31', 'MainWindow', 'Abrir', 1),
+	(34, '01/06/2016 10:18:35', 'CadastroOrcamento', 'Abrir', 1),
+	(35, '01/06/2016 10:18:40', 'CadastroOrcamento', 'Carregar orçamento, código: 1', 1),
+	(36, '01/06/2016 10:18:42', 'CadastroOrcamento', 'Inserir orçamento', 1),
+	(37, '01/06/2016 10:19:08', 'CadastroOrcamento', 'Inserir item de orçamento', 1),
+	(38, '01/06/2016 10:19:12', 'CadastroOrcamento', 'Inserir item de orçamento', 1),
+	(39, '01/06/2016 10:19:25', 'ConsultaOrcamento', 'Atualizar', 1),
+	(40, '01/06/2016 10:19:25', 'ConsultaOrcamento', 'Abrir', 1),
+	(41, '01/06/2016 10:19:28', 'ConsultaOrcamento', 'Atualizar', 1),
+	(42, '01/06/2016 10:20:07', 'MainWindow', 'Abrir', 1),
+	(43, '01/06/2016 10:20:09', 'CadastroOrcamento', 'Abrir', 1),
+	(44, '01/06/2016 10:20:11', 'CadastroOrcamento', 'Carregar orçamento, código: 1', 1),
+	(45, '01/06/2016 10:20:17', 'CadastroOrcamento', 'Editar orçamento, código: 1', 1),
+	(46, '01/06/2016 10:20:19', 'CadastroOrcamento', 'Carregar orçamento, código: 1', 1),
+	(47, '01/06/2016 10:20:23', 'CadastroOrcamento', 'Excluir orçamento, código: 1', 1),
+	(48, '01/06/2016 10:36:35', 'MainWindow', 'Abrir', 2),
+	(49, '01/06/2016 10:37:56', 'MainWindow', 'Abrir', 2),
+	(50, '01/06/2016 10:39:14', 'MainWindow', 'Abrir', 2),
+	(51, '01/06/2016 10:49:53', 'MainWindow', 'Abrir', 1),
+	(52, '01/06/2016 10:49:59', 'ConsultaLogs', 'Atualizar', 1),
+	(53, '01/06/2016 10:49:59', 'ConsultaLogs', 'Abrir', 1),
+	(54, '01/06/2016 10:50:05', 'ConsultaLogs', 'Atualizar', 1),
+	(55, '01/06/2016 10:50:08', 'ConsultaLogs', 'Atualizar', 1),
+	(56, '01/06/2016 10:50:23', 'ConsultaLogs', 'Atualizar', 1),
+	(57, '01/06/2016 10:50:24', 'ConsultaLogs', 'Atualizar', 1),
+	(58, '01/06/2016 10:50:44', 'ConsultaLogs', 'Atualizar', 1),
+	(59, '01/06/2016 10:50:45', 'ConsultaLogs', 'Atualizar', 1),
+	(60, '01/06/2016 10:51:25', 'MainWindow', 'Abrir', 1),
+	(61, '01/06/2016 10:51:28', 'ConsultaLogs', 'Atualizar', 1),
+	(62, '01/06/2016 10:51:28', 'ConsultaLogs', 'Abrir', 1),
+	(63, '01/06/2016 10:51:37', 'ConsultaLogs', 'Atualizar', 1),
+	(64, '01/06/2016 10:51:38', 'ConsultaLogs', 'Atualizar', 1),
+	(65, '01/06/2016 10:51:45', 'ConsultaLogs', 'Atualizar', 1),
+	(66, '01/06/2016 10:51:46', 'ConsultaLogs', 'Atualizar', 1),
+	(67, '01/06/2016 10:51:55', 'ConsultaLogs', 'Atualizar', 1),
+	(68, '01/06/2016 10:51:56', 'ConsultaLogs', 'Atualizar', 1),
+	(69, '01/06/2016 10:51:58', 'ConsultaLogs', 'Atualizar', 1),
+	(70, '01/06/2016 10:55:54', 'MainWindow', 'Abrir', 1),
+	(71, '01/06/2016 10:55:58', 'ConsultaLogs', 'Atualizar', 1),
+	(72, '01/06/2016 10:55:59', 'ConsultaLogs', 'Abrir', 1),
+	(73, '01/06/2016 10:56:04', 'ConsultaLogs', 'Atualizar', 1),
+	(74, '01/06/2016 10:56:05', 'ConsultaLogs', 'Atualizar', 1),
+	(75, '01/06/2016 10:59:36', 'MainWindow', 'Abrir', 1),
+	(76, '01/06/2016 10:59:40', 'ConsultaLogs', 'Abrir', 1),
+	(77, '01/06/2016 10:59:58', 'MainWindow', 'Abrir', 1),
+	(78, '01/06/2016 11:00:01', 'ConsultaLogs', 'Atualizar', 1),
+	(79, '01/06/2016 11:00:01', 'ConsultaLogs', 'Abrir', 1),
+	(80, '01/06/2016 11:00:09', 'ConsultaLogs', 'Atualizar', 1),
+	(81, '01/06/2016 11:02:30', 'MainWindow', 'Abrir', 1),
+	(82, '01/06/2016 11:02:37', 'ConsultaLogs', 'Abrir', 1),
+	(83, '01/06/2016 11:03:08', 'MainWindow', 'Abrir', 1),
+	(84, '01/06/2016 11:03:31', 'ConsultaLogs', 'Abrir', 1),
+	(85, '01/06/2016 11:05:45', 'MainWindow', 'Abrir', 1),
+	(86, '01/06/2016 11:06:21', 'MainWindow', 'Abrir', 1),
+	(87, '01/06/2016 11:06:53', 'MainWindow', 'Abrir', 1),
+	(88, '01/06/2016 11:07:10', 'MainWindow', 'Abrir', 1),
+	(89, '01/06/2016 11:07:40', 'MainWindow', 'Abrir', 1),
+	(90, '01/06/2016 11:08:43', 'MainWindow', 'Abrir', 1),
+	(91, '01/06/2016 11:08:51', 'ConsultaLogs', 'Atualizar', 1),
+	(92, '01/06/2016 11:08:51', 'ConsultaLogs', 'Abrir', 1),
+	(93, '01/06/2016 11:08:58', 'ConsultaLogs', 'Atualizar', 1),
+	(94, '01/06/2016 11:09:07', 'ConsultaLogs', 'Atualizar', 1),
+	(95, '01/06/2016 11:09:12', 'ConsultaLogs', 'Atualizar', 1);
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+
+
 -- Copiando estrutura para tabela vinicula.orcamento
 CREATE TABLE IF NOT EXISTS `orcamento` (
   `orcCodigo` int(11) NOT NULL AUTO_INCREMENT,
@@ -5654,10 +5836,8 @@ CREATE TABLE IF NOT EXISTS `orcamento` (
   PRIMARY KEY (`orcCodigo`),
   UNIQUE KEY `orcCodigo_UNIQUE` (`orcCodigo`),
   KEY `fk_orcamento_pessoa1_idx` (`pesCodigoC`),
-  KEY `pesCodigoF` (`pesCodigoF`),
-  CONSTRAINT `fk_orcamento_pessoa1` FOREIGN KEY (`pesCodigoC`) REFERENCES `pessoa` (`pesCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `pesCodigoF` FOREIGN KEY (`pesCodigoF`) REFERENCES `pessoa` (`pesCodigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `pesCodigoF` (`pesCodigoF`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela vinicula.orcamento: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `orcamento` DISABLE KEYS */;
@@ -5669,12 +5849,13 @@ CREATE TABLE IF NOT EXISTS `perfil` (
   `perCodigo` int(11) NOT NULL AUTO_INCREMENT,
   `perNome` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`perCodigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela vinicula.perfil: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
 INSERT INTO `perfil` (`perCodigo`, `perNome`) VALUES
-	(1, 'Admin');
+	(1, 'Admin'),
+	(2, 'Funcionario');
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 
 
@@ -5684,11 +5865,10 @@ CREATE TABLE IF NOT EXISTS `perfilxtela` (
   `perCodigo` int(11) DEFAULT NULL,
   `pxtTela` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`pxtCodigo`),
-  KEY `perCodigo` (`perCodigo`),
-  CONSTRAINT `fk_perCodigo` FOREIGN KEY (`perCodigo`) REFERENCES `perfil` (`perCodigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  KEY `perCodigo` (`perCodigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela vinicula.perfilxtela: ~9 rows (aproximadamente)
+-- Copiando dados para a tabela vinicula.perfilxtela: ~15 rows (aproximadamente)
 /*!40000 ALTER TABLE `perfilxtela` DISABLE KEYS */;
 INSERT INTO `perfilxtela` (`pxtCodigo`, `perCodigo`, `pxtTela`) VALUES
 	(1, 1, 'CadastroOrcamento'),
@@ -5698,8 +5878,14 @@ INSERT INTO `perfilxtela` (`pxtCodigo`, `perCodigo`, `pxtTela`) VALUES
 	(5, 1, 'ConsultaOrcamento'),
 	(6, 1, 'ConsultaPessoa'),
 	(7, 1, 'ConsultaProduto'),
-	(8, 1, 'MainWindow'),
-	(9, 1, 'Sobre');
+	(9, 1, 'Sobre'),
+	(10, 2, 'CadastroOrcamento'),
+	(11, 2, 'CadastroPessoa'),
+	(12, 2, 'CadastroProduto'),
+	(13, 2, 'ConsultaOrcamento'),
+	(14, 2, 'ConsultaPessoa'),
+	(15, 2, 'ConsultaProduto'),
+	(16, 2, 'Sobre');
 /*!40000 ALTER TABLE `perfilxtela` ENABLE KEYS */;
 
 
@@ -5728,15 +5914,12 @@ CREATE TABLE IF NOT EXISTS `pessoa` (
   PRIMARY KEY (`pesCodigo`),
   UNIQUE KEY `pesCodigo_UNIQUE` (`pesCodigo`),
   KEY `fk_pessoa_estado1_idx` (`estCodigo`),
-  KEY `fk_pessoa_cidade1_idx` (`cidCodigo`),
-  CONSTRAINT `fk_pessoa_cidade1` FOREIGN KEY (`cidCodigo`) REFERENCES `cidade` (`cidCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_pessoa_estado1` FOREIGN KEY (`estCodigo`) REFERENCES `estado` (`estCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_pessoa_cidade1_idx` (`cidCodigo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela vinicula.pessoa: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela vinicula.pessoa: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
 INSERT INTO `pessoa` (`pesCodigo`, `pesNome`, `pesRazaoSocial`, `pesTipoPessoa`, `pesRG`, `pesCPF`, `pesCNPJ`, `pesTelResidencial`, `pesTelComercial`, `pesCelular`, `pesEmail`, `pesNascimento`, `pesCEP`, `pesEndereco`, `pesNumero`, `pesComplemento`, `pesBairro`, `estCodigo`, `cidCodigo`, `pesCargo`) VALUES
-	(1, 'Pessoa', NULL, 'PF', '45.437.328-4', '431.825.988-99', NULL, 'telefone', 'telefone', 'telefone', 'email@provedor.com', '1996-02-09', '13455-510', 'enderecp', '123', 'compl', 'Bairro', 35, 3545803, 'Chefe'),
 	(2, 'Roger Fracs', NULL, 'PF', '4544544', '546.780.770-65', NULL, '(19)4478-5858', '(19)4406-7667', '(19)99875-7858', 'roger@francs.com', '1996-05-13', '13468741', 'Rua da Consolação ', '119', NULL, 'Mirante', 35, 3501608, NULL);
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 
@@ -5748,18 +5931,16 @@ CREATE TABLE IF NOT EXISTS `pessoaxtipo` (
   `tipCodigo` int(11) NOT NULL,
   PRIMARY KEY (`genCodigo`),
   KEY `pessoa` (`pesCodigo`),
-  KEY `tipo` (`tipCodigo`),
-  CONSTRAINT `pessoa` FOREIGN KEY (`pesCodigo`) REFERENCES `pessoa` (`pesCodigo`),
-  CONSTRAINT `tipo` FOREIGN KEY (`tipCodigo`) REFERENCES `tipopessoa` (`tipCodigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  KEY `tipo` (`tipCodigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela vinicula.pessoaxtipo: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `pessoaxtipo` DISABLE KEYS */;
 INSERT INTO `pessoaxtipo` (`genCodigo`, `pesCodigo`, `tipCodigo`) VALUES
-	(1, 1, 3),
-	(2, 1, 1),
-	(3, 1, 2),
-	(6, 2, 1);
+	(6, 2, 1),
+	(7, 1, 3),
+	(8, 1, 1),
+	(9, 1, 2);
 /*!40000 ALTER TABLE `pessoaxtipo` ENABLE KEYS */;
 
 
@@ -5771,13 +5952,13 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `proDescricao` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`proCodigo`),
   UNIQUE KEY `proCodigo_UNIQUE` (`proCodigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela vinicula.produto: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
 INSERT INTO `produto` (`proCodigo`, `proNome`, `proValorUnitario`, `proDescricao`) VALUES
-	(1, 'Vinho Seco Noir 2013', 10.35, 'Safra de 2013, seco'),
-	(2, 'Vinho Suave Branco ', 10.99, '1 litro ');
+	(2, 'Vinho Suave Branco ', 10.99, '1 litro '),
+	(3, 'Vinho da Serra', 10.66, 'Vinho da Serra do Dem');
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 
 
@@ -5791,13 +5972,14 @@ CREATE TABLE IF NOT EXISTS `produtoxorcamento` (
   `genValorTotal` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`genCodigo`),
   KEY `proCodigo` (`proCodigo`),
-  KEY `orcCodigo` (`orcCodigo`),
-  CONSTRAINT `orcCodigo` FOREIGN KEY (`orcCodigo`) REFERENCES `orcamento` (`orcCodigo`),
-  CONSTRAINT `proCodigo` FOREIGN KEY (`proCodigo`) REFERENCES `produto` (`proCodigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `orcCodigo` (`orcCodigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela vinicula.produtoxorcamento: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela vinicula.produtoxorcamento: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `produtoxorcamento` DISABLE KEYS */;
+INSERT INTO `produtoxorcamento` (`genCodigo`, `orcCodigo`, `proCodigo`, `genValorUnitario`, `genQuantidade`, `genValorTotal`) VALUES
+	(1, 1, 2, 10.99, 3, 32.97),
+	(2, 1, 3, 10.66, 2, 21.32);
 /*!40000 ALTER TABLE `produtoxorcamento` ENABLE KEYS */;
 
 
@@ -5828,15 +6010,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `perCodigo` int(11) DEFAULT NULL,
   PRIMARY KEY (`usuCodigo`),
   KEY `pesCodigo` (`pesCodigo`),
-  KEY `perCodigo` (`perCodigo`),
-  CONSTRAINT `perCodigo` FOREIGN KEY (`perCodigo`) REFERENCES `perfil` (`perCodigo`),
-  CONSTRAINT `pesCodigo` FOREIGN KEY (`pesCodigo`) REFERENCES `pessoa` (`pesCodigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  KEY `perCodigo` (`perCodigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela vinicula.usuario: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela vinicula.usuario: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`usuCodigo`, `usuNome`, `usuSenha`, `pesCodigo`, `perCodigo`) VALUES
-	(1, 'Admin', '123456', 1, 1);
+	(1, 'Admin', '123456', 1, 1),
+	(2, 'Funcionario', '123456', 2, 2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
