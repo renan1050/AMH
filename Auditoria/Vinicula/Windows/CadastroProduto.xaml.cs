@@ -1,5 +1,5 @@
-﻿using BusinessRules.DatabaseBase.Classes;
-using BusinessRules.DatabaseBase.Model;
+﻿using RegrasDeNegocios.DatabaseBase.Classes;
+using RegrasDeNegocios.DatabaseBase.Model;
 using InterfaceBase;
 using System;
 using System.Collections.Generic;
@@ -25,6 +25,7 @@ namespace Vinicula
         public CadastroProduto()
         {
             InitializeComponent();
+            Logs.Log("CadastroProduto", "Abrir");
         }
 
         private void Load(object sender, RoutedEventArgs e)
@@ -55,6 +56,8 @@ namespace Vinicula
                 ProdutoDM lProdutoDM = lProduto.SelectCodigo(pCodigo);
                 lInterfaceManagement.CarregarDM(this, lProdutoDM);
                 txtCodigoCarregar.Text = null;
+
+                Logs.Log("CadastroProduto", "Carregar produto, código: " + pCodigo);
             }
             catch (Exception pE)
             {
@@ -82,6 +85,8 @@ namespace Vinicula
                             MessageBox.Show("Editado com sucesso");
                         else
                             MessageBox.Show("Erro ao editar");
+
+                        Logs.Log("CadastroProduto", "Editar produto, código: " + lProdutoDM.proCodigo);
                     }
                     else
                     {
@@ -89,6 +94,8 @@ namespace Vinicula
                             MessageBox.Show("Salvo com sucesso");
                         else
                             MessageBox.Show("Erro ao salvar");
+
+                        Logs.Log("CadastroProduto", "Inserir produto");
                     }
                 }
             }
@@ -104,6 +111,7 @@ namespace Vinicula
             {
                 Produto lProduto = new Produto();
                 lProduto.ExcluirCliente(proCodigo.Text);
+                Logs.Log("CadastroProduto", "Excluir produto, código: " + proCodigo.Text);
                 Clear();
             }
             catch (Exception pE)

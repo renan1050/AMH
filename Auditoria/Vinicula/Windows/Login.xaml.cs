@@ -1,4 +1,4 @@
-﻿using BusinessRules.DatabaseBase.Classes;
+﻿using RegrasDeNegocios.DatabaseBase.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BusinessRules.DatabaseBase.Model;
+using RegrasDeNegocios.DatabaseBase.Model;
 
 namespace Vinicula.Windows
 {
@@ -36,8 +36,8 @@ namespace Vinicula.Windows
                 
                 List<UsuarioDM> lUsuarioDMList = Database.SelecionarTudo("usuario",lParametros, typeof(UsuarioDM)).Cast<UsuarioDM>().ToList();
                 if(lUsuarioDMList.Count > 0)
-                {                    
-                    MessageBox.Show("Logado");
+                {
+                    Database.setUsuario(lUsuarioDMList.First());
                     MainWindow lMainWindow = new MainWindow();
                     lMainWindow.Show();
                     this.Close();

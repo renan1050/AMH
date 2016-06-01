@@ -1,4 +1,4 @@
-﻿using BusinessRules.DatabaseBase.Classes;
+﻿using RegrasDeNegocios.DatabaseBase.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

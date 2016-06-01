@@ -1,5 +1,5 @@
-﻿using BusinessRules.DatabaseBase.Classes;
-using BusinessRules.DatabaseBase.Model;
+﻿using RegrasDeNegocios.DatabaseBase.Classes;
+using RegrasDeNegocios.DatabaseBase.Model;
 using InterfaceBase;
 using System;
 using System.Collections.Generic;
@@ -39,6 +39,8 @@ namespace Vinicula
             cidCodigo.ItemsSource = gSource;
             cidCodigo.DisplayMemberPath = "cidNome";
             cidCodigo.SelectedValuePath = "cidCodigo";
+
+            Logs.Log("CadastroPessoa", "Abrir");
         }
 
         private void Load(object sender, RoutedEventArgs e)
@@ -99,6 +101,8 @@ namespace Vinicula
                 }
 
                 txtCodigoCarregar.Text = null;
+
+                Logs.Log("CadastroPessoa", "Carregar pessoa, código: " + pCodigo);
             }
             catch (Exception pE)
             {
@@ -136,6 +140,8 @@ namespace Vinicula
 
                 if (!lPessoaxTipo.Refresh(int.Parse(pCodigo), lTipos.ToArray()))
                     MessageBox.Show("Erro ao salvar categorias");
+
+                Logs.Log("CadastroPessoa", "Atualizar tipos");
             }
             catch (Exception pE)
             {
@@ -164,6 +170,8 @@ namespace Vinicula
                             MessageBox.Show("Editado com sucesso");
                         else
                             MessageBox.Show("Erro ao editar");
+
+                        Logs.Log("CadastroPessoa", "Editar pessoa, código: " + lPessoaDM.pesCodigo);
                     }
                     else
                     {
@@ -173,6 +181,8 @@ namespace Vinicula
                         }
                         else
                             MessageBox.Show("Erro ao salvar");
+
+                        Logs.Log("CadastroPessoa", "Inserir pessoa");
                     }
                 }
             }
@@ -277,7 +287,8 @@ namespace Vinicula
             {
                 Pessoa lPessoa = new Pessoa();
                 lPessoa.ExcluirCliente(pesCodigo.Text);
-                Clear();
+                Logs.Log("CadastroPessoa", "Excluir pessoa, código: " + pesCodigo.Text);
+                Clear();                
             }
             catch (Exception pE)
             {

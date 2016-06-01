@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessRules.DatabaseBase.Model
+namespace RegrasDeNegocios.DatabaseBase.Model
 {
     public class OrdemDM
     {

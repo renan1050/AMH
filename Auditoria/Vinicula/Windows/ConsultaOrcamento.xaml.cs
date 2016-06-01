@@ -1,5 +1,5 @@
-﻿using BusinessRules.DatabaseBase.Classes;
-using BusinessRules.DatabaseBase.Model;
+﻿using RegrasDeNegocios.DatabaseBase.Classes;
+using RegrasDeNegocios.DatabaseBase.Model;
 using InterfaceBase;
 using System;
 using System.Collections.Generic;
@@ -32,6 +32,7 @@ namespace Vinicula
             pesCodigoC.DisplayMemberPath = "Value";
             pesCodigoC.SelectedValuePath = "Key";
             Atualizar(true);
+            Logs.Log("ConsultaOrcamento", "Abrir");
         }
 
         private void Atualizar(bool pAbrindo = false)

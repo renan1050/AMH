@@ -50,6 +50,7 @@
     <Compile Include="DatabaseBase\Classes\Cidade.cs" />
     <Compile Include="DatabaseBase\Classes\Database.cs" />
     <Compile Include="DatabaseBase\Classes\Estado.cs" />
+    <Compile Include="DatabaseBase\Classes\Logs.cs" />
     <Compile Include="DatabaseBase\Classes\Orcamento.cs" />
     <Compile Include="DatabaseBase\Classes\Ordem.cs" />
     <Compile Include="DatabaseBase\Classes\Pessoa.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="DatabaseBase\DatabaseConnection.cs" />
     <Compile Include="DatabaseBase\Model\CidadeDM.cs" />
     <Compile Include="DatabaseBase\Model\EstadoDM.cs" />
+    <Compile Include="DatabaseBase\Model\LogsDM.cs" />
     <Compile Include="DatabaseBase\Model\OrcamentoDM.cs" />
     <Compile Include="DatabaseBase\Model\OrdemDM.cs" />
     <Compile Include="DatabaseBase\Model\PerfilDM.cs" />

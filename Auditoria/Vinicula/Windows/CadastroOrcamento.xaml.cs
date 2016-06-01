@@ -1,5 +1,5 @@
-﻿using BusinessRules.DatabaseBase.Classes;
-using BusinessRules.DatabaseBase.Model;
+﻿using RegrasDeNegocios.DatabaseBase.Classes;
+using RegrasDeNegocios.DatabaseBase.Model;
 using InterfaceBase;
 using System;
 using System.Collections.Generic;
@@ -48,6 +48,8 @@ namespace Vinicula
             proCodigo.ItemsSource = lItemList;
             proCodigo.DisplayMemberPath = "Name";
             proCodigo.SelectedValuePath = "Value";
+
+            Logs.Log("CadastroOrcamento", "Abrir");
         }
 
         private void Load(object sender, RoutedEventArgs e)
@@ -73,6 +75,8 @@ namespace Vinicula
             }
 
             txtCodigoCarregar.Text = null;
+
+            Logs.Log("CadastroOrcamento", "Carregar orçamento, código: " + pCodigo);
         }
 
         private void LoadSub(string pCodigo)
@@ -124,6 +128,8 @@ namespace Vinicula
                         MessageBox.Show("Editado com sucesso");
                     else
                         MessageBox.Show("Erro ao editar");
+
+                    Logs.Log("CadastroOrcamento", "Editar orçamento, código: " + lOrcamentoDM.orcCodigo);                    
                 }
                 else
                 {
@@ -132,6 +138,8 @@ namespace Vinicula
                         MessageBox.Show("Salvo com sucesso");
                     else
                         MessageBox.Show("Erro ao salvar");
+
+                    Logs.Log("CadastroOrcamento", "Inserir orçamento");
                 }
             }
         }
@@ -140,7 +148,8 @@ namespace Vinicula
         {
             Orcamento lOrcamento = new Orcamento();
             lOrcamento.ExcluirCliente(orcCodigo.Text);
-            Clear();
+            Logs.Log("CadastroOrcamento", "Excluir orçamento, código: " + orcCodigo.Text);
+            Clear();            
         }
 
         private void Clear()
@@ -183,6 +192,8 @@ namespace Vinicula
                         MessageBox.Show("Editado com sucesso");
                     else
                         MessageBox.Show("Erro ao editar");
+
+                    Logs.Log("CadastroOrcamento", "Editar item orçamento, código: " + lProdutoxOrcamentoDM.orcCodigo);
                 }
                 else
                 {
@@ -190,6 +201,8 @@ namespace Vinicula
                         MessageBox.Show("Salvo com sucesso");
                     else
                         MessageBox.Show("Erro ao salvar");
+
+                    Logs.Log("CadastroOrcamento", "Inserir item de orçamento");
                 }
 
                 LoadSub(orcCodigo.Text);
@@ -230,9 +243,11 @@ namespace Vinicula
             if ((sender as DataGrid).SelectedItem != null)
             {
                 ProdutoxOrcamento lProdutoxOrcamento = new ProdutoxOrcamento();
-                if (lProdutoxOrcamento.ExcluirCliente(((sender as DataGrid).SelectedItem as ProdutoxOrcamentoDM).genCodigo.ToString()))
+                string lCodigo = ((sender as DataGrid).SelectedItem as ProdutoxOrcamentoDM).genCodigo.ToString();
+                if (lProdutoxOrcamento.ExcluirCliente(lCodigo))
                 {
                     LoadSub(orcCodigo.Text);
+                    Logs.Log("CadastroOrcamento", "Excluir item de orçamento, código: " + lCodigo);
                 }
             }
         }

@@ -1,5 +1,5 @@
-﻿using BusinessRules.DatabaseBase.Classes;
-using BusinessRules.DatabaseBase.Model;
+﻿using RegrasDeNegocios.DatabaseBase.Classes;
+using RegrasDeNegocios.DatabaseBase.Model;
 using InterfaceBase;
 using System;
 using System.Collections.Generic;

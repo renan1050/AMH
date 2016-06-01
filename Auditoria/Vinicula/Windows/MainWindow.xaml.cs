@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegrasDeNegocios.DatabaseBase.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Vinicula
         public MainWindow()
         {
             InitializeComponent();
+            Logs.Log("MainWindow", "Abrir");
         }
 
         #region Pessoa

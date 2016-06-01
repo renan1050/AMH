@@ -1,4 +1,4 @@
-﻿using BusinessRules.DatabaseBase.Model;
+﻿using RegrasDeNegocios.DatabaseBase.Model;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
@@ -9,11 +9,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace BusinessRules.DatabaseBase.Classes
+namespace RegrasDeNegocios.DatabaseBase.Classes
 {
     public class Database
     {
-        private UsuarioDM gUsuarioAutenticado;
+        private static UsuarioDM gUsuarioAutenticado;
+
+        public static UsuarioDM getUsuario()
+        {
+            return gUsuarioAutenticado;            
+        }
+        public static void setUsuario(UsuarioDM pUsuario)
+        {            
+            gUsuarioAutenticado = pUsuario;
+        }
+        
         
         public static DataTable SelecionarTudo(string pTabela)
         {

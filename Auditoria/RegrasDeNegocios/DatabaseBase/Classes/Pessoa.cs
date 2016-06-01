@@ -1,4 +1,4 @@
-﻿using BusinessRules.DatabaseBase.Model;
+﻿using RegrasDeNegocios.DatabaseBase.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessRules.DatabaseBase.Classes
+namespace RegrasDeNegocios.DatabaseBase.Classes
 {
     public class Pessoa
     {

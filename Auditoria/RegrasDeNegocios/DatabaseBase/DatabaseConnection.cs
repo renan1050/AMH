@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 using System.Reflection;
 using System.IO;
 
-namespace BusinessRules.DatabaseBase
+namespace RegrasDeNegocios.DatabaseBase
 {
    public class DatabaseConnection
     {
